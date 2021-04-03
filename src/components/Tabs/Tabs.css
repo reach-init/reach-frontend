@@ -1,0 +1,14 @@
+.app-tabs {
+    margin: 10px auto 50px;
+    text-align: center;
+}
+.app-tabs a {
+    margin: 3px;
+    background: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+.app-tabs a:hover, .app-tabs a.active {
+    background-color: #4267B2;
+    color: #fff;
+}
