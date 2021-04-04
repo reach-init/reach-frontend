@@ -44,9 +44,9 @@ export default function NewsFeed() {
           hasMore={hasMoreItems}
           loader={<div className="text-center">loading data ...</div>}>
 
-            {userList.map((user, i) => 
+            {userList.map((user, index) => 
               ( 
-              <div className="box m-3 user" key={i}>
+              <div className="box m-3 user" key={index}>
                 <img src={user.avatar} alt={user.first_name}/>
                 <div className="user-details">
                   <strong>Email</strong>: {user.email}<br/> 
@@ -58,9 +58,10 @@ export default function NewsFeed() {
             )}
 
         </InfiniteScroll>
-
-        {hasMoreItems ? "" : <div className="text-center">no data anymore ...</div> }    
       </div>
+
+      {hasMoreItems ? "" : <div className="text-center">no data anymore ...</div> }    
+      
     </div>
   )
 }

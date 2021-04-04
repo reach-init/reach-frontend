@@ -10,6 +10,8 @@ import {
   Switch,
   Route,
   useParams,
+  withRouter,
+  useHistory 
 } from "react-router-dom";
 
 
@@ -24,54 +26,43 @@ import Profile from '../Profile/Profile';
 import User from '../User/User';
 
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
+import SearchResults from '../SearchResults/SearchResults';
 
+function App(props) {
+  const { token, setToken } = useToken();
 
-function Component1() {
-  return (
-    <div>
-      <h1>My custom text1.</h1>
-    </div>
-  );
-}
-
-function Component2() {
-  var [name, setName] = useState("");
-  return (
-    <div>
-      <h1>{name}</h1>
-      <input onChange={(e) => {
-        name = setName(e.target.value);
-        console.log(name);
-      }}>
-
-      </input>
-
-    </div>
-  );
-}
-
-function Component3() {
-  return (
-    <div>
-      <h1>My custom text3.</h1>
-    </div>
-  );
-}
-
-function App() {
-  // const { token, setToken } = useToken();
-
+  const [searchText, setSearchText] = useState('Search');
+  const history = useHistory();
   // if(!token) {
   //   return <Login setToken={setToken} />
   // }
 
-  const [searchText, setsearchText] = useState('Search');
-
   const handleFormSubmit = e => e.preventDefault();
 
-  const handleSearchInput = () => {};
-  const handleSearchKeyUp = () => {};
-  const handleSearchSubmit = () => {};
+  const handleSearchInput = (event) => {
+    setSearchText(event.target.value);
+  };
+
+  const handleSearchKeyUp = (event) => {
+    event.preventDefault();
+    if (event.key === 'Enter' && event.keyCode === 13) {
+        handleSearchSubmit();
+    }
+  };
+  
+
+  const handleSearchSubmit = () => {
+    if (searchText) {
+      setSearchText("");
+      history.push('/results/' + searchText);
+    } else {
+        alert("Please enter some search text!");
+    }
+  };
+
+  const handleRoute = (route) => ()  => {
+    props.history.push({ pathname: route });
+  };
 
   return (
     // <div className="App">
@@ -82,29 +73,31 @@ function App() {
     <div>
       <div className="row">
         <div className="col-md-12">
-          <Router>
+          
             <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
               <Navbar.Brand  href="/">Reach</Navbar.Brand>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                  <Nav.Link href="/">NewsFeed</Nav.Link>
-                  <Nav.Link href="/profile">Profile</Nav.Link>
+                  {/* <Nav.Link href="/">NewsFeed</Nav.Link>
+                  <Nav.Link href="/profile">Profile</Nav.Link> */}
+                  <Nav.Link onClick={handleRoute("/")}>NewsFeed</Nav.Link>
+                  <Nav.Link onClick={handleRoute("/profile")}>Profile</Nav.Link>
                 </Nav>
 
                 <Form inline onSubmit={handleFormSubmit}>
-                        <FormControl
-                            onChange={handleSearchInput}
-                            value={searchText}
-                            onKeyUp={handleSearchKeyUp}
-                            type="text"
-                            placeholder="Search"
-                            className="mr-sm-2"
-                        />
-                        <Button onClick={handleSearchSubmit} variant="outline-info">
-                            Search
-                        </Button>
-                    </Form>
+                    <FormControl
+                        onChange={handleSearchInput}
+                        value={searchText}
+                        onKeyUp={handleSearchKeyUp}
+                        type="text"
+                        placeholder="Search"
+                        className="mr-sm-2"
+                    />
+                    <Button onClick={handleSearchSubmit} variant="outline-info">
+                        Search
+                    </Button>
+                  </Form>
               </Navbar.Collapse>
             </Navbar>
             <br />
@@ -120,10 +113,14 @@ function App() {
                 <Profile />
               </Route>
 
+              <Route path="/results/:searchedText">
+                <SearchResults />
+              </Route>
+
               <Route path="/:id" children={<User />} />
 
             </Switch>
-          </Router>
+          
         </div>
       </div>
     </div>
@@ -133,4 +130,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);
