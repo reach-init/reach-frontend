@@ -3,6 +3,7 @@ import InfiniteScroll  from 'react-infinite-scroller'
 import UserService from '../../services/UserService';
 
 import './NewsFeed.css'
+import Post from '../Post/Post';
 
 export default function NewsFeed() {
 
@@ -44,16 +45,9 @@ export default function NewsFeed() {
           hasMore={hasMoreItems}
           loader={<div className="text-center">loading data ...</div>}>
 
-            {userList.map((user, index) => 
+            { userList.map((user, index) => 
               ( 
-              <div className="box m-3 user" key={index}>
-                <img src={user.avatar} alt={user.first_name}/>
-                <div className="user-details">
-                  <strong>Email</strong>: {user.email}<br/> 
-                  <strong>First Name</strong>: {user.first_name}<br/> 
-                  <strong>Last Name</strong>: {user.last_name}<br/>
-                </div>
-              </div>
+              <Post key={index} user={user} />
               )
             )}
 

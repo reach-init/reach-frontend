@@ -15,5 +15,23 @@ export default {
     } catch(error) {
       throw error;
     }
+  },
+  getAllUsers: async function() {
+    try {
+      let url ="https://reqres.in/api/users?per_page=12"
+      const response = await axios.get(url);
+      return response.data;
+    } catch(error) {
+      throw error;
+    }
+  },
+  getUserById: async function(id) {
+    try {
+      const url ="https://reqres.in/api/users/"+id;
+      const response = await axios.get(url);
+      return response.data;
+    } catch(error) {
+      throw error;
+    }
   }
 }
