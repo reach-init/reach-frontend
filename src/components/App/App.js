@@ -31,7 +31,7 @@ import SearchResults from '../SearchResults/SearchResults';
 function App(props) {
   const { token, setToken } = useToken();
 
-  const [searchText, setSearchText] = useState('Search');
+  const [searchText, setSearchText] = useState('');
   const history = useHistory();
   // if(!token) {
   //   return <Login setToken={setToken} />
