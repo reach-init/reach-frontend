@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import InfiniteScroll  from 'react-infinite-scroller'
 import UserService from '../../services/UserService';
+import {Row } from 'react-bootstrap'
 
 import './NewsFeed.css'
 import Post from '../Post/Post';
@@ -47,7 +48,7 @@ export default function NewsFeed() {
 
             { userList.map((user, index) => 
               ( 
-              <Post key={index} user={user} />
+              <Row> <Post key={index} user={user} /> </Row>
               )
             )}
 

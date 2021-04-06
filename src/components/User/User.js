@@ -11,7 +11,6 @@ import Post from '../Post/Post';
 
 export default function User() {
     const [user, setUser] = useState();
-    const [error, setError] = useState(false);
 
     let { id } = useParams();
     
@@ -23,7 +22,6 @@ export default function User() {
         } 
         catch(e) {
             console.log(e);
-            setError(true)
         }
     },[])
     return (
