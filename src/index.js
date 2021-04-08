@@ -3,15 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.css';
+
+export const headers = {"app-id": "606f286ce7fdbb00ce9a5b00"};
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
       <App />
-    </BrowserRouter>
-    
   </React.StrictMode>,
   document.getElementById('root')
 );

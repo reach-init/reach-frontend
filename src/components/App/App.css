@@ -1,27 +1,53 @@
-.App {
-  text-align: center;
+.Wrapper {
+  max-width: 900px;
+  margin: auto;
+  border-left: 1px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0,0,0,0.1);
 }
 
-.App-header {
-  background-color: #8db1f3;
-  min-height: 6vh;
+.Header {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 999;
+}
+
+.Header .Branding {
+  margin: 0;
+}
+
+.Header .Branding .Logo {
+  height: 40px;
+  margin: 10px;
+  vertical-align: middle;
+}
+
+.Posts {
   display: flex;
 }
 
-.App-link {
-  color: #61dafb;
+.PostStream {
+  width: 67%;
+  flex-shrink: 0;
 }
 
-.wrapper {
-  padding: 20px;
+a {
+  text-decoration: none;
+  color: #000;
 }
 
-.app-name {
-  color: white;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  font-size: 5vh;
-  font-weight: bold;
-  transform: translateX(1vmin);
+.UserHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 15px 10px;
+}
+
+@media all and (max-width:768px) {
+  .UserHeader {
+    display: block;
+  }
 }
