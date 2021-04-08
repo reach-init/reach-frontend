@@ -2,11 +2,11 @@ import Chip from '@material-ui/core/Chip';
 import {useState, useEffect} from 'react'
 import useFetch from 'use-http'
 import { Link } from 'react-router-dom';
-
+import { headers } from '../../index';
 
 export default function Sidebar() {
     const [tags, setTags] = useState([])
-    const { get, post, response, loading, error } = useFetch('https://dummyapi.io/data/api/tag?limit=50', {headers: {"app-id": "606eda293180067165533c46"}})
+    const { get, post, response, loading, error } = useFetch('https://dummyapi.io/data/api/tag?limit=50', {headers})
     
     useEffect(() => { loadInitialTags() }, [])
 

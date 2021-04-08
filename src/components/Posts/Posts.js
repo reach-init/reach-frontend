@@ -16,10 +16,11 @@ import {
   import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Sidebar from '../Sidebar/Sidebar';
 import { Link } from 'react-router-dom';
+import { headers } from '../../index';
 
 export default function Posts() {
     const [posts, setPosts] = useState([])
-    const { get, post, response, loading, error } = useFetch('https://dummyapi.io/data/api/post?limit=10', {headers: {"app-id": "606eda293180067165533c46"}})
+    const { get, post, response, loading, error } = useFetch('https://dummyapi.io/data/api/post?limit=10', {headers})
     
     useEffect(() => { loadInitialPosts() }, [])
 

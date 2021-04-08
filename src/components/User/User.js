@@ -25,10 +25,11 @@ import {
   import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share'
 import { Link } from 'react-router-dom';
+import { headers } from '../../index';
 
 export default function User(props) {
     const [user, setUser] = useState()
-    const userFetch = useFetch('https://dummyapi.io/data/api/user', {headers: {"app-id": "606ee5fb8d491415e3eae864"}})
+    const userFetch = useFetch('https://dummyapi.io/data/api/user', {headers})
     
     useEffect(() => { loadUser() }, [])
 
@@ -40,7 +41,7 @@ export default function User(props) {
       }
       
       const [userPosts, setUserPosts] = useState()
-      const userPostsFetch = useFetch('https://dummyapi.io/data/api/user', {headers: {"app-id": "606ee5fb8d491415e3eae864"}})
+      const userPostsFetch = useFetch('https://dummyapi.io/data/api/user', {headers})
       
       useEffect(() => { loadUserPosts() }, [])
   

@@ -16,13 +16,14 @@ import {
   import ShareIcon from '@material-ui/icons/Share';
   import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Sidebar from '../Sidebar/Sidebar';
+import { headers } from '../../index';
 import {
     useParams
   } from "react-router-dom";
 
   export default function Tag(props) {
     const [posts, setPosts] = useState()
-    const postsFetch = useFetch('https://dummyapi.io/data/api/tag', {headers: {"app-id": "606ee5fb8d491415e3eae864"}})
+    const postsFetch = useFetch('https://dummyapi.io/data/api/tag', {headers})
     let { tag } = useParams();
     
     useEffect(() => { loadPosts() }, [tag])
