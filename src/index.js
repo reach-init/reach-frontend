@@ -4,7 +4,7 @@ import './index.css';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
 
-export const headers = {"app-id": ""};
+export const headers = {"app-id": "606f286ce7fdbb00ce9a5b00"};
 
 ReactDOM.render(
   <React.StrictMode>
