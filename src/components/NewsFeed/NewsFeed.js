@@ -5,50 +5,48 @@ import {Row } from 'react-bootstrap'
 
 import './NewsFeed.css'
 import Post from '../Post/Post';
+import PostService from '../../services/PostService';
 
 export default function NewsFeed() {
 
-  const [userList, setUserList] = useState([]);
+  const [posts, setPosts] = useState([]);
+
   const [hasMoreItems, setHasMoreItems] = useState(true);
 
-  const loadUserList = (page) => {
-    setTimeout(() => {
-      UserService.getList(page)
-      .then((res) => {
-        const newList = userList.concat(res.data);
+ 
+  const loadPosts = async (page) => {
+      const postsResult = await PostService.getPosts(page)
+      const postsWithUserData = await Promise.all(postsResult.map(async (x, index) =>  { 
+        return {...x , user: await UserService.getUserById(x.userId)}
+      }))
+        console.log(postsWithUserData)
+        const newPosts = [...posts, ...postsWithUserData ]
+        console.log(newPosts)
 
-        setUserList(newList);
+        setPosts(newPosts);
 
-        if(res.data.length===0) {
+        if(postsResult.length===0) {
           setHasMoreItems(false);
         } else {
           setHasMoreItems(true);
         }
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() =>{
-      })
-    
-    }, 1500)
+     
   }
-  
+
   return (
     <div>
       
       <div className="section">
 
         <InfiniteScroll
-          threshold={0}
           pageStart={0}
-          loadMore={loadUserList}
+          loadMore={loadPosts}
           hasMore={hasMoreItems}
           loader={<div className="text-center">loading data ...</div>}>
 
-            { userList.map((user, index) => 
+            { posts.map((post, index) => 
               ( 
-              <Row> <Post key={index} user={user} /> </Row>
+              <Row> <Post key={index} post={post} /> </Row>
               )
             )}
 

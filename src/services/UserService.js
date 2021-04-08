@@ -17,8 +17,10 @@ export default {
     return response.data;
   },
   getUserById: async function(id) {
-    const url = 'https://reqres.in/api/users/' + id;
+    const url = baseUrl + 'users/' + id;
+    const photoUrl = 'https://reqres.in/api/users/' + id
+    const avatar = await (await axios.get(photoUrl)).data.data.avatar
     const response = await axios.get(url);
-    return response.data;
+    return {...response.data, avatar};
   },
 };
