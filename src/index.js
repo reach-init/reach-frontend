@@ -7,9 +7,9 @@ import reportWebVitals from './reportWebVitals';
 export const headers = {"app-id": "606f286ce7fdbb00ce9a5b00"};
 
 ReactDOM.render(
-  <React.StrictMode>
-      <App />
-  </React.StrictMode>,
+  // <React.StrictMode>
+      <App />,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 
