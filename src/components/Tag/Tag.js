@@ -58,7 +58,7 @@ import {
                 <CardHeader
                   avatar={
                     <Link to={`/user/${item.owner.id}`}>
-                    <div><Avatar src={item.owner.image} alt={item.owner.firstName + ' ' + item.owner.lastName} style={{width: '40px', marginRight: 10, display: 'inline-block', verticalAlign: 'middle'}}/>{item.owner.firstName + ' ' + item.owner.lastName}</div>
+                    <div><Avatar src={item.owner.picture} alt={item.owner.firstName + ' ' + item.owner.lastName} style={{width: '40px', marginRight: 10, display: 'inline-block', verticalAlign: 'middle'}}/>{item.owner.firstName + ' ' + item.owner.lastName}</div>
                  </Link> }
                   action={
                     <IconButton aria-label="settings">
