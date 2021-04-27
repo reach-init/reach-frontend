@@ -66,13 +66,14 @@ const useStyles = makeStyles((theme) => {
     sectionDesktop: {
       color: iconColor,
       display: 'none',
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('sm')]: {
         display: 'flex',
+        justifyContent: 'space-evenly'
       },
     },
     sectionMobile: {
       display: 'flex',
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('sm')]: {
         display: 'none',
       },
     },

@@ -1,5 +1,5 @@
 .Wrapper {
-  max-width: 900px;
+  max-width: 1200px;
   margin: auto;
   border-left: 1px solid rgba(0,0,0,0.1);
   border-right: 1px solid rgba(0,0,0,0.1);
@@ -25,14 +25,14 @@
   vertical-align: middle;
 }
 
-.Posts {
+/* .Posts {
   display: flex;
 }
 
 .PostStream {
   width: 67%;
   flex-shrink: 0;
-}
+} */
 
 a {
   text-decoration: none;

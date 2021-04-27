@@ -8,13 +8,36 @@ import NotFound from '../NotFound/NotFound';
 import User from '../User/User';
 import Tag from '../Tag/Tag';
 import SearchResults from '../SearchResults/SearchResults';
+import {Grid} from '@material-ui/core'
 
 
 
 function App() {
   return (
+    
     <div className="App">
-     <div className="Wrapper"> 
+      
+     <div className="Wrapper">
+     {/* <Grid lg={12} item container spacing={3}>
+
+         <Grid item lg={3} sm={6} xs={12}>
+            <h1 style={{background:'green'}}>Sal1</h1> 
+        </Grid>
+
+         <Grid item lg={3} sm={6} xs={12}>
+            <h1 style={{background:'red'}}>Sal2</h1>
+        </Grid>
+
+        <Grid item lg={3} sm={6} xs={12}>
+            <h1 style={{background:'brown'}}>Sal3</h1>
+        </Grid>
+
+        <Grid item lg={3} sm={6} xs={12}>
+            <h1 style={{background:'purple'}}>Sal4</h1>
+        </Grid>
+
+    </Grid> */}
+
      <Router>
         {/* <Header logo={logo}/> */}
         <NavBar></NavBar>
