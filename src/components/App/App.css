@@ -1,12 +1,12 @@
 .Wrapper {
   max-width: 1200px;
   margin: auto;
-  border-left: 1px solid rgba(0,0,0,0.1);
-  border-right: 1px solid rgba(0,0,0,0.1);
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .Header {
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   position: sticky;
@@ -46,7 +46,7 @@ a {
   padding: 15px 10px;
 }
 
-@media all and (max-width:768px) {
+@media all and (max-width: 768px) {
   .UserHeader {
     display: block;
   }

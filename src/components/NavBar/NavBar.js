@@ -1,56 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import { Link } from 'react-router-dom';
-import useStyles from './NavBarcss';
+import React, { useState, useEffect } from 'react'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import IconButton from '@material-ui/core/IconButton'
+import Typography from '@material-ui/core/Typography'
+import InputBase from '@material-ui/core/InputBase'
+import Badge from '@material-ui/core/Badge'
+import MenuItem from '@material-ui/core/MenuItem'
+import Menu from '@material-ui/core/Menu'
+import MenuIcon from '@material-ui/icons/Menu'
+import SearchIcon from '@material-ui/icons/Search'
+import AccountCircle from '@material-ui/icons/AccountCircle'
+import MailIcon from '@material-ui/icons/Mail'
+import NotificationsIcon from '@material-ui/icons/Notifications'
+import MoreIcon from '@material-ui/icons/MoreVert'
+import { Link, useHistory } from 'react-router-dom'
+import useStyles from './NavBarcss'
 import useFetch from 'use-http'
-import { headers } from '../../index';
-import {Grid} from '@material-ui/core'
+import { headers } from '../../index'
+import { Grid } from '@material-ui/core'
 
-import {
-  useHistory 
-} from "react-router-dom";
+export default function NavBar({ handleDrawerOpen, open }) {
+  const classes = useStyles()
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
 
-export default function NavBar({handleDrawerOpen, open}) {
-  const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  
-  const { get, post, response, loading, error } = useFetch('https://dummyapi.io/data/api', {headers})
+  const {
+    get,
+    post,
+    response,
+    loading,
+    error
+  } = useFetch('https://dummyapi.io/data/api', { headers })
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const isMenuOpen = Boolean(anchorEl)
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
   const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
+    setMobileMoreAnchorEl(null)
+  }
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
+    setAnchorEl(null)
+    handleMobileMenuClose()
+  }
 
   const handleMobileMenuOpen = (event) => {
-    setMobileMoreAnchorEl(event.currentTarget);
-  };
+    setMobileMoreAnchorEl(event.currentTarget)
+  }
 
-  const menuId = 'primary-search-account-menu';
+  const menuId = 'primary-search-account-menu'
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -64,38 +66,36 @@ export default function NavBar({handleDrawerOpen, open}) {
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
-  );
-  const [searchedText, setSearchedText] = useState('');
-  const history = useHistory();
+  )
+  const [searchedText, setSearchedText] = useState('')
+  const history = useHistory()
 
-  const handleFormSubmit = e => e.preventDefault();
-  
+  const handleFormSubmit = (e) => e.preventDefault()
+
   const handleSearchInput = (event) => {
-    setSearchedText(event.target.value);
-  };
-  
+    setSearchedText(event.target.value)
+  }
+
   const handleSearchKeyUp = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     if (event.key === 'Enter' && event.keyCode === 13) {
-        console.log("I will search for " + searchedText)
-        handleSearchSubmit();
+      console.log('I will search for ' + searchedText)
+      handleSearchSubmit()
     }
-  };
-  
+  }
+
   const handleSearchSubmit = async () => {
     if (searchedText) {
-      setSearchedText("");
-      history.push('/results/' + searchedText);
+      setSearchedText('')
+      history.push('/results/' + searchedText)
       // setSearchedText("");
       // history.push('/tag/' + searchText);
     } else {
-        alert("Please enter some search text!");
+      alert('Please enter some search text!')
     }
-  };
+  }
 
-
-
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const mobileMenuId = 'primary-search-account-menu-mobile'
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
@@ -134,8 +134,7 @@ export default function NavBar({handleDrawerOpen, open}) {
         <p>Profile</p>
       </MenuItem>
     </Menu>
-  );
-  
+  )
 
   return (
     <div className={classes.grow}>
@@ -154,7 +153,7 @@ export default function NavBar({handleDrawerOpen, open}) {
           </Grid>
 
           <Grid item lg={1} sm={1} xs={1}>
-            <Link  to="/"  className={classes.title} variant="h6" noWrap>
+            <Link to="/" className={classes.title} variant="h6" noWrap>
               Reach
             </Link>
           </Grid>
@@ -169,7 +168,7 @@ export default function NavBar({handleDrawerOpen, open}) {
                 value={searchedText}
                 classes={{
                   root: classes.inputRoot,
-                  input: classes.inputInput,
+                  input: classes.inputInput
                 }}
                 inputProps={{ 'aria-label': 'search' }}
                 onChange={handleSearchInput}
@@ -186,7 +185,10 @@ export default function NavBar({handleDrawerOpen, open}) {
                   <MailIcon />
                 </Badge>
               </IconButton>
-              <IconButton aria-label="show 17 new notifications" color="inherit">
+              <IconButton
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
                 <Badge badgeContent={17} color="secondary">
                   <NotificationsIcon />
                 </Badge>
@@ -214,11 +216,10 @@ export default function NavBar({handleDrawerOpen, open}) {
               </IconButton>
             </div>
           </Grid>
-
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
     </div>
-  );
+  )
 }
