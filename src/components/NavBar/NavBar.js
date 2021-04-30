@@ -23,7 +23,7 @@ import {
   useHistory 
 } from "react-router-dom";
 
-export default function NavBar() {
+export default function NavBar({handleDrawerOpen, open}) {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -139,7 +139,7 @@ export default function NavBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static" className={classes.root}>
+      <AppBar position="fixed" className={classes.root}>
         <Toolbar>
           <Grid item lg={1} sm={1} xs={1}>
             <IconButton
@@ -147,6 +147,7 @@ export default function NavBar() {
               className={classes.menuButton}
               color="inherit"
               aria-label="open drawer"
+              onClick={handleDrawerOpen}
             >
               <MenuIcon />
             </IconButton>

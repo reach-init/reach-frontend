@@ -3,7 +3,7 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles((theme) => {
-  const fontColor = fade(theme.palette.common.white, 0.15);
+  const fontColor = theme.palette.common.white;
   const textColor = fade(theme.palette.common.black, 1);
   const iconColor = fade(theme.palette.common.black, 0.55);
 
@@ -71,6 +71,7 @@ const useStyles = makeStyles((theme) => {
         justifyContent: 'space-evenly'
       },
     },
+    offset: theme.mixins.toolbar,
     sectionMobile: {
       display: 'flex',
       [theme.breakpoints.up('sm')]: {
