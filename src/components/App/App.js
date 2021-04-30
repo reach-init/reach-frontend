@@ -229,6 +229,7 @@ export default function PersistentDrawerLeft() {
           [classes.contentShift]: open,
         })}>
           <div className={classes.drawerHeader} />
+          <Switch>
 
         <Route
           exact
@@ -245,6 +246,13 @@ export default function PersistentDrawerLeft() {
           path="/page3"
           render={() => <Typography>Page 3</Typography>}
         />
+
+ <Route path="/" exact component={Posts}/>
+           <Route path="/user/:id" component={User}/>
+           <Route path="/tag/:tag" component={Tag} />
+            <Route path="/results/:searchedText" component={SearchResults} />
+            <Route component={NotFound}/>
+          </Switch>
       </Grid>
         </Grid>
 
