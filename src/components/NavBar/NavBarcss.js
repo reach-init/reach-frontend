@@ -6,6 +6,10 @@ const useStyles = makeStyles((theme) => {
   const iconColor = fade(theme.palette.common.black, 0.55)
 
   const obj = {
+    appBar: {
+      zIndex: theme.zIndex.drawer + 1,
+      background: fontColor
+    },
     grow: {
       flexGrow: 1
     },
@@ -14,7 +18,10 @@ const useStyles = makeStyles((theme) => {
     },
     menuButton: {
       marginRight: theme.spacing(2),
-      color: textColor
+      color: textColor,
+      [theme.breakpoints.up('md')]: {
+        display: 'none'
+      }
     },
     title: {
       color: textColor,
@@ -61,6 +68,7 @@ const useStyles = makeStyles((theme) => {
         width: '20ch'
       }
     },
+
     sectionDesktop: {
       color: iconColor,
       display: 'none',

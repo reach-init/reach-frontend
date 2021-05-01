@@ -53,13 +53,13 @@ const NavItem = (props) => (
   </Switch>
 )
 
-const AppDrawer = ({ open, theme, handleDrawerClose, setOpen }) => {
+const AppDrawer = ({ variant, open, theme, handleDrawerClose, setOpen }) => {
   const classes = useStyles()
 
   return (
     <Drawer
       className={classes.drawer}
-      // variant="persistent"
+      variant={variant}
       anchor="left"
       open={open}
       classes={{

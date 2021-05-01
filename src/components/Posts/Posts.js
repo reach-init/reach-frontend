@@ -20,8 +20,11 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 import Sidebar from '../Sidebar/Sidebar'
 import { Link } from 'react-router-dom'
 import { headers } from '../../index'
+import { useAuth0 } from '../../auth/react-auth';
 
 export default function Posts() {
+  const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0();
+
   const [posts, setPosts] = useState([])
   const {
     get,
@@ -63,7 +66,7 @@ export default function Posts() {
     return (
       <Card
         key={item.id}
-        style={{ minWidth: '250px', maxWidth: '100%', margin: '30px' }}
+        style={{ minWidth: '250px', maxWidth: '100%', marginRight: '30px' }}
       >
         <CardHeader
           avatar={
@@ -138,9 +141,10 @@ export default function Posts() {
     )
   })
 
-  return (
+  return  (
     <div>
-      <Grid container spacing={3}>
+      {isAuthenticated && (
+      <Grid container >
         <Grid item lg={8} md={8} sm={12} xs={12}>
           <div className="PostStream">
             <InfiniteScroll
@@ -158,12 +162,13 @@ export default function Posts() {
             </InfiniteScroll>
           </div>
         </Grid>
-        <Hidden xsDown>
-          <Grid item lg={4} sm={4} xs={4}>
+        <Hidden smDown>
+          <Grid item lg={4} md={4} sm={4} xs={4}>
             <Sidebar />
           </Grid>
         </Hidden>
-      </Grid>
+      </Grid> )
+      }
     </div>
   )
 }

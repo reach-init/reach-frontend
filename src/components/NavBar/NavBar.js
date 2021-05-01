@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button';
+
 import Typography from '@material-ui/core/Typography'
 import InputBase from '@material-ui/core/InputBase'
 import Badge from '@material-ui/core/Badge'
@@ -18,19 +20,18 @@ import useStyles from './NavBarcss'
 import useFetch from 'use-http'
 import { headers } from '../../index'
 import { Grid } from '@material-ui/core'
+import { useAuth0 } from '../../auth/react-auth';
 
-export default function NavBar({ handleDrawerOpen, open }) {
+export default function NavBar({ handleDrawerOpen }) {
   const classes = useStyles()
+  const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0();
+
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
-
-  const {
-    get,
-    post,
-    response,
-    loading,
-    error
-  } = useFetch('https://dummyapi.io/data/api', { headers })
+  const [mobileOpen, setMobileOpen] = React.useState(false)
+  function handleDrawerToggle() {
+    setMobileOpen(!mobileOpen)
+  }
 
   const isMenuOpen = Boolean(anchorEl)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
@@ -65,6 +66,8 @@ export default function NavBar({ handleDrawerOpen, open }) {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      
+      {isAuthenticated && <MenuItem  onClick={() => logoutWithRedirect({})}>Logout</MenuItem>}
     </Menu>
   )
   const [searchedText, setSearchedText] = useState('')
@@ -138,7 +141,7 @@ export default function NavBar({ handleDrawerOpen, open }) {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="fixed" className={classes.root}>
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Grid item lg={1} sm={1} xs={1}>
             <IconButton
@@ -177,23 +180,35 @@ export default function NavBar({ handleDrawerOpen, open }) {
             </div>
           </Grid>
 
-          <Grid item lg={3} sm={3} xs={3}>
+          <Grid item lg={2} sm={3} xs={3}>
             {/* <div className={classes.grow} /> */}
             <div className={classes.sectionDesktop}>
-              <IconButton aria-label="show 4 new mails" color="inherit">
+            {isAuthenticated &&  <IconButton aria-label="show 4 new mails" color="inherit">
                 <Badge badgeContent={4} color="secondary">
                   <MailIcon />
                 </Badge>
-              </IconButton>
-              <IconButton
+              </IconButton> }
+              {isAuthenticated &&  <IconButton
                 aria-label="show 17 new notifications"
                 color="inherit"
               >
                 <Badge badgeContent={17} color="secondary">
                   <NotificationsIcon />
                 </Badge>
-              </IconButton>
-              <IconButton
+              </IconButton> }
+
+
+               
+              {!isAuthenticated && (
+    
+
+
+<Button onClick={() => loginWithRedirect({})} variant="contained" color="default">
+  Login
+</Button>
+
+        )}
+              {isAuthenticated && (<IconButton
                 edge="end"
                 aria-label="account of current user"
                 aria-controls={menuId}
@@ -203,14 +218,17 @@ export default function NavBar({ handleDrawerOpen, open }) {
               >
                 <AccountCircle />
               </IconButton>
+)}
+
             </div>
+              
             <div className={classes.sectionMobile}>
               <IconButton
                 aria-label="show more"
                 aria-controls={mobileMenuId}
                 aria-haspopup="true"
                 onClick={handleMobileMenuOpen}
-                color="inherit"
+                color="black"
               >
                 <MoreIcon />
               </IconButton>
