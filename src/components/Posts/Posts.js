@@ -66,7 +66,7 @@ export default function Posts() {
     return (
       <Card
         key={item.id}
-        style={{ minWidth: '250px', maxWidth: '100%', marginRight: '30px' }}
+        style={{ minWidth: '250px', maxWidth: '100%', margin: '30px' }}
       >
         <CardHeader
           avatar={
@@ -145,7 +145,7 @@ export default function Posts() {
     <div>
       {isAuthenticated && (
       <Grid container >
-        <Grid item lg={8} md={8} sm={12} xs={12}>
+        <Grid item xl={8} lg={8} md={12} sm={12} xs={12}>
           <div className="PostStream">
             <InfiniteScroll
               dataLength={newsFeed.length} // This is important field to render the next data
@@ -163,7 +163,7 @@ export default function Posts() {
           </div>
         </Grid>
         <Hidden smDown>
-          <Grid item lg={4} md={4} sm={4} xs={4}>
+          <Grid item  xl={4} lg={4}>
             <Sidebar />
           </Grid>
         </Hidden>

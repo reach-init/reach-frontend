@@ -65,18 +65,17 @@ export default function PersistentDrawerLeft() {
             />
           </Grid>
         </Hidden>
-        <Grid  lg={1} xl={1}  item>
-        </Grid>
+        <Grid  xl={1} lg={1} md={1} sm={0} item></Grid>
 
         
         <Hidden xsDown >
-        <Grid    className={classes.content} sm={4} md={3} lg={2} xl={2} item>
+        <Grid  xl={2} lg={2} md={3} sm={4} xs={0} className={classes.content}  item>
           <LeftMenu />
         </Grid> 
           
         </Hidden>
 
-        <Grid className={classes.content} item sm={8} md={9} xl={7} lg={7}    xs={12}>
+        <Grid xl={8} lg={8} md={7} sm={7} xs={12} className={classes.content} item >
           <div />
           <Switch>
             <Route exact path="/" render={() => <Posts />} />
@@ -99,8 +98,7 @@ export default function PersistentDrawerLeft() {
           </Switch>
         </Grid>
 
-        <Grid  lg={2} item>
-        </Grid> 
+        <Grid  xl={1} lg={1} md={1}  sm={0} xs={0} item></Grid> 
       </Grid>
     </div>
   )
