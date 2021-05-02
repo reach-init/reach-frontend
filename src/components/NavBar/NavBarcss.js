@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => {
 
   const obj = {
     appBar: {
-      zIndex: theme.zIndex.drawer + 1,
+      // zIndex: theme.zIndex.drawer + 1,
       background: fontColor
     },
     grow: {

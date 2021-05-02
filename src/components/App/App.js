@@ -5,7 +5,6 @@ import Hidden from '@material-ui/core/Hidden'
 import Paper from '@material-ui/core/Paper'
 import LeftMenu from '../LeftMenu/LeftMenu'
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute';
-
 import {
   BrowserRouter as Router,
   NavLink,

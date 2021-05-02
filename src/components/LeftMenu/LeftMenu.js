@@ -1,54 +1,53 @@
 import React, { useState } from 'react';
-import clsx from 'clsx';
+import { Route, Link } from 'react-router-dom';
 
-import Avatar from '@material-ui/core/Avatar';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+import { withStyles } from '@material-ui/core/styles';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Posts from '../Posts/Posts';
+import Box from '@material-ui/core/Box';
+import HomeIcon from '@material-ui/icons/Home';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import PersonPinIcon from '@material-ui/icons/PersonPin';
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper
+  },
+  tabContent: {
+    padding: theme.spacing(2),
+    borderRight: `1px solid ${theme.palette.divider}`,
+  }
+});
 
-import MarkunreadIcon from '@material-ui/icons/Markunread';
-import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
-import LowPriorityIcon from '@material-ui/icons/LowPriority';
-import DeleteIcon from '@material-ui/icons/Delete';
 
-export default function LeftMenu({ classes }) {
-  const [items] = useState([
-    {
-      name: 'Unread',
-      updated: '2 minutes ago',
-      Icon: MarkunreadIcon,
-      notifications: 1
-    },
-    {
-      name: 'High Priority',
-      updated: '30 minutes ago',
-      Icon: PriorityHighIcon
-    },
-    {
-      name: 'Low Priority',
-      updated: '3 hours ago',
-      Icon: LowPriorityIcon
-    },
-    { name: 'Junk', updated: '6 days ago', Icon: DeleteIcon }
-  ]);
+function TabNavigationWithRoutes({ classes }) {
+  const [value, setValue] = useState(0);
 
+  const onChange = (e, value) => {
+    setValue(value);
+  };
+  const defaultProps = {
+    bgcolor: 'background.paper',
+    border: 1,
+    borderColor: 'grey.300',
+  };    
   return (
-    <List>
-      {items.map(({ Icon, ...item }, index) => (
-        <ListItem button key={index}>
-          <ListItemIcon>
-            <Avatar>
-              <Icon />
-            </Avatar>
-          </ListItemIcon>
-          <ListItemText
-            primary={item.name}
-            secondary={item.updated}
-          />
-        </ListItem>
-      ))}
-    </List>
+      <Box borderRadius="borderRadius" {...defaultProps}  > 
+
+    <div className={classes.root}>
+        <Tabs indicatorColor="primary" value={value} onChange={onChange} orientation="vertical"
+        variant="scrollable">
+          <Tab icon={<HomeIcon />} label="Home" component={Link} to="/" />
+          <Tab label="Friends" component={Link} to="/page2" />
+          <Tab label="Apps" component={Link} to="/page3" />
+        </Tabs>
+  
+    </div>
+    </Box>
 
   );
 }
+
+export default withStyles(styles)(TabNavigationWithRoutes);

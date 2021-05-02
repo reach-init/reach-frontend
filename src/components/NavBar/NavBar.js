@@ -21,6 +21,7 @@ import useFetch from 'use-http'
 import { headers } from '../../index'
 import { Grid } from '@material-ui/core'
 import { useAuth0 } from '../../auth/react-auth';
+import Box  from '@material-ui/core/Box';
 
 export default function NavBar({ handleDrawerOpen }) {
   const classes = useStyles()
@@ -52,7 +53,11 @@ export default function NavBar({ handleDrawerOpen }) {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget)
   }
-
+  const defaultProps = {
+    bgcolor: 'background.paper',
+    border: 1,
+    borderColor: 'grey.300',
+  };
   const menuId = 'primary-search-account-menu'
   const renderMenu = (
     <Menu
@@ -140,11 +145,13 @@ export default function NavBar({ handleDrawerOpen }) {
   )
 
   return (
+    <Box borderRadius="borderRadius" {...defaultProps}   > 
+
     <div className={classes.grow}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <Grid item lg={1} sm={1} xs={1}>
-            <IconButton
+            <IconButton 
               edge="start"
               className={classes.menuButton}
               color="inherit"
@@ -239,5 +246,6 @@ export default function NavBar({ handleDrawerOpen }) {
       {renderMobileMenu}
       {renderMenu}
     </div>
+    </Box>
   )
 }

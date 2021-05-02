@@ -1,4 +1,5 @@
 import useFetch from 'use-http'
+import  Box  from '@material-ui/core/Box';
 import { useState, useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import {
@@ -45,6 +46,9 @@ export default function Posts() {
     console.log(nextPosts)
     const newData = nextPosts.data
     const newPosts = [...posts, ...newData]
+    console.log(newPosts)
+    console.log(response)
+
     if (response.ok) setPosts(newPosts)
 
     const newPage = page + 1
@@ -61,12 +65,17 @@ export default function Posts() {
   //     const newPost = await post('/todos', { title: 'my new todo' })
   //     if (response.ok) setTodos([...todos, newTodo])
   //   }
-
+  const defaultProps = {
+    bgcolor: 'background.paper',
+    border: 1,
+    borderColor: 'grey.200',
+  };
+  
   const newsFeed = posts.map(function (item, index) {
     return (
+      <Box borderRadius="borderRadius" {...defaultProps} key={item.id} style={{ minWidth: '250px', maxWidth: '100%', marginBottom: '20px' }} > 
       <Card
         key={item.id}
-        style={{ minWidth: '250px', maxWidth: '100%', margin: '30px' }}
       >
         <CardHeader
           avatar={
@@ -138,18 +147,20 @@ export default function Posts() {
           </IconButton>
         </CardActions>
       </Card>
+      </Box>
     )
   })
 
   return  (
     <div>
       {isAuthenticated && (
-      <Grid container >
-        <Grid item xl={8} lg={8} md={12} sm={12} xs={12}>
+      <Grid container spacing={3}>
+        <Grid  item xl={8} lg={8} md={12} sm={12} xs={12}>
           <div className="PostStream">
             <InfiniteScroll
               dataLength={newsFeed.length} // This is important field to render the next data
               next={loadPosts}
+
               hasMore
               loader={<h4>Loading...</h4>}
               endMessage={
