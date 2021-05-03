@@ -1,5 +1,5 @@
 {
-    "domain": "reach-network.eu.auth0.com",
-    "clientId": "dVx5tiL0sr9U0Bvz8hYmmycqdqeSthaO",
-    "audience": "https://reach-network.herokuapp.com/"
+  "domain": "reach-network.eu.auth0.com",
+  "clientId": "dVx5tiL0sr9U0Bvz8hYmmycqdqeSthaO",
+  "audience": "https://reach-network.herokuapp.com/"
 }

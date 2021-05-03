@@ -85,13 +85,13 @@ const AppDrawer = ({ variant, open, theme, handleDrawerClose, setOpen }) => {
         />
         <NavItem
           to="/page2"
-          text="Page 2"
+          text="Friends"
           Icon={WebIcon}
           onClick={() => setOpen(false)}
         />
         <NavItem
           to="/page3"
-          text="Page 3"
+          text="Apps"
           Icon={WebIcon}
           onClick={() => setOpen(false)}
         />

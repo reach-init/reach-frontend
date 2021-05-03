@@ -4,22 +4,22 @@ import './index.css'
 import App from './components/App/App'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { Auth0Provider } from './auth/react-auth';
-import auth0Config from './config/auth.config.json';
+import { Auth0Provider } from './auth/react-auth'
+import auth0Config from './config/auth.config.json'
 
-export const headers = { 'app-id': '606f286ce7fdbb00ce9a5b00' }
+export const headers = { 'app-id': '608f32a2ef49b412559d2181' }
 
 ReactDOM.render(
   // <React.StrictMode>
   <Auth0Provider
-  domain={auth0Config.domain}
-  client_id={auth0Config.clientId}
-  audience={auth0Config.audience}
-  redirect_uri={window.location.origin}
->
-  <Router>
-    <App />
-  </Router>
+    domain={auth0Config.domain}
+    client_id={auth0Config.clientId}
+    audience={auth0Config.audience}
+    redirect_uri={window.location.origin}
+  >
+    <Router>
+      <App />
+    </Router>
   </Auth0Provider>,
   document.getElementById('root')
 )

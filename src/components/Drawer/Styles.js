@@ -52,8 +52,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen
     })
     // marginLeft: -drawerWidth,
-  },
- 
+  }
 }))
 
 export default useStyles
