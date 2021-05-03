@@ -25,10 +25,11 @@ const useStyles = makeStyles((theme) => {
     },
     title: {
       color: textColor,
-      display: 'none',
-      [theme.breakpoints.up('sm')]: {
-        display: 'block'
-      }
+      // display: 'none'
+      // ,
+      // [theme.breakpoints.up('sm')]: {
+      display: 'block'
+      // }
     },
     search: {
       color: textColor,

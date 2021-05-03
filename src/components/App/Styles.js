@@ -34,8 +34,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3)
 
     // marginLeft: -drawerWidth,
-  },
-
+  }
 }))
 
 export default useStyles

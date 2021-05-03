@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
 
 import Typography from '@material-ui/core/Typography'
 import InputBase from '@material-ui/core/InputBase'
@@ -19,13 +19,13 @@ import { Link, useHistory } from 'react-router-dom'
 import useStyles from './NavBarcss'
 import useFetch from 'use-http'
 import { headers } from '../../index'
-import { Grid } from '@material-ui/core'
-import { useAuth0 } from '../../auth/react-auth';
-import Box  from '@material-ui/core/Box';
+import { Grid, Hidden } from '@material-ui/core'
+import { useAuth0 } from '../../auth/react-auth'
+import Box from '@material-ui/core/Box'
 
 export default function NavBar({ handleDrawerOpen }) {
   const classes = useStyles()
-  const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0()
 
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
@@ -56,8 +56,8 @@ export default function NavBar({ handleDrawerOpen }) {
   const defaultProps = {
     bgcolor: 'background.paper',
     border: 1,
-    borderColor: 'grey.300',
-  };
+    borderColor: 'grey.300'
+  }
   const menuId = 'primary-search-account-menu'
   const renderMenu = (
     <Menu
@@ -71,8 +71,10 @@ export default function NavBar({ handleDrawerOpen }) {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      
-      {isAuthenticated && <MenuItem  onClick={() => logoutWithRedirect({})}>Logout</MenuItem>}
+
+      {isAuthenticated && (
+        <MenuItem onClick={() => logoutWithRedirect({})}>Logout</MenuItem>
+      )}
     </Menu>
   )
   const [searchedText, setSearchedText] = useState('')
@@ -145,107 +147,129 @@ export default function NavBar({ handleDrawerOpen }) {
   )
 
   return (
-    <Box borderRadius="borderRadius" {...defaultProps}   > 
+    <Box borderRadius="borderRadius" {...defaultProps}>
+      <div className={classes.grow}>
+        <AppBar position="fixed" className={classes.appBar}>
+          <Toolbar>
+            <Grid container spacing={3} alignItems="center" justifyCenter>
+              <Hidden smUp>
+                <Grid item xs={1}>
+                  <IconButton
+                    edge="start"
+                    className={classes.menuButton}
+                    color="inherit"
+                    aria-label="open drawer"
+                    onClick={handleDrawerOpen}
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                </Grid>
+              </Hidden>
 
-    <div className={classes.grow}>
-      <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <Grid item lg={1} sm={1} xs={1}>
-            <IconButton 
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Grid>
+              <Grid item lg={1} md={1} sm={1} xs={2} justifyCenter>
+                <Link to="/" className={classes.title} variant="h6" noWrap>
+                  Reach
+                </Link>
+              </Grid>
 
-          <Grid item lg={1} sm={1} xs={1}>
-            <Link to="/" className={classes.title} variant="h6" noWrap>
-              Reach
-            </Link>
-          </Grid>
+              <Grid item lg={8} md={8} sm={8} xs={isAuthenticated ? 8 : 5}>
+                <div className={classes.search}>
+                  <div className={classes.searchIcon}>
+                    <SearchIcon />
+                  </div>
+                  <InputBase
+                    placeholder="Search…"
+                    value={searchedText}
+                    classes={{
+                      root: classes.inputRoot,
+                      input: classes.inputInput
+                    }}
+                    inputProps={{ 'aria-label': 'search' }}
+                    onChange={handleSearchInput}
+                    onKeyUp={handleSearchKeyUp}
+                  />
+                </div>
+              </Grid>
 
-          <Grid item lg={7} sm={7} xs={7}>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search…"
-                value={searchedText}
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput
-                }}
-                inputProps={{ 'aria-label': 'search' }}
-                onChange={handleSearchInput}
-                onKeyUp={handleSearchKeyUp}
-              />
-            </div>
-          </Grid>
-
-          <Grid item lg={2} sm={3} xs={3}>
-            {/* <div className={classes.grow} /> */}
-            <div className={classes.sectionDesktop}>
-            {isAuthenticated &&  <IconButton aria-label="show 4 new mails" color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                  <MailIcon />
-                </Badge>
-              </IconButton> }
-              {isAuthenticated &&  <IconButton
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <Badge badgeContent={17} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton> }
-
-
-               
               {!isAuthenticated && (
-    
+                <Grid item lg={2} md={2} sm={2} xs={3}>
+                  <Button
+                    onClick={() => loginWithRedirect({})}
+                    variant="contained"
+                    color="default"
+                  >
+                    Login
+                  </Button>
+                </Grid>
+              )}
 
+              <Hidden smUp>
+                {isAuthenticated && (
+                  <Grid item lg={2} md={2} sm={2} xs={1}>
+                    <IconButton
+                      aria-label="show more"
+                      aria-controls={mobileMenuId}
+                      aria-haspopup="true"
+                      onClick={handleMobileMenuOpen}
+                      color="black"
+                    >
+                      <MoreIcon />
+                    </IconButton>
+                  </Grid>
+                )}
+              </Hidden>
 
-<Button onClick={() => loginWithRedirect({})} variant="contained" color="default">
-  Login
-</Button>
+              <Hidden xsDown>
+                {isAuthenticated && (
+                  <Grid item lg={2} md={3} sm={3} xs={3}>
+                    <div className={classes.sectionDesktop}>
+                      <IconButton aria-label="show 4 new mails" color="inherit">
+                        <Badge badgeContent={4} color="secondary">
+                          <MailIcon />
+                        </Badge>
+                      </IconButton>
 
-        )}
-              {isAuthenticated && (<IconButton
-                edge="end"
-                aria-label="account of current user"
-                aria-controls={menuId}
-                aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-)}
+                      <IconButton
+                        aria-label="show 17 new notifications"
+                        color="inherit"
+                      >
+                        <Badge badgeContent={17} color="secondary">
+                          <NotificationsIcon />
+                        </Badge>
+                      </IconButton>
 
-            </div>
-              
-            <div className={classes.sectionMobile}>
-              <IconButton
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleMobileMenuOpen}
-                color="black"
-              >
-                <MoreIcon />
-              </IconButton>
-            </div>
-          </Grid>
-        </Toolbar>
-      </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
-    </div>
+                      <IconButton
+                        edge="end"
+                        aria-label="account of current user"
+                        aria-controls={menuId}
+                        aria-haspopup="true"
+                        onClick={handleProfileMenuOpen}
+                        color="inherit"
+                      >
+                        <AccountCircle />
+                      </IconButton>
+                    </div>
+
+                    <div className={classes.sectionMobile}>
+                      <IconButton
+                        aria-label="show more"
+                        aria-controls={mobileMenuId}
+                        aria-haspopup="true"
+                        onClick={handleMobileMenuOpen}
+                        color="black"
+                      >
+                        <MoreIcon />
+                      </IconButton>
+                    </div>
+                  </Grid>
+                )}
+              </Hidden>
+            </Grid>
+          </Toolbar>
+        </AppBar>
+        {renderMobileMenu}
+        {renderMenu}
+      </div>
     </Box>
   )
 }

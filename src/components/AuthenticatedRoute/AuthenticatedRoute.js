@@ -1,27 +1,27 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useEffect } from 'react';
-import { Route } from 'react-router-dom';
-import { useAuth0 } from '../../auth/react-auth';
+import React, { useEffect } from 'react'
+import { Route } from 'react-router-dom'
+import { useAuth0 } from '../../auth/react-auth'
 
 const AuthenticatedRoute = ({ component: Component, path, ...rest }) => {
-  const { loading, isAuthenticated, loginWithRedirect } = useAuth0();
+  const { loading, isAuthenticated, loginWithRedirect } = useAuth0()
 
   useEffect(() => {
     if (loading || isAuthenticated) {
-      return;
+      return
     }
     const fn = async () => {
       await loginWithRedirect({
-        appState: { targetUrl: path },
-      });
-    };
-    fn();
-  }, [loading, isAuthenticated, loginWithRedirect, path]);
+        appState: { targetUrl: path }
+      })
+    }
+    fn()
+  }, [loading, isAuthenticated, loginWithRedirect, path])
 
   const render = (props) =>
-    isAuthenticated === true ? <Component {...props} /> : null;
+    isAuthenticated === true ? <Component {...props} /> : null
 
-  return <Route path={path} render={render} {...rest} />;
-};
+  return <Route path={path} render={render} {...rest} />
+}
 
-export default AuthenticatedRoute;
+export default AuthenticatedRoute

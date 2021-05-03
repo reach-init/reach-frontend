@@ -4,7 +4,7 @@ import Posts from '../Posts/Posts'
 import Hidden from '@material-ui/core/Hidden'
 import Paper from '@material-ui/core/Paper'
 import LeftMenu from '../LeftMenu/LeftMenu'
-import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute';
+import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import {
   BrowserRouter as Router,
   NavLink,
@@ -47,13 +47,12 @@ export default function PersistentDrawerLeft() {
     <div>
       <CssBaseline />
       <div className={classes.toolbarMargin} />
-     
+
       <Grid container spacing={3} justify="space-between">
         <Grid item xs={12}>
           <NavBar handleDrawerOpen={handleDrawerOpen} />
         </Grid>
-        
-        <Hidden smUp >
+        <Hidden smUp>
           <Grid item>
             <AppDrawer
               variant="temporary"
@@ -64,17 +63,34 @@ export default function PersistentDrawerLeft() {
             />
           </Grid>
         </Hidden>
-        <Grid  xl={1} lg={1} md={1} sm={0} item></Grid>
 
-        
-        <Hidden xsDown >
-        <Grid  xl={2} lg={2} md={3} sm={4} xs={0} className={classes.content}  item>
-          <LeftMenu />
-        </Grid> 
-          
+        <Grid xl={1} lg={1} md={1} sm={0} item></Grid>
+
+        <Hidden xsDown>
+          <Grid
+            xl={2}
+            lg={2}
+            md={3}
+            sm={4}
+            xs={0}
+            className={classes.content}
+            item
+          >
+            <div style={{ position: 'sticky', top: '5.6rem' }}>
+              <LeftMenu />
+            </div>
+          </Grid>
         </Hidden>
 
-        <Grid xl={8} lg={8} md={7} sm={7} xs={12} className={classes.content} item >
+        <Grid
+          xl={8}
+          lg={8}
+          md={7}
+          sm={7}
+          xs={12}
+          className={classes.content}
+          item
+        >
           <div />
           <Switch>
             <Route exact path="/" render={() => <Posts />} />
@@ -97,9 +113,8 @@ export default function PersistentDrawerLeft() {
           </Switch>
         </Grid>
 
-        <Grid  xl={1} lg={1} md={1}  sm={0} xs={0} item></Grid> 
+        <Grid xl={1} lg={1} md={1} sm={0} xs={0} item></Grid>
       </Grid>
     </div>
   )
 }
-
