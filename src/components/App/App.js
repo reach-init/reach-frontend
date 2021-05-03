@@ -12,7 +12,8 @@ import {
   Switch
 } from 'react-router-dom'
 import NotFound from '../NotFound/NotFound'
-import User from '../User/User'
+import LoadUser from '../User/LoadUser'
+import Profile from '../User/Profile'
 import Tag from '../Tag/Tag'
 import SearchResults from '../SearchResults/SearchResults'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -106,7 +107,8 @@ export default function PersistentDrawerLeft() {
             />
 
             <Route path="/" exact component={Posts} />
-            <Route path="/user/:id" component={User} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/user/:id" component={LoadUser} />
             <AuthenticatedRoute path="/tag/:tag" component={Tag} />
             <Route path="/results/:searchedText" component={SearchResults} />
             <Route component={NotFound} />

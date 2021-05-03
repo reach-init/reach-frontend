@@ -9,6 +9,7 @@ import auth0Config from './config/auth.config.json'
 
 export const headers = { 'app-id': '609059d49f3a84a74d64cc3a' }
 
+
 ReactDOM.render(
   // <React.StrictMode>
   <Auth0Provider
