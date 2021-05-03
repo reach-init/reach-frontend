@@ -5,6 +5,8 @@ import {
   Avatar,
   Divider,
   Grid,
+  GridList,
+  GridListTile,
   List,
   ListItem,
   ListItemIcon,
@@ -30,42 +32,9 @@ import ShareIcon from '@material-ui/icons/Share'
 import { Link } from 'react-router-dom'
 import { headers } from '../../index'
 
-export default function User(props) {
-  const [user, setUser] = useState()
-  const userFetch = useFetch('https://dummyapi.io/data/api/user', { headers })
-
-  useEffect(() => {
-    loadUser()
-  }, [])
-
+export default function User({user, userPosts}) {
+  
   const matches = !useMediaQuery('(min-width:600px)')
-  console.log(matches)
-
-  async function loadUser() {
-    const { id } = props.match.params
-    const user = await userFetch.get(`${id}`)
-    console.log(user)
-    if (userFetch.response.ok) setUser(user)
-  }
-
-  const [userPosts, setUserPosts] = useState()
-  const userPostsFetch = useFetch('https://dummyapi.io/data/api/user', {
-    headers
-  })
-
-  useEffect(() => {
-    loadUserPosts()
-  }, [])
-
-  async function loadUserPosts() {
-    const { id } = props.match.params
-    const userPosts = await userPostsFetch.get(`${id}/post`)
-    console.log(userPosts.data)
-    if (userPostsFetch.response.ok) setUserPosts(userPosts.data)
-  }
-
-  if (!user) return <div>Loading</div>
-  if (!userPosts) return <div>Loading</div>
 
   let dob
 
@@ -81,7 +50,7 @@ export default function User(props) {
 
   let address
 
-  if (user.location.street) {
+  if (user?.location?.street) {
     address = `${user.location.street}, ${user.location.city}, ${user.location.state}, ${user.location.postcode}`
   } else {
     address = ''
@@ -219,21 +188,25 @@ export default function User(props) {
                     {item.message}
                   </Typography>
                 </CardContent>
-                {item.tags.map((tag) => {
-                  if (tag) {
-                    return (
-                      <Link to={`/tag/${tag}`} key={tag}>
-                        <Chip
-                          variant="outlined"
-                          clickable={true}
-                          style={{ margin: '5px' }}
-                          key={tag}
-                          label={tag}
-                        />
-                      </Link>
-                    )
-                  } else return null
-                })}
+                <GridList cols={3}>
+                  {item.tags.map((tag) => {
+                    if (tag) {
+                      return (
+                        <GridListTile key={tag} cols={tag.cols || 1}>
+                        <Link to={`/tag/${tag}`} key={tag}>
+                          <Chip
+                            variant="outlined"
+                            clickable={true}
+                            style={{ margin: '5px' }}
+                            key={tag}
+                            label={tag}
+                          />
+                        </Link>
+                        </GridListTile>
+                      )
+                    } else return null
+                  })}
+                </GridList>
                 <CardActions disableSpacing>
                   <IconButton aria-label="add to favorites">
                     <FavoriteIcon />
