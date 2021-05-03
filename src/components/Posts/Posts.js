@@ -181,7 +181,8 @@ export default function Posts() {
             </Grid>
           </Hidden>
         </Grid>
-      )}
+      )
+      }
     </div>
   )
 }

@@ -74,7 +74,8 @@ export default function NavBar({ handleDrawerOpen }) {
 
       {isAuthenticated && (
         <MenuItem onClick={() => logoutWithRedirect({})}>Logout</MenuItem>
-      )}
+      )
+      }
     </Menu>
   )
   const [searchedText, setSearchedText] = useState('')
@@ -172,7 +173,7 @@ export default function NavBar({ handleDrawerOpen }) {
                 </Link>
               </Grid>
 
-              <Grid item lg={8} md={8} sm={8} xs={isAuthenticated ? 8 : 5}>
+              <Grid item lg={8} md={8} sm={8} xs={isAuthenticated ? 6 : 5}>
                 <div className={classes.search}>
                   <div className={classes.searchIcon}>
                     <SearchIcon />
@@ -191,7 +192,7 @@ export default function NavBar({ handleDrawerOpen }) {
                 </div>
               </Grid>
 
-              {!isAuthenticated && (
+              {!isAuthenticated && (  
                 <Grid item lg={2} md={2} sm={2} xs={3}>
                   <Button
                     onClick={() => loginWithRedirect({})}
@@ -201,26 +202,31 @@ export default function NavBar({ handleDrawerOpen }) {
                     Login
                   </Button>
                 </Grid>
-              )}
+              )
+              }
 
-              <Hidden smUp>
+              
                 {isAuthenticated && (
-                  <Grid item lg={2} md={2} sm={2} xs={1}>
-                    <IconButton
-                      aria-label="show more"
-                      aria-controls={mobileMenuId}
-                      aria-haspopup="true"
-                      onClick={handleMobileMenuOpen}
-                      color="black"
-                    >
-                      <MoreIcon />
-                    </IconButton>
-                  </Grid>
-                )}
-              </Hidden>
+                  <Hidden smUp>
+                    <Grid item lg={2} md={2} sm={2} xs={2}>
+                      <IconButton
+                        aria-label="show more"
+                        aria-controls={mobileMenuId}
+                        aria-haspopup="true"
+                        onClick={handleMobileMenuOpen}
+                        color="black"
+                      >
+                        <MoreIcon />
+                      </IconButton>
+                    </Grid>
+                  </Hidden>
+                )
+                }
+              
 
-              <Hidden xsDown>
+              
                 {isAuthenticated && (
+                  <Hidden xsDown>
                   <Grid item lg={2} md={3} sm={3} xs={3}>
                     <div className={classes.sectionDesktop}>
                       <IconButton aria-label="show 4 new mails" color="inherit">
@@ -249,21 +255,12 @@ export default function NavBar({ handleDrawerOpen }) {
                         <AccountCircle />
                       </IconButton>
                     </div>
-
-                    <div className={classes.sectionMobile}>
-                      <IconButton
-                        aria-label="show more"
-                        aria-controls={mobileMenuId}
-                        aria-haspopup="true"
-                        onClick={handleMobileMenuOpen}
-                        color="black"
-                      >
-                        <MoreIcon />
-                      </IconButton>
-                    </div>
+    
                   </Grid>
-                )}
-              </Hidden>
+                  </Hidden>
+                )
+                }
+              
             </Grid>
           </Toolbar>
         </AppBar>
