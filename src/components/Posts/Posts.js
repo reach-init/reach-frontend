@@ -1,6 +1,7 @@
 import useFetch from 'use-http'
 import Box from '@material-ui/core/Box'
 import { useState, useEffect } from 'react'
+import { PostWriteButton } from './PostWriteButton';
 import InfiniteScroll from 'react-infinite-scroll-component'
 import {
   Chip,
@@ -155,10 +156,12 @@ export default function Posts() {
       {isAuthenticated && (
         <Grid container spacing={3}>
           <Grid item xl={8} lg={8} md={12} sm={12} xs={12}>
+            <PostWriteButton displayWriting />
             <div className="PostStream">
               <InfiniteScroll
                 dataLength={newsFeed.length} // This is important field to render the next data
                 next={loadPosts}
+
                 hasMore
                 loader={<h4>Loading...</h4>}
                 endMessage={
