@@ -3,7 +3,6 @@ import Drawer from '@material-ui/core/Drawer'
 import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
@@ -17,6 +16,31 @@ import {
   Switch
 } from 'react-router-dom'
 import clsx from 'clsx'
+
+const AppDrawer = ({ variant, open, theme, handleDrawerClose, setOpen }) => {
+  const classes = useStyles()
+
+  return (
+    <Drawer
+      className={classes.drawer}
+      variant={variant}
+      anchor="left"
+      open={open}
+      classes={{
+        paper: classes.drawerPaper
+      }}
+    >
+      <div className={classes.drawerHeader}>
+        <IconButton onClick={handleDrawerClose}>
+          <ChevronLeftIcon />
+        </IconButton>
+      </div>
+
+      <Divider />
+      <ListItems setOpen={setOpen} />
+    </Drawer>
+  )
+}
 
 const NavListItem = ({ Icon, text, active, ...other }) => {
   const classes = useStyles()
@@ -53,51 +77,27 @@ const NavItem = (props) => (
   </Switch>
 )
 
-const AppDrawer = ({ variant, open, theme, handleDrawerClose, setOpen }) => {
-  const classes = useStyles()
-
-  return (
-    <Drawer
-      className={classes.drawer}
-      variant={variant}
-      anchor="left"
-      open={open}
-      classes={{
-        paper: classes.drawerPaper
-      }}
-    >
-      <div className={classes.drawerHeader}>
-        <IconButton onClick={handleDrawerClose}>
-          {theme.direction === 'ltr' ? (
-            <ChevronLeftIcon />
-          ) : (
-            <ChevronRightIcon />
-          )}
-        </IconButton>
-      </div>
-      <Divider />
-      <List>
-        <NavItem
-          to="/"
-          text="Home"
-          Icon={HomeIcon}
-          onClick={() => setOpen(false)}
-        />
-        <NavItem
-          to="/page2"
-          text="Friends"
-          Icon={WebIcon}
-          onClick={() => setOpen(false)}
-        />
-        <NavItem
-          to="/page3"
-          text="Apps"
-          Icon={WebIcon}
-          onClick={() => setOpen(false)}
-        />
-      </List>
-    </Drawer>
-  )
-}
+const ListItems = ({ setOpen }) => (
+  <List>
+    <NavItem
+      to="/"
+      text="Home"
+      Icon={HomeIcon}
+      onClick={() => setOpen(false)}
+    />
+    <NavItem
+      to="/page2"
+      text="Friends"
+      Icon={WebIcon}
+      onClick={() => setOpen(false)}
+    />
+    <NavItem
+      to="/page3"
+      text="Apps"
+      Icon={WebIcon}
+      onClick={() => setOpen(false)}
+    />
+  </List>
+)
 
 export default AppDrawer

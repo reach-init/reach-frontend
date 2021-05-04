@@ -4,7 +4,7 @@ import Post from '../UserCard/Post'
 
 import { useParams } from 'react-router-dom'
 
-export default function SearchResults(props) {
+export default function SearchResults() {
   const [users, setUsers] = React.useState([])
   React.useEffect(async () => {
     try {

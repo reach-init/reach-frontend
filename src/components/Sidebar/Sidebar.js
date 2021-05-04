@@ -3,8 +3,6 @@ import { useState, useEffect } from 'react'
 import useFetch from 'use-http'
 import { Link } from 'react-router-dom'
 import { headers } from '../../index'
-import Paper from '@material-ui/core/Paper'
-import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box'
 
 const defaultProps = {
@@ -17,10 +15,7 @@ export default function Sidebar() {
   const [tags, setTags] = useState([])
   const {
     get,
-    post,
-    response,
-    loading,
-    error
+    response
   } = useFetch('https://dummyapi.io/data/api/tag?limit=50', { headers })
 
   useEffect(() => {

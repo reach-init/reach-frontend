@@ -24,18 +24,14 @@ import { headers } from '../../index'
 import { useAuth0 } from '../../auth/react-auth'
 
 export default function Posts() {
-  const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0()
+  const { isAuthenticated } = useAuth0()
 
   const [posts, setPosts] = useState([])
-  const {
-    get,
-    post,
-    response,
-    loading,
-    error
-  } = useFetch('https://dummyapi.io/data/api', { headers })
+  const { get, response } = useFetch('https://dummyapi.io/data/api', {
+    headers
+  })
   const [page, setPage] = useState(0)
-  const [hasMore, setHasMore] = useState(true)
+  const [_, setHasMore] = useState(true)
 
   useEffect(() => {
     loadPosts()
@@ -71,7 +67,7 @@ export default function Posts() {
     borderColor: 'grey.200'
   }
 
-  const newsFeed = posts.map(function (item, index) {
+  const newsFeed = posts.map(function (item) {
     return (
       <Box
         borderRadius="borderRadius"
@@ -181,8 +177,7 @@ export default function Posts() {
             </Grid>
           </Hidden>
         </Grid>
-      )
-      }
+      )}
     </div>
   )
 }

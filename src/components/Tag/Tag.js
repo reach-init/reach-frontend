@@ -19,7 +19,7 @@ import Sidebar from '../Sidebar/Sidebar'
 import { headers } from '../../index'
 import Grid from '@material-ui/core/Grid'
 
-export default function Tag(props) {
+export default function Tag() {
   const [posts, setPosts] = useState()
   const postsFetch = useFetch('https://dummyapi.io/data/api/tag', { headers })
   const { tag } = useParams()
@@ -62,7 +62,7 @@ export default function Tag(props) {
             >
               Posts tagged: {tag}
             </Typography>
-            {posts.map(function (item, index) {
+            {posts.map(function (item) {
               return (
                 <Card key={item.id} style={{ maxWidth: 600, margin: '30px' }}>
                   <CardHeader

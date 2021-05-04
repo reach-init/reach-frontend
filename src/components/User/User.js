@@ -1,5 +1,3 @@
-import useFetch from 'use-http'
-import { useState, useEffect } from 'react'
 import {
   Typography,
   Avatar,
@@ -30,10 +28,8 @@ import LocationOnIcon from '@material-ui/icons/LocationOn'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import ShareIcon from '@material-ui/icons/Share'
 import { Link } from 'react-router-dom'
-import { headers } from '../../index'
 
-export default function User({user, userPosts}) {
-  
+export default function User({ user, userPosts }) {
   const matches = !useMediaQuery('(min-width:600px)')
 
   let dob
@@ -168,9 +164,8 @@ export default function User({user, userPosts}) {
         Recent Posts
       </Typography>
       <Divider style={{ margin: '0 20px' }} />
-      {/* <div style={{display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-start', padding: '15px 10px'}}> */}
       <Grid container spacing={1}>
-        {userPosts.map(function (item, index) {
+        {userPosts.map(function (item) {
           return (
             <Grid key={item.id} item xs={6} lg={3} md={4}>
               <Card key={item.id} style={{ width: '100%', margin: '1.5%' }}>
@@ -193,15 +188,15 @@ export default function User({user, userPosts}) {
                     if (tag) {
                       return (
                         <GridListTile key={tag} cols={tag.cols || 1}>
-                        <Link to={`/tag/${tag}`} key={tag}>
-                          <Chip
-                            variant="outlined"
-                            clickable={true}
-                            style={{ margin: '5px' }}
-                            key={tag}
-                            label={tag}
-                          />
-                        </Link>
+                          <Link to={`/tag/${tag}`} key={tag}>
+                            <Chip
+                              variant="outlined"
+                              clickable={true}
+                              style={{ margin: '5px' }}
+                              key={tag}
+                              label={tag}
+                            />
+                          </Link>
                         </GridListTile>
                       )
                     } else return null

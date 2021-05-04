@@ -5,13 +5,7 @@ import useFetch from 'use-http'
 import { headers } from '../../index'
 
 export default function SearchResults(props) {
-  const {
-    get,
-    post,
-    response,
-    loading,
-    error
-  } = useFetch('https://dummyapi.io/data/api', { headers })
+  const { get } = useFetch('https://dummyapi.io/data/api', { headers })
   const [users, setUsers] = useState()
 
   const { searchedText } = useParams()

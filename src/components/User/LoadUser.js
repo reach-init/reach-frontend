@@ -1,33 +1,8 @@
 import useFetch from 'use-http'
 import { useState, useEffect } from 'react'
-import {
-  Typography,
-  Avatar,
-  Divider,
-  Grid,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Button,
-  ButtonGroup,
-  Chip,
-  Card,
-  CardMedia,
-  CardContent,
-  CardActions,
-  IconButton
-} from '@material-ui/core'
 
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 
-import PhoneIcon from '@material-ui/icons/Phone'
-import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone'
-import EmailIcon from '@material-ui/icons/Email'
-import LocationOnIcon from '@material-ui/icons/LocationOn'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import ShareIcon from '@material-ui/icons/Share'
-import { Link } from 'react-router-dom'
 import { headers } from '../../index'
 import User from './User'
 
@@ -68,7 +43,5 @@ export default function LoadUser(props) {
   if (!user) return <div>Loading</div>
   if (!userPosts) return <div>Loading</div>
 
-  return (
-    <User user={user} userPosts={userPosts}></User>
-  )
+  return <User user={user} userPosts={userPosts}></User>
 }
