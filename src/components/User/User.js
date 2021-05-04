@@ -1,37 +1,8 @@
-import {
-  Typography,
-  Avatar,
-  Divider,
-  Grid,
-  GridList,
-  GridListTile,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Button,
-  ButtonGroup,
-  Chip,
-  Card,
-  CardMedia,
-  CardContent,
-  CardActions,
-  IconButton
-} from '@material-ui/core'
-
-import useMediaQuery from '@material-ui/core/useMediaQuery'
-
-import PhoneIcon from '@material-ui/icons/Phone'
-import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone'
-import EmailIcon from '@material-ui/icons/Email'
-import LocationOnIcon from '@material-ui/icons/LocationOn'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import ShareIcon from '@material-ui/icons/Share'
-import { Link } from 'react-router-dom'
+import RecentPosts from '../Posts/RecentPosts'
+import ContactInfo from './ContactInfo'
+import UserDashboard from './UserDashboard'
 
 export default function User({ user, userPosts }) {
-  const matches = !useMediaQuery('(min-width:600px)')
-
   let dob
 
   if (user.dateOfBirth) {
@@ -62,160 +33,12 @@ export default function User({ user, userPosts }) {
   }
 
   return (
-    <div className="User">
-      <Grid
-        lg={12}
-        md={12}
-        sm={12}
-        item
-        container
-        spacing={3}
-        alignItems="center"
-      >
-        <Grid item lg={6} md={6} sm={6} xs={12}>
-          <Grid lg={12} item container spacing={3} alignItems="center">
-            <Grid item lg={3} md={3} sm={5} xs={4}>
-              <div>
-                <Avatar
-                  src={user.picture}
-                  alt={user.firstName + ' ' + user.lastName}
-                  style={{ width: '100px', height: '100px', margin: 10 }}
-                />
-              </div>
-            </Grid>
-            <Grid item lg={9} md={9} sm={7} xs={8}>
-              <div>
-                <Typography variant="h4" component="h2">
-                  {user.firstName} {user.lastName}
-                </Typography>
-                <Typography component="p">{dob}</Typography>
-              </div>
-            </Grid>
-          </Grid>
-        </Grid>
+    <div>
+      <UserDashboard user={user}></UserDashboard>
 
-        <Grid item lg={6} md={6} sm={6} xs={12}>
-          <Grid
-            lg={12}
-            item
-            container
-            spacing={3}
-            alignItems="center"
-            justify={matches ? 'center' : 'flex-end'}
-          >
-            <Grid lg={6} item>
-              <div style={{ margin: 10 }}>
-                <ButtonGroup
-                  variant="text"
-                  color={color}
-                  aria-label="full-width outlined primary button group"
-                >
-                  <Button>Message</Button>
-                  <Button>Friend</Button>
-                  <Button>Follow</Button>
-                </ButtonGroup>
-              </div>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
+      <ContactInfo user={user}></ContactInfo>
 
-      <Divider />
-      <Typography variant="h5" component="h2" style={{ margin: '20px' }}>
-        Contact info
-      </Typography>
-      <Divider style={{ margin: '0 20px' }} />
-      <Grid container spacing={2}>
-        <Grid item xs>
-          <List>
-            <ListItem>
-              <ListItemIcon>
-                <PhoneIcon color={color} />
-              </ListItemIcon>
-              <ListItemText primary="Phone number" secondary={user.phone} />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <PhoneIphoneIcon color={color} />
-              </ListItemIcon>
-              <ListItemText primary="Mobile number" secondary={user.cell} />
-            </ListItem>
-          </List>
-        </Grid>
-        <Grid item xs>
-          <List>
-            <ListItem>
-              <ListItemIcon>
-                <LocationOnIcon color={color} />
-              </ListItemIcon>
-              <ListItemText primary="Address" secondary={address} />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <EmailIcon color={color} />
-              </ListItemIcon>
-              <ListItemText primary="Email address" secondary={user.email} />
-            </ListItem>
-          </List>
-        </Grid>
-      </Grid>
-
-      <Typography variant="h5" component="h2" style={{ margin: '20px' }}>
-        Recent Posts
-      </Typography>
-      <Divider style={{ margin: '0 20px' }} />
-      <Grid container spacing={1}>
-        {userPosts.map(function (item) {
-          return (
-            <Grid key={item.id} item xs={6} lg={3} md={4}>
-              <Card key={item.id} style={{ width: '100%', margin: '1.5%' }}>
-                <CardMedia
-                  style={{ height: 0, paddingTop: '56.25%' }}
-                  image={item.image}
-                  title={item.message}
-                />
-                <CardContent>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    {item.message}
-                  </Typography>
-                </CardContent>
-                <GridList cols={3}>
-                  {item.tags.map((tag) => {
-                    if (tag) {
-                      return (
-                        <GridListTile key={tag} cols={tag.cols || 1}>
-                          <Link to={`/tag/${tag}`} key={tag}>
-                            <Chip
-                              variant="outlined"
-                              clickable={true}
-                              style={{ margin: '5px' }}
-                              key={tag}
-                              label={tag}
-                            />
-                          </Link>
-                        </GridListTile>
-                      )
-                    } else return null
-                  })}
-                </GridList>
-                <CardActions disableSpacing>
-                  <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                  </IconButton>
-                  <IconButton aria-label="share">
-                    <ShareIcon />
-                  </IconButton>
-                </CardActions>
-              </Card>
-            </Grid>
-          )
-        })}
-        {/* </div> */}
-      </Grid>
+      <RecentPosts posts={userPosts}></RecentPosts>
     </div>
   )
 }
