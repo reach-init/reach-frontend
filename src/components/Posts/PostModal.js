@@ -20,6 +20,8 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
+    // width: '500px',
+    padding: theme.spacing(2, 4, 3),
   },
 }));
 

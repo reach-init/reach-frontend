@@ -1,6 +1,6 @@
 import Grid from '@material-ui/core/Grid'
 import Posts from '../Posts/Posts'
-
+import ScrollToTop from '../core/ScrollToTop'
 import AuthenticatedRoute from '../core/AuthenticatedRoute/AuthenticatedRoute'
 import {
   BrowserRouter as Router,
@@ -18,6 +18,7 @@ import Typography from '@material-ui/core/Typography'
 export default function MainContent({ classes }) {
   return (
     <Grid xl={8} lg={8} md={7} sm={7} xs={12} className={classes.content} item>
+    <ScrollToTop />
       <Switch>
         <Route exact path="/" render={() => <Posts />} />
         <Route

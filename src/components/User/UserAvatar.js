@@ -18,7 +18,7 @@ export class UserAvatarComponent extends Component {
                         src={fileName ? fileName : ' '}
                         style={{
                             ...style,
-                            backgroundColor: theme.palette.common.white,
+                            backgroundColor: 'white',
                             width: size || 36,
                             height: size || 36,
                         }}

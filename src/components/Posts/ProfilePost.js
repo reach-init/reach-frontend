@@ -18,7 +18,6 @@ import PostModal from './PostModal'
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 310,
     transition: 'transform 0.15s ease-in-out'
   },
   cardHovered: {
@@ -63,7 +62,7 @@ export default function ProfilePost({ post, isModal }) {
           zdepth={state.shadow}
         >
           <CardMedia
-            style={{ height: 0, paddingTop: '56.25%' }}
+            style={{ height: 0, paddingTop: isModal ? '100%' : '56.25%' }}
             image={post.image}
             title={post.message}
           />
