@@ -1,6 +1,6 @@
 import Grid from '@material-ui/core/Grid'
 import Posts from '../Posts/Posts'
-import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
+import AuthenticatedRoute from '../core/AuthenticatedRoute/AuthenticatedRoute'
 import {
   BrowserRouter as Router,
   NavLink,

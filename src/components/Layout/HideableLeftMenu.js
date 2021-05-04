@@ -1,4 +1,4 @@
-import LeftMenu from '../LeftMenu/LeftMenu'
+import LeftMenu from '../commons/LeftMenu/LeftMenu'
 import Hidden from '@material-ui/core/Hidden'
 import Grid from '@material-ui/core/Grid'
 
