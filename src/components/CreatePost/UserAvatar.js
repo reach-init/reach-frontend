@@ -13,7 +13,7 @@ export class UserAvatarComponent extends Component {
             <div style={{ display: 'inherit' }}>
                 {fileName && fileName !== '' && fileName !== 'noImage' ? (
                     <Avatar
-                        variant="rounded"
+                        // variant="rounded"
                         className={className || ''}
                         src={fileName ? fileName : ' '}
                         style={{

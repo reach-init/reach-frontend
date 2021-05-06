@@ -1,7 +1,7 @@
 import useFetch from 'use-http'
 import Box from '@material-ui/core/Box'
 import { useState, useEffect } from 'react'
-import { PostWriteButton } from './PostWriteButton';
+import  PostWriteButton  from '../CreatePost/PostWriteButton';
 import InfiniteScroll from 'react-infinite-scroll-component'
 import {
   Chip,
