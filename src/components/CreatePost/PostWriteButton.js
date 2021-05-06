@@ -43,7 +43,7 @@ export default function PostWriteButton() {
                                 <UserAvatarComponent
                                     fullName={user.name}
                                     fileName={user.picture}
-                                    size={66}
+                                    size={46}
                                 />
                                 <ListItemText
                                     inset

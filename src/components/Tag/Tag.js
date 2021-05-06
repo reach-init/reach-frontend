@@ -12,7 +12,7 @@ import {
   IconButton,
   Typography
 } from '@material-ui/core'
-import FavoriteIcon from '@material-ui/icons/Favorite'
+import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined'
 import ShareIcon from '@material-ui/icons/Share'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import Sidebar from '../Sidebar/Sidebar'
@@ -123,7 +123,7 @@ export default function Tag() {
                   })}
                   <CardActions disableSpacing>
                     <IconButton aria-label="add to favorites">
-                      <FavoriteIcon />
+                      <FavoriteOutlinedIcon />
                     </IconButton>
                     <IconButton aria-label="share">
                       <ShareIcon />

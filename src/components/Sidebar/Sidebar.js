@@ -45,6 +45,7 @@ export default function Sidebar() {
                   style={{ margin: '5px 5px 0 0' }}
                   key={tag}
                   label={tag}
+                  
                 />
               </Link>
             )

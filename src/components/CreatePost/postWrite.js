@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     fullPageXs: {
         minWidth: 500,
         maxWidth: 500,
-        maxHeight: 540,
+        maxHeight: '500px',
         [theme.breakpoints.down('xs')]: {
             minWidth: '100%',
             maxWidth: '100%',
@@ -524,7 +524,7 @@ export default function PostWriteComponent(props) {
     const [postType, setPosType] = useState('PostType.Text')
     const [thumbnail, setThumbnail] = useState(null)
     const [postText, setPostText] = useState(null)
-    const [disabledPost, setDisabledPost] = useState(null)
+    const [disabledPost, setDisabledPost] = useState(false)
     const [videoGalleryOpen, setVideoGalleryOpen] = useState(null)
 
     if (loading) {return <div/>}
@@ -848,11 +848,11 @@ export default function PostWriteComponent(props) {
                     <Button
                     
                     variant="outlined"
-                        color="secondary"
+                        
                         disableFocusRipple={true}
                         disableRipple={true}
                         onClick={props.onRequestClose}
-                        // style={{ color: grey[800] }}
+                        style={{ color: grey[800] }}
                     >
                         {'Cancel'}
                     </Button>

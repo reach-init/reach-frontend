@@ -15,7 +15,7 @@ import {
   Grid,
   Hidden
 } from '@material-ui/core'
-import FavoriteIcon from '@material-ui/icons/Favorite'
+import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined'
 import ShareIcon from '@material-ui/icons/Share'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import Sidebar from '../Sidebar/Sidebar'
@@ -32,7 +32,7 @@ export default function Post() {
         borderRadius="borderRadius"
         {...defaultProps}
         key={item.id}
-        style={{ minWidth: '250px', maxWidth: '100%', marginBottom: '20px' }}
+        style={{ minWidth: '200px', maxWidth: '100%', marginBottom: '20px' }}
       >
         <Card key={item.id}>
           <CardHeader
@@ -98,7 +98,7 @@ export default function Post() {
           })}
           <CardActions disableSpacing>
             <IconButton aria-label="add to favorites">
-              <FavoriteIcon />
+              <FavoriteOutlinedIcon />
             </IconButton>
             <IconButton aria-label="share">
               <ShareIcon />

@@ -27,7 +27,7 @@ export default function TagList({ post }) {
                 <Link to={`/tag/${tag}`} key={tag}>
                   <Chip
                     // size="small"
-                    variant="outlined"
+                    // variant="outlined"
                     clickable={true}
                     style={{ margin: '5px' }}
                     key={tag}
@@ -47,7 +47,7 @@ export default function TagList({ post }) {
   return (
     <div>
       {allTags}
-      {/* <a className="read-more-link" onClick={()=>{setReadMore(!readMore)}}> */}
+      {/* <a className="read-more-link" onClick={()=>{setReadMore(!readMore)}}/> */}
       {!isOverflow && (
         <a
           className="read-more-link"
