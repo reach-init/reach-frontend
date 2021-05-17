@@ -7,7 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { Auth0Provider } from './auth/react-auth'
 import auth0Config from './config/auth.config.json'
 
-export const headers = { 'app-id': '609059d49f3a84a74d64cc3a' }
+export const headers = { } //'app-id': '609059d49f3a84a74d64cc3a' }
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import blue from '@material-ui/core/colors/blue';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
