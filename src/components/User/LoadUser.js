@@ -8,7 +8,7 @@ import User from './User'
 
 export default function LoadUser(props) {
   const [user, setUser] = useState()
-  const userFetch = useFetch('https://dummyapi.io/data/api/user', { headers })
+  const userFetch = useFetch('https://reach-network.herokuapp.com/api/v1/user', { headers })
 
   useEffect(() => {
     loadUser()
@@ -25,7 +25,7 @@ export default function LoadUser(props) {
   }
 
   const [userPosts, setUserPosts] = useState()
-  const userPostsFetch = useFetch('https://dummyapi.io/data/api/user', {
+  const userPostsFetch = useFetch('https://reach-network.herokuapp.com/api/v1/user', {
     headers
   })
 

@@ -16,7 +16,7 @@ export default function Sidebar() {
   const {
     get,
     response
-  } = useFetch('https://dummyapi.io/data/api/tag?limit=50', { headers })
+  } = useFetch('https://reach-network.herokuapp.com/api/v1/tag?limit=50', { headers })
 
   useEffect(() => {
     loadInitialTags()

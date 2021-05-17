@@ -21,7 +21,7 @@ import Grid from '@material-ui/core/Grid'
 
 export default function Tag() {
   const [posts, setPosts] = useState()
-  const postsFetch = useFetch('https://dummyapi.io/data/api/tag', { headers })
+  const postsFetch = useFetch('https://reach-network.herokuapp.com/api/v1/tag', { headers })
   const { tag } = useParams()
 
   useEffect(() => {

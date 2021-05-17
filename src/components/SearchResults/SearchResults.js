@@ -5,7 +5,7 @@ import useFetch from 'use-http'
 import { headers } from '../../index'
 
 export default function SearchResults(props) {
-  const { get } = useFetch('https://dummyapi.io/data/api', { headers })
+  const { get } = useFetch('https://reach-network.herokuapp.com/api/v1', { headers })
   const [users, setUsers] = useState()
 
   const { searchedText } = useParams()
