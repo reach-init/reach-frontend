@@ -11,7 +11,8 @@ export default function SearchResults(props) {
   const { searchedText } = useParams()
 
   async function loadUsers() {
-    const users = await get('user?limit=100&page=1')
+    const users = Object.values(await get('user?limit=100&page=1'))[0]
+    
     return users
   }
 
