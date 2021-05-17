@@ -29,7 +29,7 @@ export default function SearchResults(props) {
     return <div>Loading...</div>
   }
 
-  const filteredUsers = users.data.filter((user) => {
+  const filteredUsers = users.filter((user) => {
     const fullName = `${user.firstName} ${user.lastName}`
     console.log(fullName)
     console.log(searchedText)

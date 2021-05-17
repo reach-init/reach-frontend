@@ -9,7 +9,7 @@ export default function SearchResults() {
   React.useEffect(async () => {
     try {
       const users = await UserService.getAllUsers()
-      setUsers(users.data)
+      setUsers(users)
     } catch (e) {
       console.log(e)
     }

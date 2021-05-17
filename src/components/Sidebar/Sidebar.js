@@ -25,7 +25,11 @@ export default function Sidebar() {
   async function loadInitialTags() {
     const initialTags = await get('')
     console.log(initialTags)
-    if (response.ok) setTags(initialTags.data)
+    console.log(Object.values(initialTags)[0])
+
+    const initialTagsValues = Object.values(initialTags)[0].map(tag => tag.title)
+
+    if (response.ok) setTags(initialTagsValues)
   }
   return (
     <div

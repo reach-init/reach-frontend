@@ -20,8 +20,10 @@ export default function LoadUser(props) {
   async function loadUser() {
     const { id } = props.match.params
     const user = await userFetch.get(`${id}`)
-    console.log(user)
-    if (userFetch.response.ok) setUser(user)
+    
+    console.log('User')
+    console.log(Object.values(user)[0])
+    if (userFetch.response.ok) setUser(Object.values(user)[0])
   }
 
   const [userPosts, setUserPosts] = useState()
@@ -36,8 +38,8 @@ export default function LoadUser(props) {
   async function loadUserPosts() {
     const { id } = props.match.params
     const userPosts = await userPostsFetch.get(`${id}/post`)
-    console.log(userPosts.data)
-    if (userPostsFetch.response.ok) setUserPosts(userPosts.data)
+    console.log(Object.values(userPosts)[0])
+    if (userPostsFetch.response.ok) setUserPosts(Object.values(userPosts)[0])
   }
 
   if (!user) return <div>Loading</div>

@@ -41,8 +41,12 @@ export default function Posts() {
   async function loadPosts() {
     const nextPosts = await get(`post?limit=10&page=${page}`)
     console.log(nextPosts)
-    const newData = nextPosts.data
+    console.log('HERE1')
+    const newData = Object.values(nextPosts)[0]
+    console.log(posts)
+    console.log(newData)
     const newPosts = [...posts, ...newData]
+    console.log('HERE2')
     console.log(newPosts)
     console.log(response)
 

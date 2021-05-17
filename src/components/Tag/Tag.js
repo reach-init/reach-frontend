@@ -29,8 +29,10 @@ export default function Tag() {
   }, [tag])
   async function loadPosts() {
     const posts = await postsFetch.get(`${tag}/post?limit=10`)
-    console.log(posts.data)
-    if (postsFetch.response.ok) setPosts(posts.data)
+    const postsValues = Object.values(posts)[0].map(pos => tag.title)
+    console.log(Object.values(posts)[0])
+    
+    if (postsFetch.response.ok) setPosts(Object.values(posts)[0])
   }
   if (!posts) return <div>Loading</div>
   if (posts.length === 0) {
