@@ -6,6 +6,7 @@ import {
 
 import { useAuth0 } from '../../auth/react-auth'
 import Tag from '../Tag/Tag'
+import Box from '@material-ui/core/Box';
 
 
 export default function PostBody({item}) {
@@ -13,18 +14,13 @@ export default function PostBody({item}) {
 
   return (
     <>
-        <CardMedia
-        style={{ height: 0, paddingTop: '56.25%' }}
-        image={item.image}
-        title={item.text}
-        />
-        
-        <CardContent>
-            <Typography variant="body2" color="textSecondary" component="p">
+<Box mt={0} ml={2} mb={0}>
+            <Typography variant="body2" color="textPrimary" component="p">
                 {item.text}
             </Typography>
-        </CardContent>
+            </Box>
 
+            <Box  ml={1}>
         {item.tags.map((tag) => {
         if (tag) {
             return (
@@ -32,6 +28,15 @@ export default function PostBody({item}) {
             )
         }
         })}
+        </Box>
+        <CardMedia
+        style={{ height: 0, paddingTop: '56.25%' }}
+        image={item.image}
+        title={item.text}
+        />
+        
+       
+     
     </>  
   )
 }

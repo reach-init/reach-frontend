@@ -9,7 +9,8 @@ import {
   CardActions,
   Avatar,
   IconButton,
-  Typography
+  Typography,
+  Paper
 } from '@material-ui/core'
 import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined'
 import ShareIcon from '@material-ui/icons/Share'
@@ -38,27 +39,24 @@ export default function Post({item, defaultProps}) {
   ]
 
   return (
-    <div>
       <Box
         borderRadius="borderRadius"
         {...defaultProps}
         key={item.id}
-        style={{ minWidth: '200px', maxWidth: '100%', marginBottom: '20px' }}
+        style={{ minWidth: '600px', maxWidth: '600px', marginBottom: '20px' }}
       >
-        <Card key={item.id}>
+        <Paper>
+        <PostHeader item={item}/>
 
-          <PostHeader item={item}/>
+        <PostBody item={item} />
 
-          <PostBody item={item} />
+        <PostActions onChange={onChange}/>
 
-          <PostActions onChange={onChange}/>
+        {showComment && <Comments comments={comments} postId={"1"}/>}
 
-          {showComment && <Comments comments={comments} postId={"1"}/>}
-
-          <CommentInput/>
-          
-        </Card>
-      </Box>
-    </div>
+        <CommentInput/>
+      </Paper>
+                  
+    </Box>
   )
 }

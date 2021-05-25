@@ -4,8 +4,18 @@ import Post from '../components_refactored/Posts/Post'
 import {
   Grid
 } from '@material-ui/core'
+import { fade, makeStyles } from "@material-ui/core/styles";
+const useStyles = makeStyles(theme => ({
+  root: {
+    
+    backgroundColor: fade(theme.palette.common.black, 0.05)
+  },
 
+
+}));
 export default function App() {
+  const classes = useStyles();
+
   const item = {
     "id": "609da0e0850f1a6ce0e898e1",
     "text": "ice caves in the wild landscape photo of ice near gray cliff",
@@ -27,10 +37,15 @@ export default function App() {
     }
 }
   return (
+<Grid className={classes.root}  container >
+<Grid item lg={4}></Grid>
+<Post item={item}/>
 
-      <div style={{  'display': 'flex', 'align-items':'center', 'justify-content':'center', 'height':'100vh', ':':'1 0 auto'}}>
-        <Post item={item}/>
-      </div>
+<Grid item lg={4}></Grid>
+<Post item={item}/>
+</Grid>
+
+
   
   )
 }

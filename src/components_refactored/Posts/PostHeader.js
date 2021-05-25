@@ -24,7 +24,6 @@ export default function PostHeader({item}) {
           <CardHeader
             avatar={
               <Link to={`/user/${item.owner.id}`}>
-                <div>
                   <Avatar
                     src={item.owner.picture}
                     alt={item.owner.firstName + ' ' + item.owner.lastName}
@@ -35,7 +34,6 @@ export default function PostHeader({item}) {
                       verticalAlign: 'middle'
                     }}
                   />
-                </div>
               </Link>
             }
 
