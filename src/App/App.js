@@ -38,11 +38,16 @@ export default function App() {
 }
   return (
 <Grid className={classes.root}  container >
-<Grid item lg={4}></Grid>
-<Post item={item}/>
 
-<Grid item lg={4}></Grid>
-<Post item={item}/>
+<Grid item lg={4} ></Grid>
+<Grid item lg={4} xs={12} ><Post item={item}/></Grid>
+<Grid item lg={4} ></Grid>
+
+<Grid item lg={4} ></Grid>
+<Grid item lg={4} xs={12} ><Post item={item}/></Grid>
+<Grid item lg={4} ></Grid>
+
+ 
 </Grid>
 
 
