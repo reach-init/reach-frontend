@@ -20,7 +20,7 @@ export default function PostBody({item}) {
             </Typography>
             </Box>
 
-            <Box  ml={1}>
+            <Box mb={1}  ml={1}>
         {item.tags.map((tag) => {
         if (tag) {
             return (

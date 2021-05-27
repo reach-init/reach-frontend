@@ -34,7 +34,7 @@ postButton: {
 },
 }));
 
-export default function CommentInput() {
+export default function CommentInput({addComment}) {
   const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0()
   const classes = useStyles();
   const [text, setText] = useState('')
@@ -75,20 +75,11 @@ export default function CommentInput() {
                </Box>
 
                <Box ml={2}>
-               <Button  variant="outlined" color="primary" disabled={postDisable} onClick={()=>""}>
+               <Button  variant="outlined" color="primary" disabled={postDisable} onClick={()=> {addComment(text); setText('')}}>
                                 {'Post'}
                             </Button>
                </Box>
-                        {/* <CardHeader
-                            className={classes.header}
-                            avatar={}
-                            subheader={
-                            
-                            }
-                        ></CardHeader>
-                        <CardActions className={classes.postButton}>
-                            
-                        </CardActions> */}
+                        
                         </Box>
                 </Paper>
           </div>
