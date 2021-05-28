@@ -10,6 +10,8 @@ import auth0Config from './config/auth.config.json'
 export const headers = { } //'app-id': '609059d49f3a84a74d64cc3a' }
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import blue from '@material-ui/core/colors/blue';
+import red from '@material-ui/core/colors/red';
+
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
 export const socialTheme = {
@@ -17,7 +19,8 @@ export const socialTheme = {
     typography: {},
     palette: {
         primary: lightBlue,
-        secondary: blue,
+        secondary: red,
+        error: red
     },
      
 };

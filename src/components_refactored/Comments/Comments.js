@@ -12,13 +12,13 @@ import {
 } from "@material-ui/core";
 import ChatBubbleOutlineRoundedIcon from '@material-ui/icons/ChatBubbleOutlineRounded';
 import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined';
-
+import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 
 import SentimentDissatisfiedOutlinedIcon from '@material-ui/icons/SentimentDissatisfiedOutlined';
 import Faker from "faker";
 import Paper from '@material-ui/core/Paper';
-import PostActions from '../Posts/PostActions';
+import PostActions from '../commons/SocialActions';
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",

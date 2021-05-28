@@ -11,11 +11,13 @@ import lightGreen from '@material-ui/core/colors/lightGreen'
 import yellow from '@material-ui/core/colors/yellow'
 import amber from '@material-ui/core/colors/amber'
 import cyan from '@material-ui/core/colors/cyan'
-
+import blue from '@material-ui/core/colors/blue'
 import { useAuth0 } from '../../auth/react-auth'
 import { useHistory } from 'react-router-dom'
-const colors = [green, red, pink, purple, deepPurple, lightBlue, lightGreen, yellow, cyan,amber]
-export default function Tag({tag}) {
+
+const colors = [green, red, pink, purple, deepPurple, lightBlue, lightGreen, yellow, cyan,amber, blue]
+
+export default function Tag({tag, color}) {
   const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0()
   const history = useHistory()
 
@@ -25,10 +27,10 @@ export default function Tag({tag}) {
 
   return (
     <Chip
-         size="small"
+         size="big"
         variant="outlined"
         clickable={true}
-        style={{backgroundColor: colors.sort(() => Math.random() - 0.5).sort(() => Math.random() - 0.5)[0][400], border:'0px', margin: '5px' }}
+        style={{backgroundColor: colors[color][400], border:'0px', margin: '5px', 'font-size': '35px' }}
         key={tag}
         label={tag}
         onClick={onTagClick}

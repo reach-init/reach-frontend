@@ -18,7 +18,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert'
 import { Link } from 'react-router-dom'
 import { useAuth0 } from '../../auth/react-auth'
 import Tag from '../Tag/Tag'
-import PostActions from './PostActions'
+import SocialActions from '../commons/SocialActions'
 import PostHeader from './PostHeader'
 import PostBody from './PostBody'
 import Comments from '../Comments/Comments'
@@ -90,7 +90,7 @@ export default function Post({item, defaultProps}) {
 
         <PostBody item={item} />
 
-        <PostActions onChange={onChange}/>
+        <SocialActions onChange={onChange}/>
 
         {showComment && <Comments comments={comments} postId={"1"}/>}
 

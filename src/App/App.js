@@ -1,8 +1,8 @@
 import Post from '../components_refactored/Posts/Post'
 // import Layout from '../components/Layout/Layout'
-
+import Dish from '../components_refactored/Dish/Dish'
 import {
-  Grid
+  Grid, Box, Paper
 } from '@material-ui/core'
 import { fade, makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(theme => ({
@@ -22,9 +22,9 @@ export default function App() {
     "image": "https://img.dummyapi.io/photo-1510414696678-2415ad8474aa.jpg",
     "likes": 31,
     "tags": [
-        "snow",
-        "ice",
-        "mountain"
+      {value: "🍕",color: 0},
+      {value: "🦃", color:1},
+      {value: "🍗", color: 2}
     ],
     "publishDate": "2020-05-24T07:44:17.738Z",
     "owner": {
@@ -37,18 +37,89 @@ export default function App() {
     }
 }
   return (
-<Grid className={classes.root}  container >
+
+
+ <Grid className={classes.root} spacing={3} container >
 
 <Grid item lg={4} ></Grid>
-<Grid item lg={4} xs={12} ><Post item={item}/></Grid>
+<Grid item lg={4} xs={12} >
+
+
+<Box  >
+  <Paper>
+  <Dish/>
+
+  </Paper>
+
+</Box>
+</Grid>
+
+
+<Grid item lg={4} ></Grid>
+<Grid item lg={4} ></Grid>
+<Grid item lg={4} xs={12} >
+
+
+<Box  >
+  <Paper>
+  <Dish/>
+
+  </Paper>
+
+</Box>
+</Grid>
+
+
+<Grid item lg={4} ></Grid>
+<Grid item lg={4} ></Grid>
+<Grid item lg={4} xs={12} >
+
+
+<Box  >
+  <Paper>
+  <Dish/>
+
+  </Paper>
+
+</Box>
+</Grid>
+
+
+<Grid item lg={4} ></Grid>
+<Grid item lg={4} ></Grid>
+<Grid item lg={4} xs={12} >
+
+
+<Box  >
+  <Paper>
+  <Dish/>
+
+  </Paper>
+
+</Box>
+</Grid>
+
+
 <Grid item lg={4} ></Grid>
 
 <Grid item lg={4} ></Grid>
-<Grid item lg={4} xs={12} ><Post item={item}/></Grid>
-<Grid item lg={4} ></Grid>
+<Grid item lg={4} xs={12} >
+
+
+<Box mt={3} mb={3} >
+  <Paper>
+  <Dish/>
+
+  </Paper>
+
+</Box>
+</Grid>
+
+{/* <Grid item lg={4} xs={12} ><Post item={item}/></Grid>
+<Grid item lg={4} ></Grid> */}
 
  
-</Grid>
+</Grid> 
 
 
   

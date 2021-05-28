@@ -5,7 +5,7 @@ import {
   Typography, Box, Avatar
 } from '@material-ui/core'
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
-
+import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined'
 import ShareIcon from '@material-ui/icons/Share'
 import ChatBubbleRoundedIcon from '@material-ui/icons/ChatBubbleRounded';
@@ -26,7 +26,7 @@ import Badge from '@material-ui/core/Badge';
 
 
 
-export default function PostActions({ onChange }) {
+export default function SocialActions({ onChange }) {
   const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0()
   const [liked, setLiked] = useState(false)
   const [comment, setComment] = useState(false)
@@ -35,13 +35,13 @@ export default function PostActions({ onChange }) {
   return (
 
     // <CardActions disableSpacing>
-    <Box mt={1}>
-      <IconButton onClick={() => { setLiked(!liked); setCount(count + 1) }} color={liked ? "primary" : ""} aria-label="add to favorites">
+    <Box mt={0}>
+      <IconButton onClick={() => { setLiked(!liked); setCount(count + 1) }} color={liked ? "secondary" : ""} aria-label="add to favorites">
         <Badge anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'right',
         }} badgeContent={count.toString()} >
-          <SentimentSatisfiedOutlinedIcon /> </Badge>
+          <EmojiEmotionsIcon /> </Badge>
       </IconButton>
 
       <IconButton aria-label="add to favorites">
