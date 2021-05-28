@@ -24,7 +24,7 @@ export default function PostBody({item}) {
         {item.tags.map((tag) => {
         if (tag) {
             return (
-            <Tag tag={tag}/>
+            <Tag tag={tag.value} color={tag.color}/>
             )
         }
         })}
