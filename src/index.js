@@ -16,7 +16,9 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
 export const socialTheme = {
    
-    typography: {},
+    typography: {
+      fontFamily: ['Raleway'].join(',')
+    },
     palette: {
         primary: lightBlue,
         secondary: red,

@@ -15,7 +15,7 @@ import blue from '@material-ui/core/colors/blue'
 import { useAuth0 } from '../../auth/react-auth'
 import { useHistory } from 'react-router-dom'
 
-const colors = [green, red, pink, purple, deepPurple, lightBlue, lightGreen, yellow, cyan,amber, blue]
+const colors = [ green, yellow, pink, purple, deepPurple, lightBlue, lightGreen,  cyan,amber, blue]
 
 export default function Tag({tag, color}) {
   const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0()
@@ -27,10 +27,10 @@ export default function Tag({tag, color}) {
 
   return (
     <Chip
-         size="big"
+         size="small"
         variant="outlined"
         clickable={true}
-        style={{backgroundColor: colors[color][400], border:'0px', margin: '5px', 'font-size': '35px' }}
+        style={{backgroundColor: colors[color][400], border:'0px', marginRight: '5px', 'font-size': '30px' }}
         key={tag}
         label={tag}
         onClick={onTagClick}

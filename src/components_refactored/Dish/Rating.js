@@ -9,7 +9,7 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 350,
     display: 'flex',
-    alignItems: 'center',
+    // alignItems: 'center',
   },
 });
 
@@ -19,6 +19,7 @@ export default function HoverRating() {
   const classes = useStyles();
 
   return (
+      <Box >
     <div className={classes.root}>
       <Rating
         name="hover-feedback"
@@ -31,7 +32,10 @@ export default function HoverRating() {
           setHover(newHover);
         }}
       />
-      {value !== null && <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>}
+      {value !== null && <Box ml={2}>
+          {/* {labels[hover !== -1 ? hover : value]} */}
+          </Box>}
     </div>
+    </Box>
   );
 }
