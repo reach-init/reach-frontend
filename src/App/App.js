@@ -1,10 +1,11 @@
 import Post from '../components_refactored/Posts/Post'
 // import Layout from '../components/Layout/Layout'
-import Dish from '../components_refactored/Dish/Dish'
+// import Restaurant from '../components_refactored/Restaurant/Restaurant'
 import {
   Grid, Box, Paper
 } from '@material-ui/core'
 import { fade, makeStyles } from "@material-ui/core/styles";
+import Restaurant from '../components_refactored/Restaurant/Restaurant';
 const useStyles = makeStyles(theme => ({
   root: {
     
@@ -47,7 +48,7 @@ export default function App() {
 
 <Box  >
   <Paper>
-  <Dish/>
+  <Restaurant image="https://source.unsplash.com/random/?food" />
 
   </Paper>
 
@@ -62,7 +63,7 @@ export default function App() {
 
 <Box  >
   <Paper>
-  <Dish/>
+  <Restaurant image="https://source.unsplash.com/random/?food" />
 
   </Paper>
 
@@ -75,13 +76,13 @@ export default function App() {
 <Grid item lg={4} xs={12} >
 
 
-<Box  >
-  <Paper>
-  <Dish/>
+{/* <Box  > */}
+  {/* <Paper> */}
+  <Restaurant image="https://source.unsplash.com/random/?food" />
 
-  </Paper>
+  {/* </Paper> */}
 
-</Box>
+{/* </Box> */}
 </Grid>
 
 
@@ -92,7 +93,7 @@ export default function App() {
 
 <Box  >
   <Paper>
-  <Dish/>
+  <Restaurant image="https://source.unsplash.com/random/?food" />
 
   </Paper>
 
@@ -108,7 +109,7 @@ export default function App() {
 
 <Box mt={3} mb={3} >
   <Paper>
-  <Dish/>
+  <Restaurant image="https://source.unsplash.com/random/?food" />
 
   </Paper>
 
