@@ -12,15 +12,3 @@ code {
     monospace;
 }
 
-
-.animate2-top10 {
-  position: relative;
-  animation: animatetop 0.2s; }
-
-@keyframes animatetop {
-  from {
-    top: -10px;
-    opacity: 0; }
-  to {
-    top: 0;
-    opacity: 1; } }

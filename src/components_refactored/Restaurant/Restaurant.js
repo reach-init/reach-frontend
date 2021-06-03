@@ -117,7 +117,7 @@ export default function Restaurant({ image, rating = 3.4 }) {
                         </Box>
                     </Box>
                 </Grid>
-                <Grid item xs={10}>
+                <Grid item xs={9}>
                     <Box  ml={3} mt={2} mb={2} >
                         {tags.map((tag) => {
                             if (tag) {
@@ -131,7 +131,7 @@ export default function Restaurant({ image, rating = 3.4 }) {
                   
                 </Grid>
 
-                <Grid item xs={2}>
+                <Grid item xs={3}>
                     <Box display="flex" mt={1} mr={1}>
                                 <Avatar className={classes.medium} variant="square"
                                     src={

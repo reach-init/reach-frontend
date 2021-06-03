@@ -22,7 +22,7 @@ export const socialTheme = {
     palette: {
         primary: lightBlue,
         secondary: red,
-        error: red
+        error: red,
     },
      
 };

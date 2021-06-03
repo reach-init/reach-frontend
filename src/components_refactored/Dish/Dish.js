@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function Dish2({ image, rating = 3.4 }) {
+export default function Dish({ image, rating = 3.4 }) {
     const classes = useStyles();
     const theme = useTheme();
     const tags = [{ value: "🍕", color: 0 }, { value: "🍗", color: 1 }, { value: "🍔", color: 3 }, { value: "🍔", color: 2 }
@@ -99,15 +99,15 @@ export default function Dish2({ image, rating = 3.4 }) {
 
                         <Box display="flex"    >
                             <Box mr={1}>
-                                <Typography variant="h4">
+                                <Typography variant="h5">
                                     $ 19.9
         </Typography>
                             </Box>
-                            <HoverRating
+                            {/* <HoverRating
                                 name={'rating'}
                                 value={rating}
                                 size={'small'}
-                            />
+                            /> */}
 
                         </Box>
                         <Box mt={0}>

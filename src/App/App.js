@@ -5,7 +5,7 @@ import {
   Grid, Box, Paper
 } from '@material-ui/core'
 import { fade, makeStyles } from "@material-ui/core/styles";
-import Restaurant from '../components_refactored/Restaurant/Restaurant';
+import RestaurantMenu from '../components_refactored/RestaurantMenu/RestaurantMenu';
 const useStyles = makeStyles(theme => ({
   root: {
     
@@ -40,84 +40,18 @@ export default function App() {
   return (
 
 
- <Grid className={classes.root} spacing={3} container >
+ <Grid className={classes.root}  container >
 
-<Grid item lg={4} ></Grid>
 <Grid item lg={4} xs={12} >
 
 
 <Box  >
-  <Paper>
-  <Restaurant image="https://source.unsplash.com/random/?food" />
-
-  </Paper>
+  {/* <Restaurant image="https://source.unsplash.com/random/?food" /> */}
+    <RestaurantMenu />
 
 </Box>
 </Grid>
 
-
-<Grid item lg={4} ></Grid>
-<Grid item lg={4} ></Grid>
-<Grid item lg={4} xs={12} >
-
-
-<Box  >
-  <Paper>
-  <Restaurant image="https://source.unsplash.com/random/?food" />
-
-  </Paper>
-
-</Box>
-</Grid>
-
-
-<Grid item lg={4} ></Grid>
-<Grid item lg={4} ></Grid>
-<Grid item lg={4} xs={12} >
-
-
-{/* <Box  > */}
-  {/* <Paper> */}
-  <Restaurant image="https://source.unsplash.com/random/?food" />
-
-  {/* </Paper> */}
-
-{/* </Box> */}
-</Grid>
-
-
-<Grid item lg={4} ></Grid>
-<Grid item lg={4} ></Grid>
-<Grid item lg={4} xs={12} >
-
-
-<Box  >
-  <Paper>
-  <Restaurant image="https://source.unsplash.com/random/?food" />
-
-  </Paper>
-
-</Box>
-</Grid>
-
-
-<Grid item lg={4} ></Grid>
-
-<Grid item lg={4} ></Grid>
-<Grid item lg={4} xs={12} >
-
-
-<Box mt={3} mb={3} >
-  <Paper>
-  <Restaurant image="https://source.unsplash.com/random/?food" />
-
-  </Paper>
-
-</Box>
-</Grid>
-
-{/* <Grid item lg={4} xs={12} ><Post item={item}/></Grid>
-<Grid item lg={4} ></Grid> */}
 
  
 </Grid> 
