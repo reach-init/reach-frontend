@@ -3,13 +3,14 @@ import NavBar from '../commons/NavBar/NavBar'
 import MainContent from '../Layout/MainContent'
 import HideableLeftMenu from '../Layout/HideableLeftMenu'
 import HideableAppDrrawer from '../Layout/HideableAppDrrawer'
-
+import Box from '@material-ui/core/Box'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import useStyles from './Styles'
 import React from 'react'
 import { useTheme } from '@material-ui/core/styles'
 
 import Grid from '@material-ui/core/Grid'
+import BottomNavBar from '../../components_refactored/BottomNavBar/BottomNavBar'
 
 export default function Layout() {
   const classes = useStyles()
@@ -46,7 +47,12 @@ export default function Layout() {
         <HideableLeftMenu classes={classes} />
 
         <MainContent classes={classes} />
+        <Grid item xs={12} >
+          <Box >
+          <BottomNavBar/>
 
+          </Box>
+        </Grid>
         <Grid xl={1} lg={1} md={1} sm={0} xs={0} item></Grid>
       </Grid>
     </>
