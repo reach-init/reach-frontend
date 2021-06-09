@@ -12,6 +12,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
 import distance from './distance.png'
 import like from './likee.png'
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function Restaurant({ image, rating = 3.4 }) {
+export default function Restaurant({ image, rating = 3.4 , id}) {
     const classes = useStyles();
     const theme = useTheme();
     const tags = [{ value: "🍕", color: 0 }, { value: "🍗", color: 1 },{ value: "🍕", color: 0 }, { value: "🍕", color: 0 }, { value: "🍕", color: 0 }, { value: "🍕", color: 0 },
@@ -79,6 +80,7 @@ export default function Restaurant({ image, rating = 3.4 }) {
         }
     ]
     const [comments, setComments] = useState(commentsSource)
+    let history = useHistory();
     const addComment = (com) => {
         setComments([...comments, { postId: 1, id: 11, name: 'aaaa', email: 'aaa', body: com }])
         setShowComment(true)
@@ -89,7 +91,9 @@ export default function Restaurant({ image, rating = 3.4 }) {
     const onChange = () => {
         setShowComment(!showComment)
     }
-
+    const handleOnClick = () => {
+        history.push("restaurants/" + id);
+    }
 
     return (
 
@@ -102,7 +106,7 @@ export default function Restaurant({ image, rating = 3.4 }) {
 
                 <Grid item xs={12}>
                     <Avatar
-
+                        onClick={handleOnClick}
                         style={{ filter: "brightness(70%) grayscale(0%)", "border-top-left-radius": "25px", "border-bottom-left-radius": "0", "border-top-right-radius": "25px", "border-bottom-right-radius": "0" }}
                         className={classes.cover}
                         src={image}

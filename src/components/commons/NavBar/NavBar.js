@@ -22,6 +22,26 @@ import { Grid, Hidden } from '@material-ui/core'
 import { useAuth0 } from '../../../auth/react-auth'
 import Box from '@material-ui/core/Box'
 
+
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import Slide from '@material-ui/core/Slide';
+
+
+const ConditionalWrap = ({ condition, children , wrapper}) => (
+  condition ? wrapper(children) : children
+);
+
+function HideOnScroll(props) {
+  const { window , element} = props;
+  const trigger = useScrollTrigger({ target: window ? window() : undefined });
+
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {element}
+    </Slide>
+  );
+}
+
 export default function NavBar({ handleDrawerOpen }) {
   const classes = useStyles()
   const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0()
@@ -148,115 +168,124 @@ export default function NavBar({ handleDrawerOpen }) {
     </Menu>
   )
 
+const appBar = (
+  <AppBar position="fixed" className={classes.appBar}>
+  <Toolbar>
+    <Grid container spacing={3} alignItems="center" justifyCenter>
+      <Hidden smUp>
+        <Grid item xs={1}>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Grid>
+      </Hidden>
+
+      <Grid item lg={1} md={1} sm={1} xs={2} justifyCenter>
+        <Link to="/" className={classes.title} variant="h6" noWrap>
+          Reach
+</Link>
+      </Grid>
+
+      <Grid item lg={8} md={8} sm={8} xs={isAuthenticated ? 6 : 5}>
+        <div className={classes.search}>
+          <div className={classes.searchIcon}>
+            <SearchIcon />
+          </div>
+          <InputBase
+            placeholder="Search…"
+            value={searchedText}
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput
+            }}
+            inputProps={{ 'aria-label': 'search' }}
+            onChange={handleSearchInput}
+            onKeyUp={handleSearchKeyUp}
+          />
+        </div>
+      </Grid>
+
+      {!isAuthenticated && (
+        <Grid item lg={2} md={2} sm={2} xs={3}>
+          <Button
+            onClick={() => loginWithRedirect({})}
+            variant="contained"
+            color="default"
+          >
+            Login
+</Button>
+        </Grid>
+      )}
+
+      {isAuthenticated && (
+        <Hidden smUp>
+          <Grid item lg={2} md={2} sm={2} xs={2}>
+            <IconButton
+              aria-label="show more"
+              aria-controls={mobileMenuId}
+              aria-haspopup="true"
+              onClick={handleMobileMenuOpen}
+              color="black"
+            >
+              <MoreIcon />
+            </IconButton>
+          </Grid>
+        </Hidden>
+      )}
+
+      {isAuthenticated && (
+        <Hidden xsDown>
+          <Grid item lg={2} md={3} sm={3} xs={3}>
+            <div className={classes.sectionDesktop}>
+              <IconButton aria-label="show 4 new mails" color="inherit">
+                <Badge badgeContent={4} color="secondary">
+                  <MailIcon />
+                </Badge>
+              </IconButton>
+
+              <IconButton
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
+                <Badge badgeContent={17} color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+
+              <IconButton
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            </div>
+          </Grid>
+        </Hidden>
+      )}
+    </Grid>
+  </Toolbar>
+</AppBar>
+)
+
   return (
     <Box borderRadius="borderRadius" {...defaultProps}>
       <div className={classes.grow}>
-        <AppBar position="fixed" className={classes.appBar}>
-          <Toolbar>
-            <Grid container spacing={3} alignItems="center" justifyCenter>
-              <Hidden smUp>
-                <Grid item xs={1}>
-                  <IconButton
-                    edge="start"
-                    className={classes.menuButton}
-                    color="inherit"
-                    aria-label="open drawer"
-                    onClick={handleDrawerOpen}
-                  >
-                    <MenuIcon />
-                  </IconButton>
-                </Grid>
-              </Hidden>
+       
+        <ConditionalWrap condition={true} wrapper={children => <HideOnScroll element={children}/> } >
+         {appBar}
+        </ConditionalWrap>
+        <div className={classes.offsetTop} />
 
-              <Grid item lg={1} md={1} sm={1} xs={2} justifyCenter>
-                <Link to="/" className={classes.title} variant="h6" noWrap>
-                  Reach
-                </Link>
-              </Grid>
-
-              <Grid item lg={8} md={8} sm={8} xs={isAuthenticated ? 6 : 5}>
-                <div className={classes.search}>
-                  <div className={classes.searchIcon}>
-                    <SearchIcon />
-                  </div>
-                  <InputBase
-                    placeholder="Search…"
-                    value={searchedText}
-                    classes={{
-                      root: classes.inputRoot,
-                      input: classes.inputInput
-                    }}
-                    inputProps={{ 'aria-label': 'search' }}
-                    onChange={handleSearchInput}
-                    onKeyUp={handleSearchKeyUp}
-                  />
-                </div>
-              </Grid>
-
-              {!isAuthenticated && (
-                <Grid item lg={2} md={2} sm={2} xs={3}>
-                  <Button
-                    onClick={() => loginWithRedirect({})}
-                    variant="contained"
-                    color="default"
-                  >
-                    Login
-                  </Button>
-                </Grid>
-              )}
-
-              {isAuthenticated && (
-                <Hidden smUp>
-                  <Grid item lg={2} md={2} sm={2} xs={2}>
-                    <IconButton
-                      aria-label="show more"
-                      aria-controls={mobileMenuId}
-                      aria-haspopup="true"
-                      onClick={handleMobileMenuOpen}
-                      color="black"
-                    >
-                      <MoreIcon />
-                    </IconButton>
-                  </Grid>
-                </Hidden>
-              )}
-
-              {isAuthenticated && (
-                <Hidden xsDown>
-                  <Grid item lg={2} md={3} sm={3} xs={3}>
-                    <div className={classes.sectionDesktop}>
-                      <IconButton aria-label="show 4 new mails" color="inherit">
-                        <Badge badgeContent={4} color="secondary">
-                          <MailIcon />
-                        </Badge>
-                      </IconButton>
-
-                      <IconButton
-                        aria-label="show 17 new notifications"
-                        color="inherit"
-                      >
-                        <Badge badgeContent={17} color="secondary">
-                          <NotificationsIcon />
-                        </Badge>
-                      </IconButton>
-
-                      <IconButton
-                        edge="end"
-                        aria-label="account of current user"
-                        aria-controls={menuId}
-                        aria-haspopup="true"
-                        onClick={handleProfileMenuOpen}
-                        color="inherit"
-                      >
-                        <AccountCircle />
-                      </IconButton>
-                    </div>
-                  </Grid>
-                </Hidden>
-              )}
-            </Grid>
-          </Toolbar>
-        </AppBar>
         {renderMobileMenu}
         {renderMenu}
       </div>
