@@ -28,7 +28,7 @@ export default function Posts() {
   const { isAuthenticated } = useAuth0()
 
   const [posts, setPosts] = useState([])
-  const { get, response } = useFetch('http://localhost:8080/api/v1', {
+  const { get, response } = useFetch('https://reach-network.herokuapp.com/api/v1', {
     headers
   })
   const [page, setPage] = useState(0)
