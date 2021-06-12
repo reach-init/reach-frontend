@@ -20,7 +20,7 @@ const colors = [ green, yellow, pink, purple, deepPurple, lightBlue, lightGreen,
 export default function Tag({tag, color}) {
   const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0()
   const history = useHistory()
-
+  tag = '🍕'
   const onTagClick = () => {
       history.push('/tag/' + tag)
   }
@@ -30,7 +30,7 @@ export default function Tag({tag, color}) {
          size="small"
         variant="outlined"
         clickable={true}
-        style={{backgroundColor: colors[color][400], border:'0px', marginRight: '5px', 'font-size': '30px' }}
+        style={{backgroundColor: colors[0][400], border:'0px', marginRight: '5px', 'font-size': '30px' }}
         key={tag}
         label={tag}
         onClick={onTagClick}

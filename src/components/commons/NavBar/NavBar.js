@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext  } from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
@@ -25,7 +25,7 @@ import Box from '@material-ui/core/Box'
 
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Slide from '@material-ui/core/Slide';
-
+import AppContext from '../../../App/AppContext';
 
 const ConditionalWrap = ({ condition, children , wrapper}) => (
   condition ? wrapper(children) : children
@@ -277,11 +277,14 @@ const appBar = (
 </AppBar>
 )
 
+  const myContext = useContext(AppContext);
+  console.log(myContext)
+  
   return (
     <Box borderRadius="borderRadius" {...defaultProps}>
       <div className={classes.grow}>
        
-        <ConditionalWrap condition={true} wrapper={children => <HideOnScroll element={children}/> } >
+        <ConditionalWrap condition={myContext.setting2name} wrapper={children => <HideOnScroll element={children}/> } >
          {appBar}
         </ConditionalWrap>
         <div className={classes.offsetTop} />

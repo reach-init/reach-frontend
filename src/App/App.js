@@ -1,7 +1,8 @@
 import { fade, makeStyles } from "@material-ui/core/styles";
 import Layout from '../components/Layout/Layout';
 
-
+import React, { useState } from 'react';
+import AppContext from './AppContext';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -34,11 +35,26 @@ export default function App() {
       "title": "mr"
     }
   }
+
+  const [setting1value, setSetting1value] = useState('initialValue1');
+  const [setting2value, setSetting2value] = useState(true);
+
+  const toggleSetting2 = () => {
+    setting2value ? setSetting2value(false) : setSetting2value(true);
+  };
+
+  const userSettings = {
+    setting1name: setting1value,
+    setting2name: setting2value,
+    setSetting1value,
+    toggleSetting2,
+  };
+
   return (
+    <AppContext.Provider value={userSettings}>
+      <Layout />
 
-    <Layout />
-
-
+    </AppContext.Provider>
 
   )
 }
