@@ -14,7 +14,7 @@ export default function PostBody({item}) {
 
   return (
     <>
-<Box mt={0} ml={2} mb={0}>
+<Box mt={0} ml={2} mb={1}>
             <Typography variant="body2" color="textPrimary" component="p">
                 {item.text}
             </Typography>

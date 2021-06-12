@@ -17,6 +17,8 @@ import {
 } from 'react-router-dom'
 import clsx from 'clsx'
 
+import IOSSwitches from './IOSSwitches'
+
 const AppDrawer = ({ variant, open, theme, handleDrawerClose, setOpen }) => {
   const classes = useStyles()
 
@@ -38,6 +40,8 @@ const AppDrawer = ({ variant, open, theme, handleDrawerClose, setOpen }) => {
 
       <Divider />
       <ListItems setOpen={setOpen} />
+      <Divider />
+      <IOSSwitches />
     </Drawer>
   )
 }

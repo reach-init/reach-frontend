@@ -1,5 +1,6 @@
 import Grid from '@material-ui/core/Grid'
-import Posts from '../Posts/Posts'
+// import Posts from '../Posts/Posts'
+import Posts from '../../components_refactored/Posts/Posts'
 import ScrollToTop from '../core/ScrollToTop'
 import AuthenticatedRoute from '../core/AuthenticatedRoute/AuthenticatedRoute'
 import {
