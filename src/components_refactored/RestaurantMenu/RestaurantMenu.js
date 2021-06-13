@@ -105,21 +105,24 @@ const getDimensions = ele => {
 };
 
 const scrollTo = (ele, header) => {
+
     const { height } = header.getBoundingClientRect()
+    console.log(ele.offsetTop - height)
     window.scrollTo({
         top: ele.offsetTop - height,
         // behavior: 'smooth' 
       } );
+      let content = document.getElementById("content");
+      console.log(content);
+    content.scrollToPoint(0, ele.offsetTop - 2 * height);
 };
 
-function RestaurantMenuContent() {
-    const [visibleSection, setVisibleSection] = useState();
-    const [value, setValue] = React.useState(0);
+function RestaurantMenuContent({visibleSection, value, setValue, headerRef, sectionRefs}) {
+    
   
    
     const classes = useStyles();
 
-    const headerRef = useRef(null);
 
  
 
@@ -129,48 +132,13 @@ function RestaurantMenuContent() {
 
         </Box>))
 
-    const sectionRefs = [
-        { section: "s1", ref: useRef(null) , value: 0},
-        { section: "s2", ref: useRef(null) , value: 1},
-        { section: "s3", ref: useRef(null) , value: 2},
-        { section: "s4", ref: useRef(null) , value: 3},
-        { section: "s5", ref: useRef(null) , value: 4},
-
-    ];
+    
     const handleChange = (event, newValue) => {
+        console.log("adf")
         scrollTo(sectionRefs[newValue].ref.current, headerRef.current);
       setValue(newValue);
     };
-    useEffect(() => {
-        const handleScroll = () => {
-            const { height: headerHeight } = getDimensions(headerRef.current);
-            console.log(headerHeight)
-            const scrollPosition = window.scrollY + headerHeight;
-
-            const selected = sectionRefs.find(({ section, ref , value}) => {
-                const ele = ref.current;
-                if (ele) {
-                    console.log(getDimensions(ele))
-                    const { offsetBottom, offsetTop } = getDimensions(ele);
-
-                    return scrollPosition > offsetTop && scrollPosition < offsetBottom;
-                }
-            });
-
-            if (selected && selected.section !== visibleSection) {
-                setVisibleSection(selected.section);
-                setValue(selected.value)
-            } else if (!selected && visibleSection) {
-                setVisibleSection(undefined);
-            }
-        };
-
-        handleScroll();
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, [visibleSection]);
+  
     return (
         <>
             <div />
@@ -200,12 +168,48 @@ function RestaurantMenuContent() {
 
 
 const RestaurantMenu = ({ favoritesSchedule, schedule, setSearchText, mode }) => {
+    const sectionRefs = [
+        { section: "s1", ref: useRef(null) , value: 0},
+        { section: "s2", ref: useRef(null) , value: 1},
+        { section: "s3", ref: useRef(null) , value: 2},
+        { section: "s4", ref: useRef(null) , value: 3},
+        { section: "s5", ref: useRef(null) , value: 4},
+
+    ];
+    const [visibleSection, setVisibleSection] = useState();
+    const [value, setValue] = React.useState(0);
     const [segment, setSegment] = useState('all');
     const [showSearchbar, setShowSearchbar] = useState(false);
     const [showFilterModal, setShowFilterModal] = useState(false);
     const ionRefresherRef = useRef(null);
     const [showCompleteToast, setShowCompleteToast] = useState(false);
-  
+    const headerRef = useRef(null);
+    
+    const handleScroll = () => {
+        const { height: headerHeight } = getDimensions(headerRef.current);
+        // console.log(headerHeight)
+        console.log(value)
+
+        const scrollPosition = window.scrollY + headerHeight;
+
+        const selected = sectionRefs.find(({ section, ref , value}) => {
+            const ele = ref.current;
+            if (ele) {
+                console.log(getDimensions(ele))
+                const { offsetBottom, offsetTop } = getDimensions(ele);
+
+                return scrollPosition > offsetTop && scrollPosition < offsetBottom;
+            }
+        });
+
+        if (selected && selected.section !== visibleSection) {
+            setVisibleSection(selected.section);
+            setValue(selected.value)
+        } else if (!selected && visibleSection) {
+            setVisibleSection(undefined);
+        }
+        console.log(value)
+    };
     const doRefresh = () => {
         setTimeout(() => {
           ionRefresherRef.current.complete();
@@ -251,7 +255,7 @@ const RestaurantMenu = ({ favoritesSchedule, schedule, setSearchText, mode }) =>
       </IonToolbar>
     </IonHeader>
 
-    <IonContent fullscreen={true}>
+    <IonContent id="content" scrollEvents={true} fullscreen={true}  onIonScroll={() => handleScroll()}>
       <IonHeader collapse="condense">
         <IonToolbar>
           <IonTitle size="large">Schedule</IonTitle>
@@ -271,7 +275,7 @@ const RestaurantMenu = ({ favoritesSchedule, schedule, setSearchText, mode }) =>
         duration={2000}
         onDidDismiss={() => setShowCompleteToast(false)}
       />
-      <RestaurantMenuContent />
+      <RestaurantMenuContent sectionRefs={sectionRefs} headerRef={headerRef} value={value} visibleSection={visibleSection} setValue={setValue}/>
     </IonContent>
   </IonPage>
 )
