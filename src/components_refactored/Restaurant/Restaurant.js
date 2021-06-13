@@ -113,7 +113,7 @@ export default function Restaurant({ image, rating = 3.4 , id}) {
                     />
                 </Grid>
                 <Grid item xs={12}>
-                    <Box ml={3} mt={2} mr={2}>
+                    <Box ml={3} mt={2} mr={2} onClick={handleOnClick} >
                         <Box mt="-150px" display="flex" >
                                 <Typography style={{ "z-index": 1000000, position: "relative" , color: "white"}} variant="h3">
                                     Statia Americana 

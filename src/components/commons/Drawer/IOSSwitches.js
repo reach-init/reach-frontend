@@ -18,8 +18,9 @@ function IOSSwitches() {
         Feature3: false,
       })
     
-      const handleChange = (event) => {
-        setState({ ...state, [event.target.name]: event.target.checked });
+      const handleChange = () => {
+        setState({ ...state, navBar: (state ? false : true) });
+        console.log(state)
         myContext.toggleSetting2()
       };
     
@@ -27,7 +28,7 @@ function IOSSwitches() {
       <Box ml={2}>
         <FormGroup>
             <FormControlLabel
-            control={<IOSSwitch checked={state.navBar} onChange={handleChange} name="navBar" />}
+            control={<IOSSwitch checked={myContext.setting2name} onChange={handleChange} name="navBar" />}
             label="Hide NavBar"
             />
         </FormGroup>
