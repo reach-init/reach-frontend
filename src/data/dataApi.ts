@@ -1,9 +1,8 @@
-import { Plugins } from '@capacitor/core';
 import { Schedule, Session } from '../models/Schedule';
 import { Speaker } from '../models/Speaker';
 import { Location } from '../models/Location';
 
-const { Storage } = Plugins;
+import { Storage } from '@capacitor/storage';
 
 const dataUrl = '/assets/data/data.json';
 const locationsUrl = '/assets/data/locations.json';
@@ -17,6 +16,7 @@ export const getConfData = async () => {
     fetch(dataUrl),
     fetch(locationsUrl)]);
   const responseData = await response[0].json();
+  console.log(responseData)
   const schedule = responseData.schedule[0] as Schedule;
   const sessions = parseSessions(schedule);
   const speakers = responseData.speakers as Speaker[];

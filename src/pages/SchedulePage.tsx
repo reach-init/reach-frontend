@@ -163,3 +163,9 @@ export default connect<OwnProps, StateProps, DispatchProps>({
   },
   component: React.memo(SchedulePage)
 });
+
+// const  SchedulePage = () => (
+//   <h1>SchedulePage</h1>
+// )
+
+// export default SchedulePage

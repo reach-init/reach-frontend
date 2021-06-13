@@ -1,0 +1,31 @@
+.read-more-link {
+  color: blueviolet;
+  text-decoration: underline;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.all-tags {
+  color: cornflowerblue;
+  font-weight: 500;
+}
+.t {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  /* height: 40px; */
+  /* overflow: hidden; */
+}
+
+/* .t {
+  display:flex;
+  overflow-y: hidden;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding:1em;
+  height: 60px;
+}
+.t > div {
+  min-width: 10px;
+  margin:5px;
+  height: 35px;
+} */

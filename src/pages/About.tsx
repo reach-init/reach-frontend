@@ -17,7 +17,7 @@ const About: React.FC<AboutProps> = () => {
     header: 'Select a Location'
   };
 
-  const presentPopover = (e: React.MouseEvent) => {
+  const presentPopover = (e) => {
     setPopoverEvent(e.nativeEvent);
     setShowPopover(true);
   };
