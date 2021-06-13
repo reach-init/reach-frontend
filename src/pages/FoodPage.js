@@ -1,21 +1,14 @@
-import useFetch from 'use-http'
-
-import useMediaQuery from '@material-ui/core/useMediaQuery'
-
-import User from './User'
-import React, { useEffect,useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { IonToolbar, IonContent, IonPage, IonButtons, IonTitle, IonMenuButton, IonSegment, IonSegmentButton, IonButton, IonIcon, IonSearchbar, IonRefresher, IonRefresherContent, IonToast, IonModal, IonHeader, getConfig } from '@ionic/react';
 import { home, search } from 'ionicons/icons';
-import * as selectors from '../../data/selectors';
-import { connect } from '../../data/connect';
-import { setSearchText } from '../../data/sessions/sessions.actions';
-import Posts from '../../components_refactored/Posts/Posts'
-import RestaurantList from '../../components_refactored/Restaurant/RestaurantList';
+import * as selectors from '../data/selectors';
+import { connect } from '../data/connect';
+import { setSearchText } from '../data/sessions/sessions.actions';
+import Posts from '../components_refactored/Posts/Posts'
+import RestaurantList from '../components_refactored/Restaurant/RestaurantList';
 
- 
-
-function LoadUser({ favoritesSchedule, schedule, setSearchText, mode , match}) {
-  const [segment, setSegment] = useState('all');
+const HomePage = ({ favoritesSchedule, schedule, setSearchText, mode }) => {
+    const [segment, setSegment] = useState('all');
     const [showSearchbar, setShowSearchbar] = useState(false);
     const [showFilterModal, setShowFilterModal] = useState(false);
     const ionRefresherRef = useRef(null);
@@ -30,44 +23,7 @@ function LoadUser({ favoritesSchedule, schedule, setSearchText, mode , match}) {
     const ios = mode === 'ios';
   
     const pageRef = useRef(null);
-  const [user, setUser] = useState()
-  const userFetch = useFetch('https://reach-network.herokuapp.com/api/v1/user')
-
-  useEffect(() => {
-    loadUser()
-  }, [])
-
-  const matches = !useMediaQuery('(min-width:600px)')
-  console.log(matches)
-
-  async function loadUser() {
-    const { id } = match.params
-    const user = await userFetch.get(`${id}`)
-    
-    console.log('User')
-    console.log(Object.values(user)[0])
-    if (userFetch.response.ok) setUser(Object.values(user)[0])
-  }
-
-  const [userPosts, setUserPosts] = useState()
-  const userPostsFetch = useFetch('https://reach-network.herokuapp.com/api/v1/user', {
-  })
-
-  useEffect(() => {
-    loadUserPosts()
-  }, [])
-
-  async function loadUserPosts() {
-    const { id } = match.params
-    const userPosts = await userPostsFetch.get(`${id}/post`)
-    console.log(Object.values(userPosts)[0])
-    if (userPostsFetch.response.ok) setUserPosts(Object.values(userPosts)[0])
-  }
-
-  if (!user) return <div>Loading</div>
-  if (!userPosts) return <div>Loading</div>
-
-  return (
+    return (
     <IonPage ref={pageRef} id="home-page">
     <IonHeader translucent={true}>
       <IonToolbar>
@@ -123,21 +79,19 @@ function LoadUser({ favoritesSchedule, schedule, setSearchText, mode , match}) {
         duration={2000}
         onDidDismiss={() => setShowCompleteToast(false)}
       />
-        <User user={user} userPosts={userPosts}></User>
+      <RestaurantList />
     </IonContent>
   </IonPage>
-
-  )
+)
 }
-
 export default connect({
-  mapStateToProps: (state) => ({
-    schedule: selectors.getSearchedSchedule(state),
-    favoritesSchedule: selectors.getGroupedFavorites(state),
-    mode: getConfig().get('mode')
-  }),
-  mapDispatchToProps: {
-    setSearchText
-  },
-  component: React.memo(LoadUser)
-});
+    mapStateToProps: (state) => ({
+      schedule: selectors.getSearchedSchedule(state),
+      favoritesSchedule: selectors.getGroupedFavorites(state),
+      mode: getConfig().get('mode')
+    }),
+    mapDispatchToProps: {
+      setSearchText
+    },
+    component: React.memo(HomePage)
+  });

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { IonToolbar, IonContent, IonPage, IonButtons, IonTitle, IonMenuButton, IonSegment, IonSegmentButton, IonButton, IonIcon, IonSearchbar, IonRefresher, IonRefresherContent, IonToast, IonModal, IonHeader, getConfig } from '@ionic/react';
-import { options, search } from 'ionicons/icons';
+import { home, search } from 'ionicons/icons';
 import * as selectors from '../data/selectors';
 import { connect } from '../data/connect';
 import { setSearchText } from '../data/sessions/sessions.actions';
@@ -54,25 +54,8 @@ const HomePage = ({ favoritesSchedule, schedule, setSearchText, mode }) => {
               <IonIcon slot="icon-only" icon={search}></IonIcon>
             </IonButton>
           }
-          {!showSearchbar &&
-            <IonButton onClick={() => setShowFilterModal(true)}>
-              {mode === 'ios' ? 'Filter' : <IonIcon icon={options} slot="icon-only" />}
-            </IonButton>
-          }
         </IonButtons>
       </IonToolbar>
-      {/* {!ios &&
-        <IonToolbar>
-          <IonSegment value={segment} onIonChange={(e) => setSegment(e.detail.value as any)}>
-            <IonSegmentButton value="all">
-              All
-            </IonSegmentButton>
-            <IonSegmentButton value="favorites">
-              Favorites
-            </IonSegmentButton>
-          </IonSegment>
-        </IonToolbar>
-      } */}
     </IonHeader>
 
     <IonContent fullscreen={true}>
@@ -96,34 +79,7 @@ const HomePage = ({ favoritesSchedule, schedule, setSearchText, mode }) => {
         onDidDismiss={() => setShowCompleteToast(false)}
       />
       <Posts />
-
-      {/* <SessionList
-        schedule={schedule}
-        listType={segment}
-        hide={segment === 'favorites'}
-      />
-      <SessionList
-        // schedule={schedule}
-        schedule={favoritesSchedule}
-        listType={segment}
-        hide={segment === 'all'}
-      /> */}
     </IonContent>
-
-    <IonModal
-      isOpen={showFilterModal}
-      onDidDismiss={() => setShowFilterModal(false)}
-      swipeToClose={true}
-      presentingElement={pageRef.current}
-      cssClass="session-list-filter"
-    >
-      {/* <SessionListFilter
-        onDismissModal={() => setShowFilterModal(false)}
-      /> */}
-    </IonModal>
-
-    {/* <ShareSocialFab /> */}
-
   </IonPage>
 )
 }

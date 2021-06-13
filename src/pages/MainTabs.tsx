@@ -1,9 +1,11 @@
 import React from 'react';
 import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
 import { Route, Redirect } from 'react-router';
-import { calendar, location, informationCircle, people } from 'ionicons/icons';
+import { home, location, informationCircle, restaurant } from 'ionicons/icons';
 import SchedulePage from './SchedulePage';
 import HomePage from './HomePage'
+import FoodPage from './FoodPage'
+
 import SpeakerList from './SpeakerList';
 import SpeakerDetail from './SpeakerDetail';
 import SessionDetail from './SessionDetail';
@@ -30,6 +32,7 @@ const MainTabs = () => {
       <IonRouterOutlet>
         <Redirect exact path="/" to="/schedule" />
         <Route path="/home" render={() => <HomePage />} exact={true} />
+        <Route path="/food" render={() => <FoodPage />} exact={true} />
         <Route path="/schedule" render={() => <SchedulePage />} exact={true} />
         <Route path="/speakers" render={() => <SpeakerList />} exact={true} />
         <Route path="/speakers/:id" component={SpeakerDetail} exact={true} />
@@ -62,29 +65,23 @@ const MainTabs = () => {
 
         <Route
           exact
-          path="/restaurants"
-          render={() => <RestaurantList />}
-        />
-
-        <Route
-          exact
           path="/restaurants/:id"
           render={() => <RestaurantMenu />}
         />
         <Route exact path="/profile" component={Profile} />
-        <Route exact path="/user/:id" component={LoadUser} />
+        <Route exact path="/user/:id"  component={LoadUser} />
         <AuthenticatedRoute path="/tag/:tag" component={Tag} />
         <Route path="/results/:searchedText" component={SearchResults} />
         <Route component={NotFound} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
         <IonTabButton tab="home" href="/home">
-          <IonIcon icon={calendar} />
+          <IonIcon icon={home} />
           <IonLabel>Home</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="speakers" href="/speakers">
-          <IonIcon icon={people} />
-          <IonLabel>Speakers</IonLabel>
+        <IonTabButton tab="food" href="/food">
+          <IonIcon icon={restaurant} />
+          <IonLabel>Food</IonLabel>
         </IonTabButton>
         <IonTabButton tab="map" href="/map">
           <IonIcon icon={location} />

@@ -107,7 +107,10 @@ export default function Restaurant({ image, rating = 3.4 , id}) {
                 <Grid item xs={12}>
                     <Avatar
                         onClick={handleOnClick}
-                        style={{ filter: "brightness(70%) grayscale(0%)", "border-top-left-radius": "25px", "border-bottom-left-radius": "0", "border-top-right-radius": "25px", "border-bottom-right-radius": "0" }}
+                        style={{ filter: "brightness(70%) grayscale(0%)",
+                         "border-top-left-radius": "0px", "border-bottom-left-radius": "0", "border-top-right-radius": "0px", "border-bottom-right-radius": "0" 
+                        
+                        }}
                         className={classes.cover}
                         src={image}
                     />

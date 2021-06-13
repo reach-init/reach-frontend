@@ -29,8 +29,6 @@ export default function Posts() {
 
   const [posts, setPosts] = useState([])
   const { get, response } = useFetch('https://reach-network.herokuapp.com/api/v1')
-  
-  // const { get, response } = useFetch('https://reach-network.herokuapp.com/api/v1')
   const [page, setPage] = useState(0)
   const [_, setHasMore] = useState(true)
 
@@ -84,11 +82,10 @@ export default function Posts() {
       !isAuthenticated && 
       (
         <Grid container spacing={3}>
-          <Grid item xl={8} lg={8} md={12} sm={12} xs={12}>
-            {/* <PostWriteButton displayWriting /> */}
+          <Grid item xl={6} lg={6} md={12} sm={12} xs={12}>
             <div className="PostStream">
               <InfiniteScroll
-                dataLength={newsFeed.length} // This is important field to render the next data
+                dataLength={newsFeed.length} 
                 next={loadPosts}
 
                 hasMore

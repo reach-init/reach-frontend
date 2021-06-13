@@ -15,7 +15,7 @@ export default function Sidebar() {
   const {
     get,
     response
-  } = useFetch('https://reach-network.herokuapp.com/v1/tag?limit=50')
+  } = useFetch('https://reach-network.herokuapp.com/api/v1/tag?limit=50&page=0')
 
   useEffect(() => {
     loadInitialTags()
@@ -32,10 +32,10 @@ export default function Sidebar() {
   }
   return (
     <div
-      style={{
-        position: 'sticky',
-        top: '5.6rem'
-      }}
+      // style={{
+      //   position: 'sticky',
+      //   top: '5.6rem'
+      // }}
     >
       <Box borderRadius="borderRadius" {...defaultProps}>
         <div style={{ margin: '20px' }}>
