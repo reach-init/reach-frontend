@@ -78,9 +78,9 @@ export default function Posts() {
 
   return (
     <div>
-      {
-      !isAuthenticated && 
-      (
+      {/* { */}
+      {/* // !isAuthenticated &&  */}
+      {/* // ( */}
         <Grid container spacing={3}>
           <Grid item xl={6} lg={6} md={12} sm={12} xs={12}>
             <div className="PostStream">
@@ -106,7 +106,8 @@ export default function Posts() {
             </Grid>
           </Hidden>
         </Grid>
-      )}
+      {/* // ) */}
+      {/* } */}
     </div>
   )
 }
