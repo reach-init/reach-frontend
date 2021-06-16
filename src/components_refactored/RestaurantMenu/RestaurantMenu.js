@@ -115,7 +115,8 @@ const scrollTo = (ele, header) => {
     //     top: ele.offsetTop - height,
     //     // behavior: 'smooth' 
     //   } );
-      let content = document.getElementById("content")
+      let content = document.getElementById("content-restaurant-page")
+      console.log(content)
     content.scrollToPoint(0, ele.offsetTop -  (height + 56));
 };
 

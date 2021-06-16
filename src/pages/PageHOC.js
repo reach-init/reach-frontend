@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef , useEffect} from 'react';
 import { IonToolbar, IonContent, IonPage, IonButtons, IonTitle, IonMenuButton, IonSegment, IonSegmentButton, IonButton, IonIcon, IonSearchbar, IonRefresher, IonRefresherContent, IonToast, IonModal, IonHeader, getConfig } from '@ionic/react';
 import { search } from 'ionicons/icons';
 import { connect } from '../data/connect';
@@ -15,7 +15,8 @@ const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {}
           setShowCompleteToast(true);
         }, 2500)
       };
-  
+      
+    useEffect(() => console.log(scrollEvents))
     const pageRef = useRef(null);
     return (
     <IonPage ref={pageRef} id={id}>
@@ -44,7 +45,7 @@ const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {}
       </IonToolbar>
     </IonHeader>
 
-    <IonContent id="content" scrollEvents={scrollEvents}   onIonScroll={handleScroll} fullscreen={true}>
+    <IonContent id={"content-"+id} scrollEvents={scrollEvents}   onIonScroll={handleScroll} fullscreen={true}>
 
       <IonRefresher slot="fixed" ref={ionRefresherRef} onIonRefresh={doRefresh}>
         <IonRefresherContent />
@@ -71,5 +72,5 @@ export default connect({
     mapDispatchToProps: {
       setSearchText
     },
-    component: React.memo(PageHOC)
+    component: PageHOC
   });

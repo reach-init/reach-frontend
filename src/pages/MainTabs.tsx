@@ -53,7 +53,6 @@ const MainTabs = () => {
        
         <Route path="/results/:searchedText" component={SearchResults} />
         <Route component={NotFound} />
-        <Route exact path="/restaurants/:id" render={() => <RestaurantMenu />} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/user/:id" component={LoadUser} />
         <AuthenticatedRoute path="/tag/:tag" component={Tag} />

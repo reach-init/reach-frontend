@@ -31,11 +31,11 @@ export default function MainContent({ classes }) {
           render={() => <RestaurantList/>}
         />
 
-<Route
+{/* <Route
           exact
           path="/restaurants/:id"
           render={() => <RestaurantMenu/>}
-        />
+        /> */}
         <Route path="/" exact component={Posts} />
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/user/:id" component={LoadUser} />
