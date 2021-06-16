@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     top: 'auto',
     bottom: 0,
+    minHeight: "80px",
     backgroundColor: theme.palette.background.paper,
   },
   indicator: {
@@ -67,11 +68,7 @@ export default function BottomNavBar() {
         >
           <Tab  component={Link} to="/"  icon={<HomeIcon />} aria-label="phone" {...a11yProps(0)}  />
           <Tab  icon={<RestaurantIcon />} aria-label="favorite" {...a11yProps(1)}  component={Link} to="/restaurants"  />
-          {/* <Tab icon={<PersonPinIcon />} aria-label="person" {...a11yProps(2)} />
-          <Tab icon={<HelpIcon />} aria-label="help" {...a11yProps(3)} />
-          <Tab icon={<ShoppingBasket />} aria-label="shopping" {...a11yProps(4)} />
-          <Tab icon={<ThumbDown />} aria-label="up" {...a11yProps(5)} />
-          <Tab icon={<ThumbUp />} aria-label="down" {...a11yProps(6)} /> */}
+         
         </Tabs>
       </AppBar>
    
