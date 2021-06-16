@@ -26,6 +26,7 @@ import { connect } from '../../data/connect';
 import { setSearchText } from '../../data/sessions/sessions.actions';
 import Posts from '../../components_refactored/Posts/Posts'
 import RestaurantList from '../../components_refactored/Restaurant/RestaurantList';
+import PageHOC from '../../pages/PageHOC';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -65,7 +66,7 @@ function a11yProps(index) {
   
     return (
       <div className={classes.root}>
-        <AppBar position="static" color="default">
+        <AppBar id="appbarrm" position="static" color="default">
           <Tabs
             value={value}
             onChange={handleChange}
@@ -93,7 +94,8 @@ function a11yProps(index) {
 
 
 const getDimensions = ele => {
-    const { height } = ele.getBoundingClientRect();
+    const appbarrm = document.getElementById("appbarrm")
+    const { height , y} = ele.getBoundingClientRect();
     const offsetTop = ele.offsetTop;
     const offsetBottom = offsetTop + height;
 
@@ -101,6 +103,7 @@ const getDimensions = ele => {
         height,
         offsetTop,
         offsetBottom,
+        y
     };
 };
 
@@ -108,24 +111,16 @@ const scrollTo = (ele, header) => {
 
     const { height } = header.getBoundingClientRect()
     console.log(ele.offsetTop - height)
-    window.scrollTo({
-        top: ele.offsetTop - height,
-        // behavior: 'smooth' 
-      } );
-      let content = document.getElementById("content");
-      console.log(content);
-    content.scrollToPoint(0, ele.offsetTop - 2 * height);
+    // window.scrollTo({
+    //     top: ele.offsetTop - height,
+    //     // behavior: 'smooth' 
+    //   } );
+      let content = document.getElementById("content")
+    content.scrollToPoint(0, ele.offsetTop -  (height + 56));
 };
 
 function RestaurantMenuContent({visibleSection, value, setValue, headerRef, sectionRefs}) {
-    
-  
-   
     const classes = useStyles();
-
-
- 
-
     const dishes = [1, 2, 3, 4, 5].map((dish, i) => (
         <Box mt={2} key={i}>
             <Dish image="https://source.unsplash.com/random/?food" />
@@ -135,7 +130,7 @@ function RestaurantMenuContent({visibleSection, value, setValue, headerRef, sect
     
     const handleChange = (event, newValue) => {
         console.log("adf")
-        scrollTo(sectionRefs[newValue].ref.current, headerRef.current);
+        scrollTo(sectionRefs[newValue].ref.current, headerRef.current );
       setValue(newValue);
     };
   
@@ -167,7 +162,7 @@ function RestaurantMenuContent({visibleSection, value, setValue, headerRef, sect
 }
 
 
-const RestaurantMenu = ({ favoritesSchedule, schedule, setSearchText, mode }) => {
+const RestaurantMenu = ( ) => {
     const sectionRefs = [
         { section: "s1", ref: useRef(null) , value: 0},
         { section: "s2", ref: useRef(null) , value: 1},
@@ -178,30 +173,19 @@ const RestaurantMenu = ({ favoritesSchedule, schedule, setSearchText, mode }) =>
     ];
     const [visibleSection, setVisibleSection] = useState();
     const [value, setValue] = React.useState(0);
-    const [segment, setSegment] = useState('all');
-    const [showSearchbar, setShowSearchbar] = useState(false);
-    const [showFilterModal, setShowFilterModal] = useState(false);
-    const ionRefresherRef = useRef(null);
-    const [showCompleteToast, setShowCompleteToast] = useState(false);
     const headerRef = useRef(null);
     
-    const handleScroll = () => {
-        const { height: headerHeight } = getDimensions(headerRef.current);
-        // console.log(headerHeight)
-        console.log(value)
-
-        const scrollPosition = window.scrollY + headerHeight;
-
+    const handleScroll = (e) => {
+        const { height: headerHeight, y } = getDimensions(headerRef.current);
+        console.log(y)
+        const scrollPosition = e.detail.scrollTop + headerHeight + y;
         const selected = sectionRefs.find(({ section, ref , value}) => {
             const ele = ref.current;
             if (ele) {
-                console.log(getDimensions(ele))
                 const { offsetBottom, offsetTop } = getDimensions(ele);
-
                 return scrollPosition > offsetTop && scrollPosition < offsetBottom;
             }
         });
-
         if (selected && selected.section !== visibleSection) {
             setVisibleSection(selected.section);
             setValue(selected.value)
@@ -210,84 +194,17 @@ const RestaurantMenu = ({ favoritesSchedule, schedule, setSearchText, mode }) =>
         }
         console.log(value)
     };
-    const doRefresh = () => {
-        setTimeout(() => {
-          ionRefresherRef.current.complete();
-          setShowCompleteToast(true);
-        }, 2500)
-      };
-    const ios = mode === 'ios';
   
-    const pageRef = useRef(null);
     return (
-    <IonPage ref={pageRef} id="home-page">
-    <IonHeader translucent={true}>
-      <IonToolbar>
-        {!showSearchbar &&
-          <IonButtons slot="start">
-            <IonMenuButton />
-          </IonButtons>
-        }
-        {ios &&
-          <IonSegment value={segment} onIonChange={(e) => setSegment(e.detail.value )}>
-            <IonSegmentButton value="all">
-              All
-            </IonSegmentButton>
-            <IonSegmentButton value="favorites">
-              Favorites
-            </IonSegmentButton>
-          </IonSegment>
-        }
-        {!ios && !showSearchbar &&
-          <IonTitle>Home</IonTitle>
-        }
-        {showSearchbar &&
-          <IonSearchbar showCancelButton="always" placeholder="Search" onIonChange={(e ) => setSearchText(e.detail.value)} onIonCancel={() => setShowSearchbar(false)}></IonSearchbar>
-        }
+      <PageHOC scrollEvents handleScroll={handleScroll} id="restaurant-page" name="Restaurant" component={
+      <RestaurantMenuContent  sectionRefs={sectionRefs} headerRef={headerRef} value={value} visibleSection={visibleSection} setValue={setValue}/>
+       } />
 
-        <IonButtons slot="end">
-          {!ios && !showSearchbar &&
-            <IonButton onClick={() => setShowSearchbar(true)}>
-              <IonIcon slot="icon-only" icon={search}></IonIcon>
-            </IonButton>
-          }
-        </IonButtons>
-      </IonToolbar>
-    </IonHeader>
+    // <IonContent >
+     
 
-    <IonContent id="content" scrollEvents={true} fullscreen={true}  onIonScroll={() => handleScroll()}>
-      <IonHeader collapse="condense">
-        <IonToolbar>
-          <IonTitle size="large">Schedule</IonTitle>
-        </IonToolbar>
-        <IonToolbar>
-          <IonSearchbar placeholder="Search" onIonChange={(e) => setSearchText(e.detail.value)}></IonSearchbar>
-        </IonToolbar>
-      </IonHeader>
 
-      <IonRefresher slot="fixed" ref={ionRefresherRef} onIonRefresh={doRefresh}>
-        <IonRefresherContent />
-      </IonRefresher>
-
-      <IonToast
-        isOpen={showCompleteToast}
-        message="Refresh complete"
-        duration={2000}
-        onDidDismiss={() => setShowCompleteToast(false)}
-      />
-      <RestaurantMenuContent sectionRefs={sectionRefs} headerRef={headerRef} value={value} visibleSection={visibleSection} setValue={setValue}/>
-    </IonContent>
-  </IonPage>
 )
 }
-export default connect({
-    mapStateToProps: (state) => ({
-      schedule: selectors.getSearchedSchedule(state),
-      favoritesSchedule: selectors.getGroupedFavorites(state),
-      mode: getConfig().get('mode')
-    }),
-    mapDispatchToProps: {
-      setSearchText
-    },
-    component: React.memo(RestaurantMenu)
-  });
+export default RestaurantMenu
+
