@@ -22,7 +22,7 @@ import Profile from '../components/User/Profile'
 import Tag from '../components/Tag/Tag'
 import SearchResults from '../components/SearchResults/SearchResults'
 import Typography from '@material-ui/core/Typography'
-import RestaurantMenu from '../components_refactored/RestaurantMenu/RestaurantMenu';
+import RestaurantMenu from './RestaurantMenu/RestaurantMenu';
 import AuthenticatedRoute from '../components/core/AuthenticatedRoute/AuthenticatedRoute'
 const MainTabs = () => {
 
