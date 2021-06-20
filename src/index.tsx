@@ -17,7 +17,7 @@ export const socialTheme = {
       fontFamily: ['Raleway'].join(',')
     },
     palette: {
-        primary: lightBlue,
+        primary: blue,
         secondary: red,
         error: red,
     },

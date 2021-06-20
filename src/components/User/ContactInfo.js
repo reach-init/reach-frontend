@@ -1,5 +1,6 @@
 import useFetch from 'use-http'
 import { useState, useEffect } from 'react'
+import AddIcon from '@material-ui/icons/Add';
 import {
   Typography,
   Avatar,
@@ -41,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
       // position: "relative"
   },
+  wrapIcon: {
+    display: 'inline-flex'
+   },
   small: {
       width: theme.spacing(3),
       height: theme.spacing(3),
@@ -60,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function ContactInfo({ user }) {
+export default function ContactInfo({ user , more = true}) {
   let address
   const classes = useStyles();
 
@@ -81,10 +85,12 @@ export default function ContactInfo({ user }) {
 
   return (
     <div className="User">
-      <Typography variant="h5" component="h2" style={{ margin: '20px' }}>
-        Contact info
-      </Typography>
-      <Divider style={{ margin: '0 20px' }} />
+      {/* <Typography className={classes.wrapIcon} variant="h5" component="h2" style={{ margin: '20px' }}>
+      Contact info <AddIcon/>  
+      </Typography> */}
+      {more && (   
+          <>
+           {/* <Divider style={{ margin: '0 20px' }} /> */}
       <Grid container spacing={2}>
         <Grid item xs>
           <List>
@@ -100,14 +106,14 @@ export default function ContactInfo({ user }) {
               </ListItemIcon>
               <ListItemText primary="Mobile number" secondary={user.cell} />
             </ListItem>
-            <Link to="/restaurants/0">
+            {/* <Link to="/restaurants/0">
               <ListItem >
                 <ListItemIcon>
                   <RestaurantMenuIcon color={color} />
                 </ListItemIcon>
                 <ListItemText primary="Menu" />
               </ListItem>
-            </Link>
+            </Link> */}
           </List>
         </Grid>
         <Grid item xs>
@@ -122,9 +128,9 @@ export default function ContactInfo({ user }) {
               <ListItemIcon>
                 <EmailIcon color={color} />
               </ListItemIcon>
-              <ListItemText primary="Email address" secondary={user.email} />
+              <ListItemText   secondary={user.email} />
             </ListItem>
-            <ListItem>
+            {/* <ListItem>
               <ListItemIcon>
                 
                 <Avatar className={classes.medium} variant="square"
@@ -134,10 +140,11 @@ export default function ContactInfo({ user }) {
                                 />
               </ListItemIcon>
               <ListItemText primary="Reserve" />
-            </ListItem>
+            </ListItem> */}
           </List>
         </Grid>
-      </Grid>
+      </Grid></>)}
+
     </div>
   )
 }

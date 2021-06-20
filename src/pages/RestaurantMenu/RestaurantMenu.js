@@ -16,7 +16,10 @@ import React, { useRef, useEffect, useState } from "react";
 import "./RestaurantMenu.css";
 import PageHOC from '../PageHOC';
 import Button from '@material-ui/core/Button';
-
+import ContactInfo from '../../components/User/ContactInfo';
+import useFetch from 'use-http'
+import AvatarGroup from '@material-ui/lab/AvatarGroup';
+import SocialActions from '../../components_refactored/commons/SocialActions';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -111,6 +114,29 @@ const scrollTo = (ele, header) => {
 
 function RestaurantMenuContent({ visibleSection, value, setValue, headerRef, sectionRefs }) {
     const classes = useStyles();
+  const [user, setUser] = useState()
+  const [more, setMore] = useState(false)
+  const [follow, setFollow] = useState(false)
+  const [showComment, setShowComment] = useState(false)
+
+    const onChange = () => {
+        setShowComment(!showComment)
+    }
+
+    const userFetch = useFetch('https://reach-network.herokuapp.com/api/v1/user')
+   
+    async function loadUser() {
+        // const { id } = match.params
+        const user = await userFetch.get(`t3k3dx7zDMAKjCEeXl9Q`)
+        
+        console.log('User')
+        console.log(Object.values(user)[0])
+        if (userFetch.response.ok) setUser(Object.values(user)[0])
+      }
+    
+    useEffect(() => {
+      loadUser()
+    }, [])
     const dishes = [1, 2, 3, 4, 5].map((dish, i) => (
         <Box mt={2} key={i}>
             <Dish image="https://source.unsplash.com/random/?food" />
@@ -123,7 +149,7 @@ function RestaurantMenuContent({ visibleSection, value, setValue, headerRef, sec
         scrollTo(sectionRefs[newValue].ref.current, headerRef.current);
         setValue(newValue);
     };
-
+    if (!user) return <div>Loading</div>
     return (
         <>
             <div />
@@ -139,25 +165,28 @@ function RestaurantMenuContent({ visibleSection, value, setValue, headerRef, sec
                     </Avatar>
                 </Box>
             <Box display="flex" justifyContent="flex-end">
-                
+            <Box ml={2}>
+
+<SocialActions onChange={onChange} />
+
+</Box>
                 <Box >
                 <div style={{ margin: 10 }}>
-                    <ButtonGroup
+                    {/* <ButtonGroup
                         // variant="text"
                         color="primary" 
                         aria-label="full-width outlined primary button group"
-                    >
-                        <Button>Message</Button>
-                        <Button>Friend</Button>
-                        <Button>Follow</Button>
-                    </ButtonGroup>
+                    > */}
+                       
+                        <Button onClick={() => setFollow(!follow)} color="primary" variant={follow ?  "contained" : "outlined" }>Follow</Button>
+                    {/* </ButtonGroup> */}
                 </div>
                 </Box>
             </Box>
 
 
             
-            <Box ml="10px" mb="100px">
+            <Box ml="10px" >
                 <Typography variant="h5" >
                     Nume Smecher
                 </Typography>
@@ -165,6 +194,24 @@ function RestaurantMenuContent({ visibleSection, value, setValue, headerRef, sec
                    Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera
                 </Typography>
             </Box>
+            <Box display="flex" justifyContent="flex-start">
+       <Box mr={1}>
+        <AvatarGroup spacing="small" max={3}>
+      <Avatar alt="Remy Sharp" src="https://source.unsplash.com/random" />
+      <Avatar alt="Travis Howard" src="https://source.unsplash.com/random" />
+      <Avatar alt="Cindy Baker" src="https://source.unsplash.com/random" />
+    </AvatarGroup>
+    </Box>
+    <Typography variant="body1" >
+si alti 12 urmaresc asta              </Typography>
+        </Box>
+            <Box ml="-10px" onClick={() => setMore(!more)}>
+                <ContactInfo more user={user}/>
+            </Box>
+   
+
+
+
 
             <div className="sticky">
                 <div ref={headerRef}>
