@@ -237,7 +237,7 @@ function RestaurantMenuContent({ visibleSection, value, setValue, headerRef, sec
 
               {  <Box > <IonButton  
               fill="solid"
-               onClick={() => setGoToMenu(!goToMenu)} color="secondary" expand="block">{!goToMenu ? "Mergi la meniu" : "Mergi la Postari"}</IonButton></Box> }
+               onClick={() => setGoToMenu(!goToMenu)} color="secondary" expand="full">{!goToMenu ? "Mergi la meniu" : "Mergi la Postari"}</IonButton></Box> }
                {/* { goToMenu && (<Paper square>
                         <Tabs
                         centered
