@@ -38,6 +38,7 @@ import RecentPosts from '../Posts/RecentPosts'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import reserve from './reserve.png'
 import { IonButton, IonIcon, IonContent } from '@ionic/react';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function ContactInfo({ user}) {
+export default function ContactInfo({ user, more}) {
   let address
   const classes = useStyles();
 
@@ -83,24 +84,20 @@ export default function ContactInfo({ user}) {
   } else {
     color = 'inherit'
   }
-const [more, setMore] = useState(false)
+
   return (
     <div className="User">
-      {/* <Typography className={classes.wrapIcon} variant="h5" component="h2" style={{ margin: '20px' }}>
-      Contact info <AddIcon/>  
-      </Typography> */}
       {(   
           <>
            {/* <Divider style={{ margin: '0 20px' }} /> */}
           <List>
-          <ListItem>
+          {more && (<><ListItem>
               <ListItemIcon>
                 <AccessTimeIcon color={color} />
               </ListItemIcon>
               <ListItemText  secondary="9:40 - 22-00" />
-              <IonButton onClick={() => setMore(!more)} size="small" fill="outline"  active color="dark" >{more ? "Less" : "More"}</IonButton>
-            </ListItem>
-           {more && (<> <ListItem>
+              </ListItem>
+            <ListItem>
               <ListItemIcon>
                 <PhoneIcon color={color} />
               </ListItemIcon>

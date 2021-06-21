@@ -128,6 +128,7 @@ function RestaurantMenuContent({ visibleSection, value, setValue, headerRef, sec
     const [follow, setFollow] = useState(false)
     const [showComment, setShowComment] = useState(false)
     const [goToMenu, setGoToMenu] = useState(false)
+    
     const onChange = () => {
         setShowComment(!showComment)
     }
@@ -220,21 +221,13 @@ function RestaurantMenuContent({ visibleSection, value, setValue, headerRef, sec
                 <Typography variant="body1" >
                     si alti 12 urmaresc asta              </Typography>
             </Box>
-            <Box onClick={() => setMore(!more)}>
-                <ContactInfo more user={user} />
-
-
-
-
-
-
-
-
-
-
-
-  
-
+            <Box>
+                <Box display='flex' mt='20px'>
+                    <IonButton onClick={() => setMore(!more)} size="medium" fill="outline"  active color="dark" >{more ? "Hide" : "Contact info"}</IonButton>    
+                    <IonButton  size="medium" fill="outline"  active color="dark" >Reserve</IonButton>   
+    
+                </Box>
+                <ContactInfo more={more} user={user} /> 
               {  <Box > <IonButton  
               fill="solid"
                onClick={() => setGoToMenu(!goToMenu)} color="secondary" expand="full">{!goToMenu ? "Mergi la meniu" : "Mergi la Postari"}</IonButton></Box> }
