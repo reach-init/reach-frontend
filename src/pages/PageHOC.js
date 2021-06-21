@@ -3,12 +3,12 @@ import { IonToolbar, IonContent, IonPage, IonButtons, IonTitle, IonMenuButton, I
 import { search } from 'ionicons/icons';
 import { connect } from '../data/connect';
 import { setSearchText } from '../data/sessions/sessions.actions';
-
+import {HideOn} from 'react-hide-on-scroll'
 const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {} , scrollEvents= false }) => {
     const [showSearchbar, setShowSearchbar] = useState(false);
     const ionRefresherRef = useRef(null);
     const [showCompleteToast, setShowCompleteToast] = useState(false);
-  
+    const [showHeader, setShowHeader] = useState(true)
     const doRefresh = () => {
         setTimeout(() => {
           ionRefresherRef.current.complete();
@@ -20,7 +20,8 @@ const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {}
     const pageRef = useRef(null);
     return (
     <IonPage ref={pageRef} id={id}>
-    <IonHeader translucent={true}>
+
+ {showHeader && (    <IonHeader translucent={true}>
       <IonToolbar>
         {!showSearchbar &&
           <IonButtons slot="start">
@@ -43,9 +44,19 @@ const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {}
           }
         </IonButtons>
       </IonToolbar>
-    </IonHeader>
+    </IonHeader>)}
 
-    <IonContent id={"content-"+id} scrollEvents={scrollEvents}   onIonScroll={handleScroll} fullscreen={true}>
+
+    <IonContent id={"content-"+id} scrollEvents={scrollEvents}   onIonScroll={(e) => {
+      // if (e.detail.currentY > window.innerHeight) {
+      //   setShowHeader(false)
+      // } else {
+      //   setShowHeader(true)
+
+      // }
+      handleScroll(e)
+    }
+      } fullscreen={true}>
 
       <IonRefresher slot="fixed" ref={ionRefresherRef} onIonRefresh={doRefresh}>
         <IonRefresherContent />

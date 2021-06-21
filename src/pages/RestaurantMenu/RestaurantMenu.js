@@ -20,6 +20,13 @@ import ContactInfo from '../../components/User/ContactInfo';
 import useFetch from 'use-http'
 import AvatarGroup from '@material-ui/lab/AvatarGroup';
 import SocialActions from '../../components_refactored/commons/SocialActions';
+import Posts from '../../components_refactored/Posts/Posts';
+import MenuTabs from './MenuTabs'
+import { IonButton, IonIcon, IonContent } from '@ionic/react';
+import { star } from 'ionicons/icons';
+
+import { IonToolbar, IonTitle, IonButtons, IonBackButton, IonMenuButton, IonSearchbar, IonSegment, IonSegmentButton } from '@ionic/react';
+import { personCircle, search, helpCircle, create, ellipsisHorizontal, ellipsisVertical } from 'ionicons/icons';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -114,28 +121,30 @@ const scrollTo = (ele, header) => {
 
 function RestaurantMenuContent({ visibleSection, value, setValue, headerRef, sectionRefs }) {
     const classes = useStyles();
-  const [user, setUser] = useState()
-  const [more, setMore] = useState(false)
-  const [follow, setFollow] = useState(false)
-  const [showComment, setShowComment] = useState(false)
+    const [user, setUser] = useState()
+    const [menuValue, setMenuValue] = useState(0)
 
+    const [more, setMore] = useState(false)
+    const [follow, setFollow] = useState(false)
+    const [showComment, setShowComment] = useState(false)
+    const [goToMenu, setGoToMenu] = useState(false)
     const onChange = () => {
         setShowComment(!showComment)
     }
 
     const userFetch = useFetch('https://reach-network.herokuapp.com/api/v1/user')
-   
+
     async function loadUser() {
         // const { id } = match.params
         const user = await userFetch.get(`t3k3dx7zDMAKjCEeXl9Q`)
-        
+
         console.log('User')
         console.log(Object.values(user)[0])
         if (userFetch.response.ok) setUser(Object.values(user)[0])
-      }
-    
+    }
+
     useEffect(() => {
-      loadUser()
+        loadUser()
     }, [])
     const dishes = [1, 2, 3, 4, 5].map((dish, i) => (
         <Box mt={2} key={i}>
@@ -149,6 +158,12 @@ function RestaurantMenuContent({ visibleSection, value, setValue, headerRef, sec
         scrollTo(sectionRefs[newValue].ref.current, headerRef.current);
         setValue(newValue);
     };
+    const handleChangeMenuMic = (event, newValue) => {
+        console.log("adf")
+        // scrollTo(sectionRefs[newValue].ref.current, headerRef.current);
+        setMenuValue(newValue);
+    };
+
     if (!user) return <div>Loading</div>
     return (
         <>
@@ -158,67 +173,115 @@ function RestaurantMenuContent({ visibleSection, value, setValue, headerRef, sec
                 className={classes.cover} src="https://source.unsplash.com/random/?food">
             </Avatar>
             <Box position="absolute" top="210px">
-                    <Avatar
-                        style={{ width: '100px', height: '100px', border: '5px solid white' }}
-                        // className={classes.cover}
-                        src="https://source.unsplash.com/random/?food">
-                    </Avatar>
-                </Box>
+                <Avatar
+                    style={{ width: '100px', height: '100px', border: '5px solid white' }}
+                    // className={classes.cover}
+                    src="https://source.unsplash.com/random/?food">
+                </Avatar>
+            </Box>
             <Box display="flex" justifyContent="flex-end">
-            <Box ml={2}>
+                {/* <Box ml={2}>
 
 <SocialActions onChange={onChange} />
 
-</Box>
+</Box> */}
                 <Box >
-                <div style={{ margin: 10 }}>
-                    {/* <ButtonGroup
+                    <div style={{ margin: 10 }}>
+                        {/* <ButtonGroup
                         // variant="text"
                         color="primary" 
                         aria-label="full-width outlined primary button group"
                     > */}
-                       
-                        <Button onClick={() => setFollow(!follow)} color="primary" variant={follow ?  "contained" : "outlined" }>Follow</Button>
-                    {/* </ButtonGroup> */}
-                </div>
+
+                        <Button onClick={() => setFollow(!follow)} color="primary" variant={follow ? "contained" : "outlined"}>Follow</Button>
+                        {/* </ButtonGroup> */}
+                    </div>
                 </Box>
             </Box>
 
 
-            
+
             <Box ml="10px" >
                 <Typography variant="h5" >
                     Nume Smecher
                 </Typography>
                 <Typography variant="body2" >
-                   Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera
+                    Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera
                 </Typography>
             </Box>
             <Box display="flex" justifyContent="flex-start">
-       <Box mr={1}>
-        <AvatarGroup spacing="small" max={3}>
-      <Avatar alt="Remy Sharp" src="https://source.unsplash.com/random" />
-      <Avatar alt="Travis Howard" src="https://source.unsplash.com/random" />
-      <Avatar alt="Cindy Baker" src="https://source.unsplash.com/random" />
-    </AvatarGroup>
-    </Box>
-    <Typography variant="body1" >
-si alti 12 urmaresc asta              </Typography>
-        </Box>
-            <Box ml="-10px" onClick={() => setMore(!more)}>
-                <ContactInfo more user={user}/>
+                <Box mr={1}>
+                    <AvatarGroup spacing="small" max={3}>
+                        <Avatar  alt="Remy Sharp" src="https://source.unsplash.com/random" />
+                        <Avatar alt="Travis Howard" src="https://source.unsplash.com/random" />
+                        <Avatar alt="Cindy Baker" src="https://source.unsplash.com/random" />
+                    </AvatarGroup>
+                </Box>
+                <Typography variant="body1" >
+                    si alti 12 urmaresc asta              </Typography>
             </Box>
-   
+            <Box onClick={() => setMore(!more)}>
+                <ContactInfo more user={user} />
 
+
+
+
+
+
+
+
+
+
+
+  
+
+              {  <Box > <IonButton  
+              fill="solid"
+               onClick={() => setGoToMenu(!goToMenu)} color="secondary" expand="block">{!goToMenu ? "Mergi la meniu" : "Mergi la Postari"}</IonButton></Box> }
+               {/* { goToMenu && (<Paper square>
+                        <Tabs
+                        centered
+                            value={menuValue}
+                            indicatorColor="primary"
+                            textColor="primary"
+                            onChange={handleChangeMenuMic}
+                            aria-label="disabled tabs example"
+                        >
+                            <Tab label="Livrare" />
+                            <Tab label="Preluare"  />
+                            <Tab label="Rezerva Masa" />
+                        </Tabs>
+                    </Paper>)} */}
+           
+            </Box>
 
 
 
             <div className="sticky">
                 <div ref={headerRef}>
-                    <ScrollableTabsButtonForce value={value} handleChange={handleChange} />
+                    {
+                        goToMenu ? <ScrollableTabsButtonForce value={value} handleChange={handleChange} /> :
+                            <MenuTabs />
+
+                    }
+
 
                 </div>
             </div>
+            {!goToMenu && <Posts />}
+            {/* <Box mt={2} justifyContent="center" display="flex">
+                    <ButtonGroup
+                        variant="text"
+                        color="secondary" 
+                        aria-label="full-width outlined primary button group"
+                    >
+                        <Button onClick={() => setFollow(!follow)}   >Follow</Button>
+                        <Button onClick={() => setFollow(!follow)}    >Follow</Button>
+                       
+                        <Button onClick={() => setFollow(!follow)}  >Follow</Button>
+                    </ButtonGroup>
+                  
+                </Box> */}
             <div>
                 {sectionRefs.map(x => (
                     <div key={x.value} ref={x.ref}>

@@ -36,7 +36,7 @@ const MainTabs = () => {
         <Route path="/restaurants" render={() => <FoodPage />} exact={true} />
         <Route exact path="/restaurants/:id" render={() => <RestaurantMenu />} />
         <Route exact path="/profile" component={Profile} />
-        <Route exact path="/user/:id" component={LoadUser} />
+        <Route exact path="/user/:id"  render={() => <RestaurantMenu />}/>
         <AuthenticatedRoute path="/tag/:tag" component={Tag} />
         <Route path="/schedule" render={() => <SchedulePage />} exact={true} />
         <Route path="/speakers" render={() => <SpeakerList />} exact={true} />
@@ -54,7 +54,6 @@ const MainTabs = () => {
         <Route path="/results/:searchedText" component={SearchResults} />
         <Route component={NotFound} />
         <Route exact path="/profile" component={Profile} />
-        <Route exact path="/user/:id" component={LoadUser} />
         <AuthenticatedRoute path="/tag/:tag" component={Tag} />
         <Route path="/results/:searchedText" component={SearchResults} />
         <Route component={NotFound} />

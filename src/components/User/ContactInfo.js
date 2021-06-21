@@ -21,7 +21,7 @@ import {
   CardActions,
   IconButton
 } from '@material-ui/core'
-
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 import PhoneIcon from '@material-ui/icons/Phone'
@@ -37,6 +37,7 @@ import ProfilePost from '../Posts/ProfilePost'
 import RecentPosts from '../Posts/RecentPosts'
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import reserve from './reserve.png'
+import { IonButton, IonIcon, IonContent } from '@ionic/react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function ContactInfo({ user , more = true}) {
+export default function ContactInfo({ user}) {
   let address
   const classes = useStyles();
 
@@ -82,68 +83,46 @@ export default function ContactInfo({ user , more = true}) {
   } else {
     color = 'inherit'
   }
-
+const [more, setMore] = useState(false)
   return (
     <div className="User">
       {/* <Typography className={classes.wrapIcon} variant="h5" component="h2" style={{ margin: '20px' }}>
       Contact info <AddIcon/>  
       </Typography> */}
-      {more && (   
+      {(   
           <>
            {/* <Divider style={{ margin: '0 20px' }} /> */}
-      <Grid container spacing={2}>
-        <Grid item xs>
           <List>
-            <ListItem>
+          <ListItem>
+              <ListItemIcon>
+                <AccessTimeIcon color={color} />
+              </ListItemIcon>
+              <ListItemText  secondary="9:40 - 22-00" />
+              <IonButton onClick={() => setMore(!more)} size="small" fill="outline"  active color="dark" >{more ? "Less" : "More"}</IonButton>
+            </ListItem>
+           {more && (<> <ListItem>
               <ListItemIcon>
                 <PhoneIcon color={color} />
               </ListItemIcon>
-              <ListItemText primary="Phone number" secondary={user.phone} />
+              <ListItemText p secondary="07706060606" />
             </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <PhoneIphoneIcon color={color} />
-              </ListItemIcon>
-              <ListItemText primary="Mobile number" secondary={user.cell} />
-            </ListItem>
-            {/* <Link to="/restaurants/0">
-              <ListItem >
-                <ListItemIcon>
-                  <RestaurantMenuIcon color={color} />
-                </ListItemIcon>
-                <ListItemText primary="Menu" />
-              </ListItem>
-            </Link> */}
-          </List>
-        </Grid>
-        <Grid item xs>
-          <List>
+           
+       
             <ListItem>
               <ListItemIcon>
                 <LocationOnIcon color={color} />
               </ListItemIcon>
-              <ListItemText primary="Address" secondary={address} />
+              <ListItemText  secondary="Address" />
             </ListItem>
             <ListItem>
               <ListItemIcon>
                 <EmailIcon color={color} />
               </ListItemIcon>
               <ListItemText   secondary={user.email} />
-            </ListItem>
-            {/* <ListItem>
-              <ListItemIcon>
-                
-                <Avatar className={classes.medium} variant="square"
-                                    src={
-                                        reserve
-                                    }
-                                />
-              </ListItemIcon>
-              <ListItemText primary="Reserve" />
-            </ListItem> */}
+            </ListItem></>
+           )}
           </List>
-        </Grid>
-      </Grid></>)}
+     </>)}
 
     </div>
   )
