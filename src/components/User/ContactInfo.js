@@ -90,8 +90,9 @@ export default function ContactInfo({ user, more}) {
       {(   
           <>
            {/* <Divider style={{ margin: '0 20px' }} /> */}
+           {more && (
           <List>
-          {more && (<><ListItem>
+          <><ListItem>
               <ListItemIcon>
                 <AccessTimeIcon color={color} />
               </ListItemIcon>
@@ -117,8 +118,9 @@ export default function ContactInfo({ user, more}) {
               </ListItemIcon>
               <ListItemText   secondary={user.email} />
             </ListItem></>
-           )}
+         
           </List>
+            )}
      </>)}
 
     </div>

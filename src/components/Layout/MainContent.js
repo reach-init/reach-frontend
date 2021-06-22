@@ -16,7 +16,7 @@ import Profile from '../User/Profile'
 import Tag from '../Tag/Tag'
 import SearchResults from '../SearchResults/SearchResults'
 import Typography from '../../commons/NavBar/node_modules/@material-ui/core/Typography'
-import RestaurantMenu from '../../pages/RestaurantMenu/RestaurantMenu';
+import RestaurantMenu from '../../components_refactored/RestaurantMenu/RestaurantMenuContent';
 
 export default function MainContent({ classes }) {
   return (

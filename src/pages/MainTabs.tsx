@@ -5,7 +5,7 @@ import { home, location, informationCircle, restaurant } from 'ionicons/icons';
 import SchedulePage from './old/SchedulePage';
 import HomePage from './HomePage'
 import FoodPage from './FoodPage'
-
+import MenuPage from './MenuPage'
 import SpeakerList from './old/SpeakerList';
 import SpeakerDetail from './old/SpeakerDetail';
 import SessionDetail from './old/SessionDetail';
@@ -22,7 +22,6 @@ import Profile from '../components/User/Profile'
 import Tag from '../components/Tag/Tag'
 import SearchResults from '../components/SearchResults/SearchResults'
 import Typography from '@material-ui/core/Typography'
-import RestaurantMenu from './RestaurantMenu/RestaurantMenu';
 import AuthenticatedRoute from '../components/core/AuthenticatedRoute/AuthenticatedRoute'
 const MainTabs = () => {
 
@@ -34,9 +33,9 @@ const MainTabs = () => {
         <Redirect exact path="/" to="/home" />
         <Route path="/home" render={() => <HomePage />} exact={true} />
         <Route path="/restaurants" render={() => <FoodPage />} exact={true} />
-        <Route exact path="/restaurants/:id" render={() => <RestaurantMenu />} />
+        <Route exact path="/restaurants/:id" render={() => <MenuPage />} />
         <Route exact path="/profile" component={Profile} />
-        <Route exact path="/user/:id"  render={() => <RestaurantMenu />}/>
+        <Route exact path="/user/:id"  render={() => <MenuPage />}/>
         <AuthenticatedRoute path="/tag/:tag" component={Tag} />
         <Route path="/schedule" render={() => <SchedulePage />} exact={true} />
         <Route path="/speakers" render={() => <SpeakerList />} exact={true} />
