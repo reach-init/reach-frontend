@@ -96,9 +96,8 @@ const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {}
                   // </Grid>
                 )}
 
-          {isAuthenticated && (
+          {/* {isAuthenticated && (
                   <Hidden smUp>
-                    {/* <Grid item lg={2} md={2} sm={2} xs={2}> */}
                       <IconButton
                         aria-label="show more"
                         aria-controls={mobileMenuId}
@@ -108,9 +107,8 @@ const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {}
                       >
                         <MoreIcon />
                       </IconButton>
-                    {/* </Grid> */}
                   </Hidden>
-                )}
+                )} */}
 
 
         </IonButtons>

@@ -18,7 +18,7 @@ const routes = {
     { title: 'About', path: '/about', icon: informationCircleOutline }
   ],
   loggedInPages: [
-    { title: 'Account', path: '/account', icon: person },
+    { title: 'Profile', path: '/profile', icon: person },
     { title: 'Support', path: '/support', icon: help },
     { title: 'Logout', path: '/logout', icon: logOut }
   ],

@@ -18,7 +18,7 @@ import delivery from './delivery.png'
 const useStyles = makeStyles((theme) => ({
   paper: {
     display: 'flex',
-    border: `1px solid ${theme.palette.divider}`,
+    // border: `1px solid ${theme.palette.divider}`,
     flexWrap: 'wrap',
     justifyContent: 'center'
   },
@@ -70,12 +70,12 @@ export default function ToggleButtons() {
           </ToggleButton>
           <ToggleButton value="center" aria-label="centered">
           <Typography variant="h6">
-              Delivery 
+              Pickup 
           </Typography>
           </ToggleButton>
           <ToggleButton value="right" aria-label="right aligned">
            <Typography variant="h6">
-              Delivery 
+              Dine-in 
           </Typography>
           </ToggleButton>
         </StyledToggleButtonGroup>

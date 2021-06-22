@@ -7,6 +7,7 @@ import HomePage from './HomePage'
 import FoodPage from './FoodPage'
 import MenuPage from './MenuPage'
 import ProfilePage from './ProfilePage'
+import CartDetailsPage from './CartDetailsPage'
 import SpeakerList from './old/SpeakerList';
 import SpeakerDetail from './old/SpeakerDetail';
 import SessionDetail from './old/SessionDetail';
@@ -37,17 +38,18 @@ const MainTabs = () => {
         <Route path="/home" render={() => <HomePage />} exact={true} />
         <Route path="/restaurants" render={() => <FoodPage />} exact={true} />
         <Route exact path="/restaurants/:id" render={() => <MenuPage />} />
-        <Route exact path="/profile" render={() => <ProfilePage />} />
+        {/* <Route exact path="/profile" render={() => <ProfilePage />} /> */}
         <Route exact path="/user/:id"  render={() => <MenuPage />}/>
         <AuthenticatedRoute path="/tag/:tag" component={Tag} />
         <Route path="/schedule" render={() => <SchedulePage />} exact={true} />
         <Route path="/speakers" render={() => <SpeakerList />} exact={true} />
+        <Route path="/cart" render={() => <CartDetailsPage />} exact={true} />
         <Route path="/speakers/:id" component={SpeakerDetail} exact={true} />
         <Route path="/schedule/:id" component={SessionDetail} />
         <Route path="/speakers/sessions/:id" component={SessionDetail} />
         <Route path="/map" render={() => <MapView />} exact={true} />
         <Route path="/about" render={() => <About />} exact={true} />
-        <Route path="/account" component={Account} />
+        <Route path="/profile" render={() => <ProfilePage />} />
         {/* <Route path="/login" component={Login} /> */}
         <Route path='/login' render={() => loginWithRedirect({})}/>
         <Route path='/logout' render={() => logoutWithRedirect({})}/>
