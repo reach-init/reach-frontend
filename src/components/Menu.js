@@ -6,6 +6,7 @@ import { calendarOutline, hammer, moonOutline, help, informationCircleOutline, l
 
 import { connect } from '../data/connect';
 import { setDarkMode } from '../data/user/user.actions';
+import { useAuth0 } from '../auth/react-auth'
 
 import './Menu.css'
 
@@ -28,8 +29,9 @@ const routes = {
   ]
 };
 
-const Menu = ({ darkMode, history, isAuthenticated, setDarkMode, menuEnabled }) => {
+const Menu = ({ darkMode, history, setDarkMode, menuEnabled }) => {
   const location = useLocation();
+  const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0()
 
   function renderlistItems(list) {
     return list

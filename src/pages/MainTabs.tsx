@@ -6,6 +6,7 @@ import SchedulePage from './old/SchedulePage';
 import HomePage from './HomePage'
 import FoodPage from './FoodPage'
 import MenuPage from './MenuPage'
+import ProfilePage from './ProfilePage'
 import SpeakerList from './old/SpeakerList';
 import SpeakerDetail from './old/SpeakerDetail';
 import SessionDetail from './old/SessionDetail';
@@ -23,8 +24,10 @@ import Tag from '../components/Tag/Tag'
 import SearchResults from '../components/SearchResults/SearchResults'
 import Typography from '@material-ui/core/Typography'
 import AuthenticatedRoute from '../components/core/AuthenticatedRoute/AuthenticatedRoute'
-const MainTabs = () => {
+import { useAuth0 } from '../auth/react-auth'
 
+const MainTabs = () => {
+  const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0()
   return (
     <IonTabs>
 
@@ -34,7 +37,7 @@ const MainTabs = () => {
         <Route path="/home" render={() => <HomePage />} exact={true} />
         <Route path="/restaurants" render={() => <FoodPage />} exact={true} />
         <Route exact path="/restaurants/:id" render={() => <MenuPage />} />
-        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/profile" render={() => <ProfilePage />} />
         <Route exact path="/user/:id"  render={() => <MenuPage />}/>
         <AuthenticatedRoute path="/tag/:tag" component={Tag} />
         <Route path="/schedule" render={() => <SchedulePage />} exact={true} />
@@ -45,14 +48,15 @@ const MainTabs = () => {
         <Route path="/map" render={() => <MapView />} exact={true} />
         <Route path="/about" render={() => <About />} exact={true} />
         <Route path="/account" component={Account} />
-        <Route path="/login" component={Login} />
+        {/* <Route path="/login" component={Login} /> */}
+        <Route path='/login' render={() => loginWithRedirect({})}/>
+        <Route path='/logout' render={() => logoutWithRedirect({})}/>
         <Route path="/signup" component={Signup} />
         <Route path="/support" component={Support} />
         <Route path="/tutorial" component={Tutorial} />
        
         <Route path="/results/:searchedText" component={SearchResults} />
         <Route component={NotFound} />
-        <Route exact path="/profile" component={Profile} />
         <AuthenticatedRoute path="/tag/:tag" component={Tag} />
         <Route path="/results/:searchedText" component={SearchResults} />
         <Route component={NotFound} />
