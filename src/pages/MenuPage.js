@@ -17,6 +17,7 @@ const RestaurantMenu = () => {
     const headerRef = useRef(null);
 
     const getDimensions = ele => {
+        if(!ele) return
         const { height, y } = ele.getBoundingClientRect();
         const offsetTop = ele.offsetTop;
         const offsetBottom = offsetTop + height;
@@ -48,7 +49,7 @@ const RestaurantMenu = () => {
     };
 
     return (
-        <PageHOC tabsLimit={getDimensions(headerRef.current).y} setShowTabs={setShowTabs} scrollEvents handleScroll={handleScroll} id="restaurant-page" name="Restaurant" component={
+        <PageHOC tabsLimit={getDimensions(headerRef.current)?.y} setShowTabs={setShowTabs} scrollEvents handleScroll={handleScroll} id="restaurant-page" name="Restaurant" component={
             <RestaurantMenuContent showTabs={showTabs} sectionRefs={sectionRefs} headerRef={headerRef} value={value} visibleSection={visibleSection} setValue={setValue} />
         } />
     )
