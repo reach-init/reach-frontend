@@ -3,23 +3,13 @@ import { IonToolbar, IonContent, IonPage, IonButtons, IonTitle, IonMenuButton, I
 import { search } from 'ionicons/icons';
 import { connect } from '../data/connect';
 import { setSearchText } from '../data/sessions/sessions.actions';
-import {HideOn} from 'react-hide-on-scroll'
 import { useAuth0 } from '../auth/react-auth'
-import { Grid, Hidden } from '@material-ui/core'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
-import MoreIcon from '@material-ui/icons/MoreVert'
-import MenuItem from '@material-ui/core/MenuItem'
-import Menu from '@material-ui/core/Menu'
-import { Link, useHistory } from 'react-router-dom'
-import AccountCircle from '@material-ui/icons/AccountCircle'
-import Badge from '@material-ui/core/Badge'
-import MailIcon from '@material-ui/icons/Mail'
-import NotificationsIcon from '@material-ui/icons/Notifications'
-
+import {   IonFooter } from '@ionic/react';
+import {useCart} from '../context/cart/context'
 
 const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {} , scrollEvents= false , setShowTabs = () => {}, tabsLimit}) => {
     const [showSearchbar, setShowSearchbar] = useState(false);
+    const {state} = useCart()
     const ionRefresherRef = useRef(null);
     const [showCompleteToast, setShowCompleteToast] = useState(false);
     const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0()
@@ -147,6 +137,18 @@ const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {}
 
 
     </IonContent>
+    {
+      state.items.length > 0 && <IonFooter className="ion-no-border">
+      <IonToolbar>
+      <IonButton  
+              fill="solid"
+                color="secondary" expand="full">Cart - {state.items.length} items</IonButton>
+      </IonToolbar>
+    </IonFooter>
+    }
+    
+
+  
   </IonPage>
 )
 }

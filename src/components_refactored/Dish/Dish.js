@@ -10,7 +10,7 @@ import plus from './plus.svg'
 import Divider from '@material-ui/core/Divider';
 import Comments from '../Comments/Comments';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
+import {useCart} from '../../context/cart/context'
 const useStyles = makeStyles((theme) => ({
     body: {
         display: '-webkit-box',
@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dish({ image, rating = 3.4 }) {
+    const {state, dispatch} = useCart()
     const classes = useStyles();
     const theme = useTheme();
     const tags = [{ value: "🍕", color: 0 }, { value: "🍗", color: 1 }, { value: "🍔", color: 3 }, { value: "🍔", color: 2 }
@@ -81,6 +82,7 @@ export default function Dish({ image, rating = 3.4 }) {
     const [showComment, setShowComment] = useState(false)
 
     const onChange = () => {
+        console.log(state)
         setShowComment(!showComment)
     }
 
@@ -165,6 +167,7 @@ export default function Dish({ image, rating = 3.4 }) {
                         </Box>
 
                         <Avatar
+                        onClick={() => dispatch({type: 'add', payload: {name: "mancare"}})}
                             src={
                                 plus
                             }

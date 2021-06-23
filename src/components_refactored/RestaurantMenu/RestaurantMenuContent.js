@@ -141,12 +141,6 @@ export default function RestaurantMenuContent({ value, setValue, headerRef, sect
 
 
                   </Box>
-                {/* <ButtonGroup>
-                <Button  active  color="dark" >{more ? "Hide" : "Contact info"}</Button>    
-                <Button  color="dark" >{more ? "Hide" : "Contact info"}</Button>    
-                <Button   color="dark" >{more ? "Hide" : "Contact info"}</Button>    
-
-                </ButtonGroup> */}
 
                   {  <Box > <IonButton  
               fill="solid"

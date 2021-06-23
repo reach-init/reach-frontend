@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-
+import {CartProvider } from './context/cart/context'
 import Menu from './components/Menu';
 
 /* Core CSS required for Ionic components to work properly */
@@ -49,9 +49,7 @@ const IonicApp = ({ darkMode, schedule, setIsLoggedIn, setUsername, loadConfData
   }, []);
 
   return (
-    schedule.groups.length === 0 ? (
-      <div></div>
-    ) : (
+    <CartProvider>
         <IonApp className={`${darkMode ? 'dark-theme' : ''}`}>
           <IonReactRouter>
             <IonSplitPane contentId="main">
@@ -69,8 +67,8 @@ const IonicApp = ({ darkMode, schedule, setIsLoggedIn, setUsername, loadConfData
             </IonSplitPane>
           </IonReactRouter>
         </IonApp>
+        </CartProvider>
       )
-  )
 }
 
 export default App;
