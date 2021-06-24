@@ -16,6 +16,7 @@ import Divider from '@material-ui/core/Divider';
 import ToggleButtons from '../RestaurantMenu/ToggleButtons';
 import { makeStyles } from '@material-ui/core/styles';
 import { IonButton } from '@ionic/react';
+import {useCart} from '../../context/cart/context'
 
 const useStyles = makeStyles({
     root: {
@@ -33,14 +34,7 @@ const useStyles = makeStyles({
 
 export default function CartDetails() {
     const classes = useStyles();
-    const routes = {
-        appPages: [
-          { title: 'Shaorma', quantity: '7', price: '15', currency: '$'},
-          { title: 'Pet', quantity: '1', price: '10', currency: '$'},
-          { title: 'Cola', quantity: '2', price: '10', currency: '$'},
-          { title: 'Seminte', quantity: '8', price: '12', currency: '$'}
-        ]
-      };
+    const {state} = useCart()
       const location = useLocation();
       function renderlistItems(list) {
         return list
@@ -60,15 +54,15 @@ export default function CartDetails() {
         <Paper className={classes.paper}>
              <Box display='flex' flexDirection='column' justifyContent='space-between' className={classes.paper}>
                 <Box>
-                    <Box ml={2} mt={2} >
-                            <Typography variant='h5'>Restaurant Name</Typography>
-                    </Box>
+                    
 
                     <ToggleButtons/>
-
+                    <Box ml={2} mt={2} >
+                            <Typography variant='h4'>Restaurant Name</Typography>
+                    </Box>
                     <List>
                     
-                        {renderlistItems(routes.appPages)}
+                        {renderlistItems(state.items)}
                         <Divider/>
 
                         <ListItem>

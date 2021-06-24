@@ -6,8 +6,9 @@ import { setSearchText } from '../data/sessions/sessions.actions';
 import { useAuth0 } from '../auth/react-auth'
 import {   IonFooter } from '@ionic/react';
 import {useCart} from '../context/cart/context'
+import { useHistory } from "react-router-dom";
 
-const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {} , scrollEvents= false , setShowTabs = () => {}, tabsLimit}) => {
+const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {} , scrollEvents= false , setShowTabs = () => {}, tabsLimit, showCartButton = true}) => {
     const [showSearchbar, setShowSearchbar] = useState(false);
     const {state} = useCart()
     const ionRefresherRef = useRef(null);
@@ -15,6 +16,7 @@ const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {}
     const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0()
     const mobileMenuId = 'primary-search-account-menu-mobile'
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
+    const history = useHistory();
 
     const isMenuOpen = Boolean(anchorEl)
     const [anchorEl, setAnchorEl] = React.useState(null)
@@ -22,6 +24,10 @@ const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {}
       setAnchorEl(event.currentTarget)
     }
     
+    const handleOnClick = () => {
+      history.replace("/cart");
+    }
+
     const handleMobileMenuOpen = (event) => {
       setMobileMoreAnchorEl(event.currentTarget)
     }
@@ -138,9 +144,10 @@ const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {}
 
     </IonContent>
     {
-      state.items.length > 0 && <IonFooter className="ion-no-border">
+      state.items.length > 0 && showCartButton && <IonFooter className="ion-no-border">
       <IonToolbar>
       <IonButton  
+      onClick={handleOnClick}
               fill="solid"
                 color="secondary" expand="full">Cart - {state.items.length} items</IonButton>
       </IonToolbar>

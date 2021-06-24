@@ -167,7 +167,7 @@ export default function Dish({ image, rating = 3.4 }) {
                         </Box>
 
                         <Avatar
-                        onClick={() => dispatch({type: 'add', payload: {name: "mancare"}})}
+                        onClick={() => dispatch({type: 'add', payload: {quantity:1,title: "mancare", price: 12, currency:"lei"}})}
                             src={
                                 plus
                             }
