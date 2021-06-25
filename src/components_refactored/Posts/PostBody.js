@@ -11,7 +11,8 @@ import Box from '@material-ui/core/Box';
 
 export default function PostBody({item}) {
   const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0()
-
+  const tags = [{ value: "🍕", color: 0 }, { value: "🍗", color: 1 },{ value: "🍕", color: 0 }, { value: "🍕", color: 0 }, { value: "🍕", color: 0 }, { value: "🍕", color: 0 },
+]
   return (
     <>
 <Box mt={0} ml={2} mb={1}>
@@ -21,7 +22,7 @@ export default function PostBody({item}) {
             </Box>
 
             <Box mb={1}  ml={1}>
-        {item.tags.map((tag) => {
+        {tags.map((tag) => {
         if (tag) {
             return (
             <Tag tag={tag.value} color={tag.color}/>

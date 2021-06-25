@@ -18,10 +18,9 @@ import { useHistory } from 'react-router-dom'
 const colors = [ green, yellow, pink, purple, deepPurple, lightBlue, lightGreen,  cyan,amber, blue]
 
 export default function Tag({tag, color}) {
-  const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0()
   const history = useHistory()
-  tag = '🍕'
   const onTagClick = () => {
+      const tag = '🍕'
       history.push('/tag/' + tag)
   }
 
@@ -30,7 +29,7 @@ export default function Tag({tag, color}) {
          size="small"
         variant="outlined"
         clickable={true}
-        style={{backgroundColor: colors[0][400], border:'0px', marginRight: '5px', 'font-size': '30px' }}
+        style={{backgroundColor: colors[color][100], border:'0px', marginRight: '5px', 'font-size': '20px' }}
         key={tag}
         label={tag}
         onClick={onTagClick}

@@ -1,5 +1,5 @@
 import React, { useState, useRef , useEffect} from 'react';
-import { IonToolbar, IonContent, IonPage, IonButtons, IonTitle, IonMenuButton, IonSegment, IonSegmentButton, IonButton, IonIcon, IonSearchbar, IonRefresher, IonRefresherContent, IonToast, IonModal, IonHeader, getConfig } from '@ionic/react';
+import { IonToolbar, IonContent, IonPage, IonButtons, IonTitle, IonMenuButton, IonSegment, IonSegmentButton, IonButton, IonIcon, IonSearchbar, IonRefresher, IonRefresherContent, IonToast, IonModal, IonHeader, getConfig , IonBackButton} from '@ionic/react';
 import { search } from 'ionicons/icons';
 import { connect } from '../data/connect';
 import { setSearchText } from '../data/sessions/sessions.actions';
@@ -8,7 +8,7 @@ import {   IonFooter } from '@ionic/react';
 import {useCart} from '../context/cart/context'
 import { useHistory } from "react-router-dom";
 
-const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {} , scrollEvents= false , setShowTabs = () => {}, tabsLimit, showCartButton = true}) => {
+const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {} , scrollEvents= false , setShowTabs = () => {}, tabsLimit, showCartButton = true, showBack = false}) => {
     const [showSearchbar, setShowSearchbar] = useState(false);
     const {state} = useCart()
     const ionRefresherRef = useRef(null);
@@ -60,7 +60,10 @@ const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {}
 
  <IonHeader translucent={true}>
       <IonToolbar>
-        {!showSearchbar &&
+     {showBack &&  <IonButtons slot="start">
+              <IonBackButton defaultHref="/home" />
+            </IonButtons>}
+        { !showBack && !showSearchbar &&
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
@@ -146,8 +149,9 @@ const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {}
     {
       state.items.length > 0 && showCartButton && <IonFooter className="ion-no-border">
       <IonToolbar>
-      <IonButton  
-      onClick={handleOnClick}
+
+      <IonButton  routerLink="/cart"
+      // onClick={handleOnClick}
               fill="solid"
                 color="secondary" expand="full">Cart - {state.items.length} items</IonButton>
       </IonToolbar>

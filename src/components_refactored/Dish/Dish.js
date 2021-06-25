@@ -5,12 +5,10 @@ import { Paper, Box, Avatar, Icon } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid'
 import SocialActions from '../commons/SocialActions';
 import Tag from '../Tag/Tag'
-import HoverRating from './Rating';
 import plus from './plus.svg'
 import Divider from '@material-ui/core/Divider';
 import Comments from '../Comments/Comments';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import {useCart} from '../../context/cart/context'
+import { useCart } from '../../context/cart/context'
 const useStyles = makeStyles((theme) => ({
     body: {
         display: '-webkit-box',
@@ -23,17 +21,18 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         height: '150px',
         backgroundColor: theme.palette.grey[200],
-        borderRadius: 12,
-        boxShadow: '0 2px 8px 0 #c1c9d7, 0 -2px 8px 0 #cce1e9',
+        // borderRadius: 12,
+        borderRadius: 0,
+
+        // boxShadow: '0 2px 8px 0 #c1c9d7, 0 -2px 8px 0 #cce1e9',
     },
 
 
 }));
 
-export default function Dish({ image, rating = 3.4 }) {
-    const {state, dispatch} = useCart()
+export default function Dish({ image }) {
+    const { state, dispatch } = useCart()
     const classes = useStyles();
-    const theme = useTheme();
     const tags = [{ value: "🍕", color: 0 }, { value: "🍗", color: 1 }, { value: "🍔", color: 3 }, { value: "🍔", color: 2 }
     ]
     const commentsSource = [
@@ -88,7 +87,8 @@ export default function Dish({ image, rating = 3.4 }) {
 
 
     return (
-        <Paper  >
+        <Box >
+        <Paper  elevation={0}>
             <Grid container>
                 <Grid item xs={8}>
                     <Box ml={3} mt={2} mr={2}>
@@ -105,11 +105,6 @@ export default function Dish({ image, rating = 3.4 }) {
                                     $ 19.9
         </Typography>
                             </Box>
-                            {/* <HoverRating
-                                name={'rating'}
-                                value={rating}
-                                size={'small'}
-                            /> */}
 
                         </Box>
                         <Box mt={0}>
@@ -119,7 +114,7 @@ export default function Dish({ image, rating = 3.4 }) {
                         </Typography>
                         </Box>
                         <Box mt={1} mb={2}>
-                            {tags.map((tag) => {
+                            {tags.map(tag => {
                                 if (tag) {
                                     return (
                                         <Tag tag={tag.value} color={tag.color} />
@@ -146,7 +141,7 @@ export default function Dish({ image, rating = 3.4 }) {
 
 
                 <Grid item xs={12}>
-                    <Divider light />
+                    {/* <Divider light /> */}
 
                 </Grid>
 
@@ -167,7 +162,7 @@ export default function Dish({ image, rating = 3.4 }) {
                         </Box>
 
                         <Avatar
-                        onClick={() => dispatch({type: 'add', payload: {quantity:1,title: "mancare", price: 12, currency:"lei"}})}
+                            onClick={() => dispatch({ type: 'add', payload: { quantity: 1, title: "mancare", price: 12, currency: "lei" } })}
                             src={
                                 plus
                             }
@@ -181,5 +176,6 @@ export default function Dish({ image, rating = 3.4 }) {
 
 
         </Paper>
+        </Box>
     );
 }

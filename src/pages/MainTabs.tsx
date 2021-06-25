@@ -37,7 +37,7 @@ const MainTabs = () => {
         <Redirect exact path="/" to="/home" />
         <Route path="/home" render={() => <HomePage />} exact={true} />
         <Route path="/restaurants" render={() => <FoodPage />} exact={true} />
-        <Route exact path="/restaurants/:id" render={() => <MenuPage />} />
+        <Route exact path="/restaurants/:id" render={() => <MenuPage restaurant />} />
         {/* <Route exact path="/profile" render={() => <ProfilePage />} /> */}
         <Route exact path="/user/:id"  render={() => <MenuPage />}/>
         <AuthenticatedRoute path="/tag/:tag" component={Tag} />

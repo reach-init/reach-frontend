@@ -3,7 +3,7 @@ import PageHOC from "./PageHOC";
 
 const CartDetailsPage = () => {
   return (
-    <PageHOC showCartButton={false} id="cart-details-page" name="Cart Details" component={<CartDetails />} />
+    <PageHOC showBack showCartButton={false} id="cart-details-page" name="Cart Details" component={<CartDetails />} />
   )
 }
 export default CartDetailsPage

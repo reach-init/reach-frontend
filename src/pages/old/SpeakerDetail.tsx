@@ -89,6 +89,7 @@ const SpeakerDetail: React.FC<SpeakerDetailProps> = ({ speaker }) => {
             <IonButtons slot="start">
               <IonBackButton defaultHref="/speakers" />
             </IonButtons>
+
             <IonButtons slot="end">
               <IonButton onClick={() => openContact(speaker)}>
                 <IonIcon slot="icon-only" ios={callOutline} md={callSharp}></IonIcon>

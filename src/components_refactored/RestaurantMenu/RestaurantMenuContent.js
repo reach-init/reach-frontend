@@ -1,5 +1,4 @@
 import Dish from '../Dish/Dish'
-import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import { Avatar, Typography } from '@material-ui/core';
 import React, { useRef, useEffect, useState } from "react";
@@ -17,6 +16,8 @@ import ScrollableTabsButtonForce from './ScrollableTabsButtonForce'
 import InfoIcon from '@material-ui/icons/Info';
 import  Divider  from '@material-ui/core/Divider';
 import ToggleButtons from './ToggleButtons';
+import { fade, makeStyles } from "@material-ui/core/styles";
+
 const useStyles = makeStyles((theme) => ({
 
     small: {
@@ -39,17 +40,20 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         backgroundColor: theme.palette.background.paper,
     },
+    box: {
+        backgroundColor: fade(theme.palette.common.black, 0.05)
+    }
 
 }));
 
 
 
-export default function RestaurantMenuContent({ value, setValue, headerRef, sectionRefs , showTabs}) {
+export default function RestaurantMenuContent({restaurant, value, setValue, headerRef, sectionRefs , showTabs}) {
     const classes = useStyles();
     const [user, setUser] = useState()
     const [more, setMore] = useState(false)
     const [follow, setFollow] = useState(false)
-    const [goToMenu, setGoToMenu] = useState(false)
+    const [goToMenu, setGoToMenu] = useState(restaurant)
     
     const scrollTo = (ele, header) => {
     
@@ -68,9 +72,6 @@ export default function RestaurantMenuContent({ value, setValue, headerRef, sect
     async function loadUser() {
         // const { id } = match.params
         const user = await userFetch.get(`t3k3dx7zDMAKjCEeXl9Q`)
-
-        console.log('User')
-        console.log(Object.values(user)[0])
         if (userFetch.response.ok) setUser(Object.values(user)[0])
     }
 
@@ -78,7 +79,7 @@ export default function RestaurantMenuContent({ value, setValue, headerRef, sect
         loadUser()
     }, [])
     const dishes = [1, 2, 3, 4, 5].map((dish, i) => (
-        <Box mt={2} key={i}>
+        <Box className={classes.box}  mt={1} key={i}>
             <Dish image="https://source.unsplash.com/random/?food" />
 
         </Box>))
@@ -120,7 +121,7 @@ export default function RestaurantMenuContent({ value, setValue, headerRef, sect
                 </Typography>
             </Box>
             <Box display="flex" justifyContent="flex-start">
-                <Box mr={1}>
+                <Box ml={1} mr={1}>
                     <AvatarGroup spacing="small" max={3}>
                         <Avatar  alt="Remy Sharp" src="https://source.unsplash.com/random" />
                         <Avatar alt="Travis Howard" src="https://source.unsplash.com/random" />
@@ -158,6 +159,7 @@ export default function RestaurantMenuContent({ value, setValue, headerRef, sect
                 </div>
             </div>
             {!goToMenu && <Posts />}
+            <Box className={classes.box}>
             <div>
                 {sectionRefs.map(x => (
                     <div key={x.value} ref={x.ref}>
@@ -166,6 +168,7 @@ export default function RestaurantMenuContent({ value, setValue, headerRef, sect
                     </div>))}
 
             </div>
+            </Box>
         </>
 
     );

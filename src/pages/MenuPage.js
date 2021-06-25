@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import PageHOC from './PageHOC';
 import RestaurantMenuContent from '../components_refactored/RestaurantMenu/RestaurantMenuContent'
-const RestaurantMenu = () => {
+const RestaurantMenu = ({restaurant}) => {
     const sectionRefs = [
         { section: "s1", ref: useRef(null), value: 0 },
         { section: "s2", ref: useRef(null), value: 1 },
@@ -50,7 +50,7 @@ const RestaurantMenu = () => {
 
     return (
         <PageHOC tabsLimit={getDimensions(headerRef.current)?.y} setShowTabs={setShowTabs} scrollEvents handleScroll={handleScroll} id="restaurant-page" name="Restaurant" component={
-            <RestaurantMenuContent showTabs={showTabs} sectionRefs={sectionRefs} headerRef={headerRef} value={value} visibleSection={visibleSection} setValue={setValue} />
+            <RestaurantMenuContent restaurant={restaurant} showTabs={showTabs} sectionRefs={sectionRefs} headerRef={headerRef} value={value} visibleSection={visibleSection} setValue={setValue} />
         } />
     )
 }
