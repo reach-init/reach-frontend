@@ -120,20 +120,10 @@ export default function RestaurantMenuContent({restaurant, value, setValue, head
                     Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera
                 </Typography>
             </Box>
-            <Box display="flex" justifyContent="flex-start">
-                <Box ml={1} mr={1}>
-                    <AvatarGroup spacing="small" max={3}>
-                        <Avatar  alt="Remy Sharp" src="https://source.unsplash.com/random" />
-                        <Avatar alt="Travis Howard" src="https://source.unsplash.com/random" />
-                        <Avatar alt="Cindy Baker" src="https://source.unsplash.com/random" />
-                    </AvatarGroup>
-                </Box>
-                <Typography variant="body1" >
-                    si alti 12 urmaresc asta              </Typography>
-            </Box>
+          
             <Box margin={1}>
                 <Box  onClick={() => setMore(!more)} justifyContent="space-between"  display='flex'>
-                    <Button  startIcon={<InfoIcon />}  endIcon={<ChevronRightIcon />}  color="dark" >{more ? "Hide" : "Contact info"}</Button>    
+                    <Button variant="outlined" startIcon={<InfoIcon />}  endIcon={<ChevronRightIcon />}  color="dark" >{more ? "Hide" : "Contact info"}</Button>    
                     {goToMenu &&  <Button variant="outlined"  color="primary" >Rezerva masa rapid</Button>   }
               
                 </Box>
@@ -142,7 +132,18 @@ export default function RestaurantMenuContent({restaurant, value, setValue, head
 
 
                   </Box>
-
+  <Box display="flex" justifyContent="flex-start">
+                <Box ml={1} mr="2px">
+                    <AvatarGroup spacing="small" max={3}>
+                        <Avatar  alt="Remy Sharp" src="https://source.unsplash.com/random" />
+                        <Avatar alt="Travis Howard" src="https://source.unsplash.com/random" />
+                        <Avatar alt="Cindy Baker" src="https://source.unsplash.com/random" />
+                    </AvatarGroup>
+                </Box>
+                <Box mt={1}>
+                <Typography variant="body1" >
+                    si alti 12 urmaresc asta              </Typography></Box>
+            </Box>
                   {  <Box > <IonButton  
               fill="solid"
                onClick={() => setGoToMenu(!goToMenu)} color="secondary" expand="full">{!goToMenu ? "Mergi la meniu" : "Mergi la Postari"}</IonButton></Box> }
