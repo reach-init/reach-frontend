@@ -17,7 +17,7 @@ import {
 } from 'react-router-dom'
 import clsx from 'clsx'
 
-import IOSSwitches from './IOSSwitches'
+import IOSSwitches from '../../../components_refactored/IOSSwitches/IOSSwitches'
 
 const AppDrawer = ({ variant, open, theme, handleDrawerClose, setOpen }) => {
   const classes = useStyles()

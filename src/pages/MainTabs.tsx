@@ -26,6 +26,7 @@ import SearchResults from '../components/SearchResults/SearchResults'
 import Typography from '@material-ui/core/Typography'
 import AuthenticatedRoute from '../components/core/AuthenticatedRoute/AuthenticatedRoute'
 import { useAuth0 } from '../auth/react-auth'
+import PreferencesPage from './PreferencesPage';
 
 const MainTabs = () => {
   const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0()
@@ -42,6 +43,7 @@ const MainTabs = () => {
         <Route exact path="/user/:id"  render={() => <MenuPage />}/>
         <AuthenticatedRoute path="/tag/:tag" component={Tag} />
         <Route path="/schedule" render={() => <SchedulePage />} exact={true} />
+        <Route path="/preferences" render={() => <PreferencesPage />} exact={true} />
         <Route path="/speakers" render={() => <SpeakerList />} exact={true} />
         <Route path="/cart" render={() => <CartDetailsPage />} exact={true} />
         <Route path="/speakers/:id" component={SpeakerDetail} exact={true} />

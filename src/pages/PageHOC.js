@@ -6,11 +6,15 @@ import { setSearchText } from '../data/sessions/sessions.actions';
 import { useAuth0 } from '../auth/react-auth'
 import {   IonFooter } from '@ionic/react';
 import {useCart} from '../context/cart/context'
+import {usePreferences} from '../context/preferences/context'
+
 import { useHistory } from "react-router-dom";
 
 const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {} , scrollEvents= false , setShowTabs = () => {}, tabsLimit, showCartButton = true, showBack = false}) => {
     const [showSearchbar, setShowSearchbar] = useState(false);
-    const {state} = useCart()
+    const {state: cart} = useCart()
+    const {state : preferences} = usePreferences()
+
     const ionRefresherRef = useRef(null);
     const [showCompleteToast, setShowCompleteToast] = useState(false);
     const { isAuthenticated, loginWithRedirect, logoutWithRedirect } = useAuth0()
@@ -58,7 +62,7 @@ const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {}
     return (
     <IonPage ref={pageRef} id={id}>
 
- <IonHeader translucent={true}>
+ { !preferences.setting1 &&  <IonHeader translucent={true}>
       <IonToolbar>
      {showBack &&  <IonButtons slot="start">
               <IonBackButton defaultHref="/home" />
@@ -115,7 +119,7 @@ const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {}
       </IonToolbar>
       
 
-    </IonHeader>
+    </IonHeader> }
 
 
     <IonContent id={"content-"+id} scrollEvents={scrollEvents}   onIonScroll={(e) => {
@@ -147,13 +151,13 @@ const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {}
 
     </IonContent>
     {
-      state.items.length > 0 && showCartButton && <IonFooter className="ion-no-border">
+      cart.items.length > 0 && showCartButton && <IonFooter className="ion-no-border">
       <IonToolbar>
 
       <IonButton  routerLink="/cart"
       // onClick={handleOnClick}
               fill="solid"
-                color="secondary" expand="full">Cart - {state.items.length} items</IonButton>
+                color="secondary" expand="full">Cart - {cart.items.length} items</IonButton>
       </IonToolbar>
     </IonFooter>
     }

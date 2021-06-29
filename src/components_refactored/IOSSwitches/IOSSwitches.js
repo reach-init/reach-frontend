@@ -5,30 +5,20 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import Box from '@material-ui/core/Box'
 
-import { useContext } from 'react';
-import AppContext from '../../../App/AppContext';
+import {usePreferences} from '../../context/preferences/context'
 
 function IOSSwitches() {
+  const { state, dispatch } = usePreferences()
 
-    const myContext = useContext(AppContext);
-
-    const [state, setState] = React.useState({
-        navBar: true,
-        Feature2: false,
-        Feature3: false,
-      })
-    
       const handleChange = () => {
-        setState({ ...state, navBar: (state ? false : true) });
-        console.log(state)
-        myContext.toggleSetting2()
+        dispatch({ type: 'toggle1'})
       };
     
     return (
       <Box ml={2}>
         <FormGroup>
             <FormControlLabel
-            control={<IOSSwitch checked={myContext.setting2name} onChange={handleChange} name="navBar" />}
+            control={<IOSSwitch checked={state.setting1} onChange={handleChange} name="navBar" />}
             label="Hide NavBar"
             />
         </FormGroup>

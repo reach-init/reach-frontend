@@ -2,7 +2,7 @@ import React from 'react';
 import { RouteComponentProps, withRouter, useLocation } from 'react-router';
 
 import { IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonToggle } from '@ionic/react';
-import { calendarOutline, hammer, moonOutline, help, informationCircleOutline, logIn, logOut, mapOutline, peopleOutline, person, personAdd } from 'ionicons/icons';
+import { calendarOutline, hammer, moonOutline, help, informationCircleOutline, terminalOutline, logIn, logOut, mapOutline, peopleOutline, person, personAdd } from 'ionicons/icons';
 
 import { connect } from '../data/connect';
 import { setDarkMode } from '../data/user/user.actions';
@@ -15,7 +15,9 @@ const routes = {
     { title: 'Schedule', path: '/schedule', icon: calendarOutline },
     { title: 'Speakers', path: '/speakers', icon: peopleOutline },
     { title: 'Map', path: '/map', icon: mapOutline },
-    { title: 'About', path: '/about', icon: informationCircleOutline }
+    { title: 'About', path: '/about', icon: informationCircleOutline },
+    { title: 'Preferences', path: '/preferences', icon: terminalOutline }
+
   ],
   loggedInPages: [
     { title: 'Profile', path: '/profile', icon: person },
