@@ -8,7 +8,8 @@ import auth0Config from './config/auth.config.json'
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import blue from '@material-ui/core/colors/blue';
 import red from '@material-ui/core/colors/red';
-
+import green from '@material-ui/core/colors/green';
+// import dark from '@material-ui/core/colors/dark';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
 export const socialTheme = {
@@ -18,10 +19,9 @@ export const socialTheme = {
     },
     palette: {
         primary: blue,
-        secondary: red,
+        secondary: {main:'#11cb5f'},
         error: red,
-    },
-     
+    }
 };
 const theme = createMuiTheme(socialTheme);
 ReactDOM.render(

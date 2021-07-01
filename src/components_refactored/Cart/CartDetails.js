@@ -84,7 +84,7 @@ export default function CartDetails() {
                 <Box>
                     <IonButton  
                         fill="solid"
-                        color="secondary"
+                        color="danger"
                         expand="full">
                             Plateste
                     </IonButton>

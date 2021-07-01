@@ -15,6 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Restaurant from './Restaurant';
 import  Paper  from '@material-ui/core/Paper';
+import ToggleButtons from '../RestaurantMenu/ToggleButtons';
 
 
 export default function RestaurantList() {
@@ -25,6 +26,11 @@ export default function RestaurantList() {
         </Box></Paper>))
 
         return (
-            restaurants
+            <>
+            <ToggleButtons/>
+{restaurants}
+
+            </>
+            
             )
 }

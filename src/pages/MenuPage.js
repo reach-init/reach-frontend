@@ -49,7 +49,7 @@ const RestaurantMenu = ({restaurant}) => {
     };
 
     return (
-        <PageHOC tabsLimit={getDimensions(headerRef.current)?.y} setShowTabs={setShowTabs} scrollEvents handleScroll={handleScroll} id="restaurant-page" name="Restaurant" component={
+        <PageHOC showHeader={false} tabsLimit={getDimensions(headerRef.current)?.y} setShowTabs={setShowTabs} scrollEvents handleScroll={handleScroll} id="restaurant-page" name="Restaurant" component={
             <RestaurantMenuContent restaurant={restaurant} showTabs={showTabs} sectionRefs={sectionRefs} headerRef={headerRef} value={value} visibleSection={visibleSection} setValue={setValue} />
         } />
     )

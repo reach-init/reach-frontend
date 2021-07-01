@@ -10,7 +10,7 @@ import {usePreferences} from '../context/preferences/context'
 
 import { useHistory } from "react-router-dom";
 
-const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {} , scrollEvents= false , setShowTabs = () => {}, tabsLimit, showCartButton = true, showBack = false}) => {
+const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {} , scrollEvents= false , setShowTabs = () => {}, tabsLimit, showCartButton = true, showBack = false, showHeader = true}) => {
     const [showSearchbar, setShowSearchbar] = useState(false);
     const {state: cart} = useCart()
     const {state : preferences} = usePreferences()
@@ -62,7 +62,7 @@ const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {}
     return (
     <IonPage ref={pageRef} id={id}>
 
- { !preferences.setting1 &&  <IonHeader translucent={true}>
+ { !preferences.setting1 && showHeader && <IonHeader translucent={true}>
       <IonToolbar>
      {showBack &&  <IonButtons slot="start">
               <IonBackButton defaultHref="/home" />
@@ -143,21 +143,21 @@ const PageHOC = ({ setSearchText , component, id, name , handleScroll = () => {}
         duration={2000}
         onDidDismiss={() => setShowCompleteToast(false)}
       />
-
-
+ 
       {component}
 
 
 
     </IonContent>
     {
-      cart.items.length > 0 && showCartButton && <IonFooter className="ion-no-border">
+      cart.items.length > 0 && showCartButton && 
+      <IonFooter className="ion-no-border">
       <IonToolbar>
 
       <IonButton  routerLink="/cart"
       // onClick={handleOnClick}
               fill="solid"
-                color="secondary" expand="full">Cart - {cart.items.length} items</IonButton>
+                color="dark" expand="full">Cart - {cart.items.length} items</IonButton>
       </IonToolbar>
     </IonFooter>
     }

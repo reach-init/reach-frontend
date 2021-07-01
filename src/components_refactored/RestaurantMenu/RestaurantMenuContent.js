@@ -2,7 +2,7 @@ import Dish from '../Dish/Dish'
 import Box from '@material-ui/core/Box';
 import { Avatar, Typography } from '@material-ui/core';
 import React, { useRef, useEffect, useState } from "react";
-import "./RestaurantMenuContent.css";
+import "./RestaurantMenuContent.scss";
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -13,13 +13,17 @@ import Posts from '../Posts/Posts';
 import MenuTabs from './MenuTabs'
 import { IonButton } from '@ionic/react';
 import ScrollableTabsButtonForce from './ScrollableTabsButtonForce'
-import InfoIcon from '@material-ui/icons/Info';
+import InfoOutlined from '@material-ui/icons/InfoOutlined';
 import  Divider  from '@material-ui/core/Divider';
 import ToggleButtons from './ToggleButtons';
 import { fade, makeStyles } from "@material-ui/core/styles";
+import { IonToolbar, IonContent, IonPage, IonButtons, IonTitle, IonMenuButton, IonSegment, IonSegmentButton, IonIcon, IonSearchbar, IonRefresher, IonRefresherContent, IonToast, IonModal, IonHeader, getConfig , IonBackButton} from '@ionic/react';
+import { callOutline, searchOutline,searchSharp, callSharp, logoTwitter, logoGithub, logoInstagram, shareOutline, shareSharp } from 'ionicons/icons';
 
 const useStyles = makeStyles((theme) => ({
-
+    divider: {
+        margin: theme.spacing(1, 0),
+      },
     small: {
         width: theme.spacing(3),
         height: theme.spacing(3),
@@ -94,11 +98,27 @@ export default function RestaurantMenuContent({restaurant, value, setValue, head
     return (
         <>
             <div />
+            <IonHeader id="menu-comp" className="ion-no-border">
+          <IonToolbar>
+            <IonButtons  slot="start">
+              <IonBackButton style={{ borderRadius: "50%", backgroundColor: "white"}} defaultHref="/speakers" />
+            </IonButtons>
+
+            <IonButtons slot="end">
+              <IonButton style={{ borderRadius: "50%", backgroundColor: "white"}} onClick={() => {}}>
+              <IonIcon slot="icon-only" ios={searchSharp} md={searchSharp}></IonIcon>
+              </IonButton>
+              {/* <IonButton style={{ borderRadius: "50%", backgroundColor: "white"}}  onClick={() => {}}>
+              <IonIcon slot="icon-only" ios={shareOutline} md={shareSharp}></IonIcon>
+              </IonButton> */}
+            </IonButtons>
+          </IonToolbar>
+        </IonHeader>
             <Avatar
                 variant="square"
                 className={classes.cover} src="https://source.unsplash.com/random/?food">
             </Avatar>
-            <Box position="absolute" top="210px">
+            <Box position="absolute" top="150px">
                 <Avatar
                     style={{ width: '100px', height: '100px', border: '5px solid white' }}
                     // className={classes.cover}
@@ -106,13 +126,17 @@ export default function RestaurantMenuContent({restaurant, value, setValue, head
                 </Avatar>
             </Box>
             <Box display="flex" justifyContent="flex-end">
+                
                 <Box >
                     <div style={{ margin: 10 }}>
-                        <Button onClick={() => setFollow(!follow)} color="primary" variant={follow ? "contained" : "outlined"}>Follow</Button>
+                        <ButtonGroup color="secondary">
+                        <Button onClick={() => setFollow(!follow)}  variant={follow ? "contained" : "outlined"}>Follow</Button>
+                  
+                        </ButtonGroup>
                     </div>
                 </Box>
             </Box>
-            <Box ml="10px" >
+          <Box ml="10px" >
                 <Typography variant="h5" >
                     Nume Smecher
                 </Typography>
@@ -120,19 +144,7 @@ export default function RestaurantMenuContent({restaurant, value, setValue, head
                     Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera Descriere smechera
                 </Typography>
             </Box>
-          
-            <Box margin={1}>
-                <Box  onClick={() => setMore(!more)} justifyContent="space-between"  display='flex'>
-                    <Button variant="outlined" startIcon={<InfoIcon />}  endIcon={<ChevronRightIcon />}  color="dark" >{more ? "Hide" : "Contact info"}</Button>    
-                    {goToMenu &&  <Button variant="outlined"  color="primary" >Rezerva masa rapid</Button>   }
-              
-                </Box>
-
-                <ContactInfo more={more} user={user} /> 
-
-
-                  </Box>
-  <Box display="flex" justifyContent="flex-start">
+            <Box display="flex" justifyContent="flex-start">
                 <Box ml={1} mr="2px">
                     <AvatarGroup spacing="small" max={3}>
                         <Avatar  alt="Remy Sharp" src="https://source.unsplash.com/random" />
@@ -144,10 +156,59 @@ export default function RestaurantMenuContent({restaurant, value, setValue, head
                 <Typography variant="body1" >
                     si alti 12 urmaresc asta              </Typography></Box>
             </Box>
+            { goToMenu && (  <Box margin={1}>
+            {/* {goToMenu &&  <Button color="primary"  size="large" >Rezerva masa rapid</Button>   } */}
+
+            <Divider className={classes.divider}/>
+            <Box alignItems='center'   justifyContent="space-around"  display='flex'>
+                    {/* <Button variant="outlined" startIcon={<InfoIcon />}  endIcon={<ChevronRightIcon />}  color="dark" >{more ? "Hide" : "Contact info"}</Button>     */}
+                    <InfoOutlined />
+                   
+                    <Typography variant="h6">
+                        
+                    Rezerva masa rapid</Typography>
+                    <Box flexGrow={1}></Box> 
+                    <ChevronRightIcon />
+                </Box>
+
+             
+                <Divider className={classes.divider}/>
+                <Box alignItems='center'  justifyContent="space-around"  display='flex'>
+                    {/* <Button variant="outlined" startIcon={<InfoIcon />}  endIcon={<ChevronRightIcon />}  color="dark" >{more ? "Hide" : "Contact info"}</Button>     */}
+                    <InfoOutlined />
+                   
+                    <Typography variant="h6">
+                        
+                        Se livreaza in 10 min</Typography>
+                    <Box flexGrow={1}></Box> 
+                    <Button  color="secondary">Schimba</Button>
+                </Box>
+                <Divider className={classes.divider}/>
+
+<Box alignItems='center'  onClick={() => setMore(!more)} justifyContent="space-around"  display='flex'>
+    {/* <Button variant="outlined" startIcon={<InfoIcon />}  endIcon={<ChevronRightIcon />}  color="dark" >{more ? "Hide" : "Contact info"}</Button>     */}
+    <InfoOutlined />
+   
+    <Typography variant="h6">
+        
+        Restaurant info</Typography>
+    <Box flexGrow={1}></Box> 
+    <ChevronRightIcon />
+</Box>
+                <Divider className={classes.divider}/>
+
+
+
+
+                <ContactInfo more={more} user={user} /> 
+
+
+                  </Box>) }
+
                   {  <Box > <IonButton  
               fill="solid"
-               onClick={() => setGoToMenu(!goToMenu)} color="secondary" expand="full">{!goToMenu ? "Mergi la meniu" : "Mergi la Postari"}</IonButton></Box> }
-      {goToMenu && <ToggleButtons/>}
+               onClick={() => setGoToMenu(!goToMenu)} color="success" expand="full">{!goToMenu ? "Mergi la meniu" : "Mergi la Postari"}</IonButton></Box> }
+      {/* {goToMenu && <ToggleButtons/>} */}
             <div className="sticky">
                 <div ref={headerRef}>
                     {
