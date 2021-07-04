@@ -21,6 +21,7 @@ import { IonToolbar, IonContent, IonPage, IonButtons, IonTitle, IonMenuButton, I
 import { callOutline, searchOutline,searchSharp, callSharp, logoTwitter, logoGithub, logoInstagram, shareOutline, shareSharp } from 'ionicons/icons';
 import {   useIonModal } from '@ionic/react';
 import ModalSelector from '../ModalSelector/ModalSelector'
+
 const useStyles = makeStyles((theme) => ({
     divider: {
         margin: theme.spacing(1, 0),
@@ -59,7 +60,7 @@ export default function RestaurantMenuContent({restaurant, value, setValue, head
     const [more, setMore] = useState(false)
     const [follow, setFollow] = useState(false)
     const [goToMenu, setGoToMenu] = useState(restaurant)
-  const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
     
     const scrollTo = (ele, header) => {
     
@@ -163,14 +164,14 @@ export default function RestaurantMenuContent({restaurant, value, setValue, head
             { goToMenu && (  <Box margin={1}>
             {/* {goToMenu &&  <Button color="primary"  size="large" >Rezerva masa rapid</Button>   } */}
 
-            <Divider className={classes.divider}/>
+            {/* <Divider className={classes.divider}/> */}
             <Box alignItems='center'   justifyContent="space-around"  display='flex'>
                     {/* <Button variant="outlined" startIcon={<InfoIcon />}  endIcon={<ChevronRightIcon />}  color="dark" >{more ? "Hide" : "Contact info"}</Button>     */}
                     <InfoOutlined />
                    
-                    <Typography variant="h6">
-                        
-                    Rezerva masa rapid</Typography>
+                    <Typography variant="h6">  
+                        Rezerva masa rapid
+                    </Typography>
                     <Box flexGrow={1}></Box> 
                     <ChevronRightIcon />
                 </Box>
@@ -186,7 +187,6 @@ export default function RestaurantMenuContent({restaurant, value, setValue, head
                         Se livreaza in 10 min</Typography>
                     <Box flexGrow={1}></Box> 
                     <Button onClick={() => {
-                        console.log("aiciiiiii")
                         setOpen(true)
                     }} color="secondary">Schimba</Button>
                 </Box>
@@ -202,7 +202,7 @@ export default function RestaurantMenuContent({restaurant, value, setValue, head
     <Box flexGrow={1}></Box> 
     <ChevronRightIcon />
 </Box>
-                <Divider className={classes.divider}/>
+                {/* <Divider className={classes.divider}/> */}
 
 
 

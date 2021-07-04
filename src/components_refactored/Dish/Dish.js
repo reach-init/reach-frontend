@@ -9,6 +9,7 @@ import plus from './plus.svg'
 import Divider from '@material-ui/core/Divider';
 import Comments from '../Comments/Comments';
 import { useCart } from '../../context/cart/context'
+
 const useStyles = makeStyles((theme) => ({
     body: {
         display: '-webkit-box',

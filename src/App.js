@@ -4,6 +4,7 @@ import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import {CartProvider } from './context/cart/context'
 import {PreferencesProvider } from './context/preferences/context'
+import {ToggleButtonsProvider } from './context/toggleButtons/context'
 
 import Menu from './components/Menu';
 
@@ -51,27 +52,29 @@ const IonicApp = ({ darkMode, schedule, setIsLoggedIn, setUsername, loadConfData
   }, []);
 
   return (
-    <PreferencesProvider>
-    <CartProvider>
-        <IonApp className={`${darkMode ? 'dark-theme' : ''}`}>
-          <IonReactRouter>
-            <IonSplitPane contentId="main">
-              <Menu />
-              <IonRouterOutlet id="main">
-                <Route path="/" render={() => <MainTabs />} />
-                <Route path="/logout" render={() => {
-                  return <RedirectToLogin
-                    setIsLoggedIn={setIsLoggedIn}
-                    setUsername={setUsername}
-                  />;
-                }} />
-                {/* <Route path="/" component={HomeOrTutorial} exact /> */}
-              </IonRouterOutlet>
-            </IonSplitPane>
-          </IonReactRouter>
-        </IonApp>
-        </CartProvider>
-        </PreferencesProvider>
+    <ToggleButtonsProvider>
+      <PreferencesProvider>
+        <CartProvider>
+            <IonApp className={`${darkMode ? 'dark-theme' : ''}`}>
+              <IonReactRouter>
+                <IonSplitPane contentId="main">
+                  <Menu />
+                  <IonRouterOutlet id="main">
+                    <Route path="/" render={() => <MainTabs />} />
+                    <Route path="/logout" render={() => {
+                      return <RedirectToLogin
+                        setIsLoggedIn={setIsLoggedIn}
+                        setUsername={setUsername}
+                      />;
+                    }} />
+                    {/* <Route path="/" component={HomeOrTutorial} exact /> */}
+                  </IonRouterOutlet>
+                </IonSplitPane>
+              </IonReactRouter>
+            </IonApp>
+            </CartProvider>
+          </PreferencesProvider>
+        </ToggleButtonsProvider>
       )
 }
 
