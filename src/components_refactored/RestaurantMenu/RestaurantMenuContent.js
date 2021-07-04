@@ -19,7 +19,8 @@ import ToggleButtons from './ToggleButtons';
 import { fade, makeStyles } from "@material-ui/core/styles";
 import { IonToolbar, IonContent, IonPage, IonButtons, IonTitle, IonMenuButton, IonSegment, IonSegmentButton, IonIcon, IonSearchbar, IonRefresher, IonRefresherContent, IonToast, IonModal, IonHeader, getConfig , IonBackButton} from '@ionic/react';
 import { callOutline, searchOutline,searchSharp, callSharp, logoTwitter, logoGithub, logoInstagram, shareOutline, shareSharp } from 'ionicons/icons';
-
+import {   useIonModal } from '@ionic/react';
+import ModalSelector from '../ModalSelector/ModalSelector'
 const useStyles = makeStyles((theme) => ({
     divider: {
         margin: theme.spacing(1, 0),
@@ -58,6 +59,7 @@ export default function RestaurantMenuContent({restaurant, value, setValue, head
     const [more, setMore] = useState(false)
     const [follow, setFollow] = useState(false)
     const [goToMenu, setGoToMenu] = useState(restaurant)
+  const [open, setOpen] = React.useState(false);
     
     const scrollTo = (ele, header) => {
     
@@ -93,10 +95,12 @@ export default function RestaurantMenuContent({restaurant, value, setValue, head
         scrollTo(sectionRefs[newValue].ref.current, headerRef.current);
         setValue(newValue);
     };
-
+  
+  
     if (!user) return <div>Loading</div>
     return (
         <>
+        <ModalSelector open={open} setOpen={setOpen}/>
             <div />
             <IonHeader id="menu-comp" className="ion-no-border">
           <IonToolbar>
@@ -181,7 +185,10 @@ export default function RestaurantMenuContent({restaurant, value, setValue, head
                         
                         Se livreaza in 10 min</Typography>
                     <Box flexGrow={1}></Box> 
-                    <Button  color="secondary">Schimba</Button>
+                    <Button onClick={() => {
+                        console.log("aiciiiiii")
+                        setOpen(true)
+                    }} color="secondary">Schimba</Button>
                 </Box>
                 <Divider className={classes.divider}/>
 
